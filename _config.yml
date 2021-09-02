@@ -1,0 +1,35 @@
+url: ""
+baseurl: "/"
+title: "Emre Kayık"
+
+#share
+email: emrekayik1905@gmail.com
+instagram: emrekayik0
+github: emrekayik
+codepen: emrekayik
+
+collections:
+  authors:
+    output: true
+
+
+defaults:
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag

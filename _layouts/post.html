@@ -1,0 +1,79 @@
+---
+layout: default
+---
+<div class="antialiased">
+  <div class="max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0">
+    <main>
+      <article class="xl:divide-y xl:divide-gray-200">
+        <header class="pt-6 xl:pb-10">
+          <div class="space-y-1 text-center">
+            <dl class="space-y-10">
+              <div class="text-base font-medium leading-6 text-gray-500 sm:mt-12">
+
+
+
+                {% assign m = page.date | date: "%-m" %}
+                {{ page.date | date: "%-d" }}
+                {% case m %}
+                {% when '1' %}Ocak
+                {% when '2' %}Şubat
+                {% when '3' %}Mart
+                {% when '4' %}Nisan
+                {% when '5' %}Mayıs
+                {% when '6' %}Haziran
+                {% when '7' %}Temmuz
+                {% when '8' %}Ağustos
+                {% when '9' %}Eylül
+                {% when '10' %}Ekim
+                {% when '11' %}Kasım
+                {% when '12' %}Aralık
+                {% endcase %}
+                {{ page.date | date: "%Y" }}
+
+              </div>
+            </dl>
+            <div>
+              <h1
+                class="text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl md:text-5xl md:leading-[3.5rem]">
+                {{ page.title }}</h1>
+            </div>
+          </div>
+        </header>
+        <div class="pb-16 divide-y divide-gray-200 xl:divide-y-0 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:pb-20"
+          style="grid-template-rows: auto 1fr;">
+          <dl class="pt-6 pb-10 xl:pt-11 xl:border-b xl:border-gray-200">
+            <ul class="flex justify-center space-x-8 xl:block sm:space-x-12 xl:space-x-0 xl:space-y-8">
+              {% assign author = site.authors | where: 'short_name', page.author | first %}
+              {% if author %}
+
+              <div class="flex items-center justify-center space-x-2">
+                <a class="flex items-center justfy-center" href="{{ author.url }}">
+                  <img src="https://ui-avatars.com/api/?name={{author.name}}" class="w-10 h-10 rounded-full">
+                  <div class="text-sm font-medium whitespace-no-wrap">
+
+                    <p class="text-teal-600 hover:text-teal-700">{{ author.name }}</p>
+
+                  </div>
+                </a>
+              </div>
+
+              {% endif %}
+            </ul>
+          </dl>
+          <div class="divide-y divide-gray-200 xl:pb-0 xl:col-span-3 xl:row-span-2">
+            <div class="pt-10 pb-8 prose max-w-none">
+              {{ content }}
+            </div>
+            <footer class="text-sm font-medium divide-y divide-gray-200 xl:col-start-1 xl:row-start-2">
+              <div class="pt-8">
+                <a class="text-teal-600 hover:text-teal-700" href="/blog">
+                  ← Bloglara dön
+                </a>
+              </div>
+            </footer>
+
+          </div>
+      </article>
+    </main>
+  </div>
+</div>

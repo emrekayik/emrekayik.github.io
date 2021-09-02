@@ -1,0 +1,8 @@
+- name: Anasayfa
+  link: /
+- name: Hakkında
+  link: /hakkinda.html
+- name: Blog
+  link: /blog.html
+- name: İletişim
+  link: /iletisim.html

@@ -1,0 +1,22 @@
+<header id="top" class="fixed z-50 flex flex-col w-full transition-all delay-1000 bg-white shadow sm:relative pin-t pin-r pin-l">
+  <nav id="site-menu"
+    class="flex flex-col items-center justify-between w-full px-4 py-1 bg-white border-t-4 border-blue-700 shadow sm:flex-row sm:px-6 sm:shadow-none">
+    <div
+      class="flex flex-row flex-no-wrap items-center self-start justify-between w-full sm:w-auto sm:self-center sm:flex-none">
+      <a href="#" class="py-1 no-underline">
+        <h1 class="text-lg font-bold tracking-widest">{{site.title}}</h1>
+      </a>
+      <button id="menuBtn" class="block hamburger sm:hidden focus:outline-none" type="button" onclick="navToggle();">
+        <span class="hamburger__top-bun"></span><span class="hamburger__bottom-bun"></span>
+      </button>
+    </div>
+    <div id="menu"
+      class="flex-col items-center self-end hidden w-full h-full py-1 pb-4 sm:w-auto sm:self-center sm:flex sm:flex-row sm:py-0 sm:pb-0">
+      {% for item in site.data.navigation %}
+      <a class="w-full py-2 text-lg font-bold no-underline text-dark hover:text-red sm:w-auto sm:pr-4 sm:py-1 sm:pt-2" href="{{ item.link }}" {% if page.url == item.link %}class="text-white bg-gray-800"{% endif %}>
+        {{ item.name }}
+      </a>
+      {% endfor %}
+    </div>
+  </nav>
+</header>

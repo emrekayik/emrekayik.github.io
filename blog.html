@@ -1,0 +1,66 @@
+---
+layout: default
+title: Blog
+---
+<main class="content">
+  <!--just a container-->
+  <div class="w-full px-4 sm:max-w-lg sm:mx-auto">
+    <!--whole card act as link-->
+    {% for post in site.posts %}
+    <a href="{{ post.url }}">
+      <!--blog post card-->
+      <article class="my-4 overflow-hidden border-blue-900 rounded shadow-2xl hover:bg-gray-200">
+        <div class="sm:flex sm:flex-wrap">
+          <div class="relative h-56 sm:w-1/2 sm:h-auto">
+            <img class="absolute inset-0 object-cover w-full h-full" src="{{ post.img }}" alt="image">
+          </div>
+          <div class="p-4 sm:w-1/2">
+            <!--post category-->
+            {% for tag in post.tags %}
+            <span class="inline-block px-2 text-xs tracking-wide text-gray-600 uppercase bg-gray-300 rounded-full">
+              <h3>{{ tag }}</h3>
+            </span>
+            {% endfor %}
+            <!--post title-->
+            <h4 class="mt-2 text-lg font-semibold text-gray-800 capitalize">
+              {{ post.title }}
+            </h4>
+            <!--post excerpt-->
+            <p class="mt-2 text-gray-700">
+              {{ post.summary }}
+            </p>
+            <!--post user info-->
+            <div class="flex items-center mt-3">
+              <div class="pl-3 text-sm text-gray-600 divide-y divide-green-500">
+                <p class="truncate">
+                  {{post.author}}
+                </p>
+
+                <time>
+                  {% assign m = post.date | date: "%-m" %}
+                  {{ post.date | date: "%-d" }}
+                  {% case m %}
+                  {% when '1' %}Ocak
+                  {% when '2' %}Şubat
+                  {% when '3' %}Mart
+                  {% when '4' %}Nisan
+                  {% when '5' %}Mayıs
+                  {% when '6' %}Haziran
+                  {% when '7' %}Temmuz
+                  {% when '8' %}Ağustos
+                  {% when '9' %}Eylül
+                  {% when '10' %}Ekim
+                  {% when '11' %}Kasım
+                  {% when '12' %}Aralık
+                  {% endcase %}
+                  {{ post.date | date: "%Y" }}
+                </time>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </a>
+    {% endfor %}
+  </div>
+</main>

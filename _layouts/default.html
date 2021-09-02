@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "tr-TR" }}">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>{{ page.title }} - {{ site.title }}</title>
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link rel="stylesheet" href="{{ "/assets/css/tailwindcss.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+
+  {% feed_meta %}
+  {% seo %}
+</head>
+
+<body>
+  {% include navigation.html %}
+  {{ content }}
+  {% include footer.html %}
+
+
+  <script>
+    var nav = document.getElementById('site-menu');
+    var header = document.getElementById('top');
+
+    window.addEventListener('scroll', function () {
+      if (window.scrollY >= 100) { // adjust this value based on site structure and header image height
+        nav.classList.add('nav-sticky');
+        header.classList.add('pt-scroll');
+      } else {
+        nav.classList.remove('nav-sticky');
+        header.classList.remove('pt-scroll');
+      }
+    });
+
+    function navToggle() {
+      var btn = document.getElementById('menuBtn');
+      var nav = document.getElementById('menu');
+
+      btn.classList.toggle('open');
+      nav.classList.toggle('flex');
+      nav.classList.toggle('hidden');
+    }
+  </script>
+</body>
+
+</html>
