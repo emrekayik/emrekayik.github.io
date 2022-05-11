@@ -1,0 +1,116 @@
+<div class="container">
+  <h1 id="baslik">YKS-2022 kalan süre:</h1>
+  <div id="gerisayim">
+    <ul>
+      <li><span id="gun"></span>Gün</li>
+      <li><span id="saat"></span>Saat</li>
+      <li><span id="dakika"></span>Dakika</li>
+      <li><span id="saniye"></span>Saniye</li>
+    </ul>
+  </div>
+</div>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@700&display=swap");
+:root {
+  --renk1: #2b2e4a;
+  --renk2: #e84545;
+  --renk3: #903749;
+  --renk4: #53354a;
+}
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0 auto;
+}
+
+body {
+  align-items: center;
+  background-color: var(--renk2);
+  display: flex;
+  font-family: "Averia Serif Libre", cursive;
+}
+
+.container {
+  color: var(--renk1);
+  margin: 0 auto;
+  text-align: center;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: 0.125rem;
+  text-transform: uppercase;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+@media all and (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  li {
+    font-size: 1.125rem;
+    padding: 0.75rem;
+  }
+
+  li span {
+    font-size: 3.375rem;
+  }
+}
+</style>
+<script>
+  (function () {
+  const saniye = 1000,
+    dakika = saniye * 60,
+    saat = dakika * 60,
+    gun = saat * 24;
+
+  let yks = "Jun 18, 2022 00:00:00",
+    countDown = new Date(yks).getTime(),
+    x = setInterval(function () {
+      let now = new Date().getTime(),
+        distance = countDown - now;
+
+      (document.getElementById("gun").innerText = Math.floor(distance / gun)),
+        (document.getElementById("saat").innerText = Math.floor(
+          (distance % gun) / saat
+        )),
+        (document.getElementById("dakika").innerText = Math.floor(
+          (distance % saat) / dakika
+        )),
+        (document.getElementById("saniye").innerText = Math.floor(
+          (distance % dakika) / saniye
+        ));
+
+      //do something later when date is reached
+      if (distance < 0) {
+        let baslik = document.getElementById("baslik"),
+          gerisayim = document.getElementById("gerisayim");
+
+        baslik.innerText = "Bugün YKS günü!";
+        gerisayim.style.display = "none";
+
+        clearInterval(x);
+      }
+      //seconds
+    }, 0);
+})();
+
+</script>
