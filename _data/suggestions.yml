@@ -1,0 +1,17 @@
+- title: "Fireship"
+  url: "https://www.youtube.com/c/Fireship"
+  category: "YouTube"
+  tags:
+    - javascript
+    - frontend
+    - youtube
+  description: "Kısa ve öz frontend ve yazılım videoları."
+
+- title: "OverAPI"
+  url: "https://overapi.com"
+  category: "Web"
+  tags:
+    - cheatsheet
+    - web
+    - kaynak
+  description: "Kodlama için harika referanslar ve cheat sheet'ler."

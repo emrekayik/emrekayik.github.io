@@ -1,0 +1,211 @@
+/* Bu CSS'i projenizin ana CSS/SCSS dosyasında DaisyUI importlarından sonra ekleyin */
+
+/* Örnek: styles.css veya main.scss dosyanızda */
+
+/* Tailwind ve DaisyUI importları buraya */
+/* @import 'tailwindcss/base'; */
+/* @import 'tailwindcss/components'; */
+/* @import 'tailwindcss/utilities'; */
+/* @import "daisyui/dist/full.css"; */ /* Kendi import yolunuzu ayarlayın */
+
+
+/* Highlight Stillerini DaisyUI Değişkenleriyle Güncelle */
+pre .highlight {
+  /* Genel container */
+  /* Orijinal: color: #f8f8f2; background-color: #49483e; */
+  color: oklch(var(--bc)); /* Metin rengi için Base Content */
+  background-color: oklch(var(--b3)); /* Arka plan için Base 2 veya Base 3 uygun olabilir */
+  padding: 1rem; /* Etrafına biraz boşluk ekle */
+  overflow-x: auto; /* Çok uzun kod satırları için yatay kaydırma çubuğu */
+  border-radius: var(--rounded-btn, 0.5rem); /* DaisyUI'nin varsayılan yuvarlaklık değişkenini kullan */
+}
+
+/* Satır numaraları için tablo stili (eğer highlighting tag'ında `linenos: true` kullandıysanız) */
+.highlight table {
+    width: 100%; /* Tablo varsa tam genişlik almasını sağla */
+    border-spacing: 0; /* Hücreler arası boşluğu kaldır */
+}
+
+.highlight table td {
+  /* Orijinal: padding: 5px; */
+  padding: 0.5rem; /* Paddingi Tailwind/DaisyUI'nin rem bazlı ölçülerine uyarla */
+  vertical-align: top; /* İçeriği (kod/numara) üste hizala */
+}
+
+.highlight table pre {
+  /* Orijinal: margin: 0; */
+  margin: 0; /* pre elementinin varsayılan marginini kaldır */
+}
+
+
+/* Sözdizimi Elementlerinin Renkleri */
+/* Burada orijinal temadaki renkleri, anlamlarına göre DaisyUI değişkenlerine eşliyoruz */
+
+/* Yorumlar (Comments) */
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf,
+.highlight .cm, .highlight .c1 {
+  /* Orijinal: color: #75715e; font-style: italic; */
+  color: oklch(var(--s)); /* Nötr renk uygun olabilir */
+  font-style: italic;
+}
+
+/* Direktifler, Preprocessor */
+.highlight .cp {
+  /* Orijinal: color: #75715e; font-weight: bold; */
+  color: oklch(var(--n)); /* Nötr renk uygun olabilir */
+  font-weight: bold;
+}
+.highlight .cs {
+  /* Orijinal: color: #75715e; font-weight: bold; font-style: italic; */
+  color: oklch(var(--n)); /* Nötr renk uygun olabilir */
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Hatalar (Errors), Silinen Kod (Git diff -gd) */
+.highlight .err {
+  /* Orijinal: color: #960050; background-color: #1e0010; */
+  color: oklch(var(--er-content)); /* Hata arka planı üzerinde iyi duracak metin rengi */
+  background-color: oklch(var(--er)); /* Error rengini arka plan yap */
+  padding: 0.25rem; /* Hata işaretinin etrafına padding ekle */
+  border-radius: var(--rounded-badge, 1rem); /* Yuvarlaklık ver */
+}
+.highlight .gr { /* Generic.Error */
+  /* Orijinal: color: #aa0000; */
+   color: oklch(var(--er)); /* Hata rengi için güncellendi */
+}
+.highlight .gt { /* Generic.Traceback */
+   /* Orijinal: color: #aa0000; */
+   color: oklch(var(--er)); /* Hata rengi için güncellendi */
+}
+.highlight .gd { /* Generic.Deleted */
+  /* Orijinal: color: #ffffff; background-color: #493131; */
+  color: oklch(var(--er-content)); /* Hata arka planı üzerinde iyi duracak metin rengi */
+  background-color: oklch(var(--er)); /* Error rengini arka plan yap */
+}
+
+/* Eklenen Kod (Git diff - gi) */
+.highlight .gi { /* Generic.Inserted */
+  /* Orijinal: color: #ffffff; background-color: #324932; */
+  color: oklch(var(--su-content)); /* Başarı arka planı üzerinde iyi duracak metin rengi */
+  background-color: oklch(var(--su)); /* Success rengini arka plan yap */
+}
+
+
+/* Vurgular (Emphasis, Bold vb.) */
+.highlight .ge { /* Generic.Emph */
+  /* Orijinal: font-style: italic; */
+  font-style: italic;
+}
+ .highlight .ges { /* Generic.StrongEmph */
+  /* Orijinal: font-weight: bold; font-style: italic; */
+   font-weight: bold;
+   font-style: italic;
+ }
+.highlight .gs { /* Generic.Strong */
+  /* Orijinal: font-weight: bold; */
+  font-weight: bold;
+}
+
+/* Diğer Generic Tipler */
+/* Genellikle nötr veya standart metin rengi olabilir */
+.highlight .gh, .highlight .go, .highlight .gp, .highlight .gu, .highlight .gw {
+ /* Heading, Output, Prompt, Subheading, Why */
+ /* Orijinal: Various gray colors */
+ color: oklch(var(--nc)); /* Nötr içerik rengi */
+}
+
+
+/* Anahtar Kelimeler (Keywords) */
+.highlight .k, .highlight .kv, /* Keyword, Keyword.Declaration */
+.highlight .kc, .highlight .kd, .highlight .kp, .highlight .kr, .highlight .kt /* Keyword.Constant, Declaration, Pseudo, Reserved, Type */
+ {
+  /* Orijinal: color: #66d9ef; font-weight: bold; */
+   color: oklch(var(--p)); /* Primary renk anahtar kelimeler için iyi bir seçim */
+   font-weight: bold;
+}
+
+/* Operatörler (Operators) */
+.highlight .kn, /* Keyword.Namespace */
+.highlight .ow, /* Operator.Word */
+.highlight .o /* Operator */
+ {
+  /* Orijinal: color: #f92672; font-weight: bold; */
+   color: oklch(var(--er)); /* Error rengi operatörler veya semboller için kullanılabilir */
+   font-weight: bold;
+}
+
+/* Değişken adları*/
+.highlight .n {
+  /* Orijinal: color: #f8f8f2; */
+   color: oklch(var(--bc)); /* Standart metin rengi */
+}
+
+
+/* Sayılar (Numbers) */
+.highlight .mf, .highlight .mh, .highlight .il, .highlight .mi, .highlight .mo, /* Number.Float, Hex, Integer.Long, Integer, Octal */
+.highlight .m, .highlight .mb, .highlight .mx, .highlight .se /* Number, Number.Binary, Number.Hex, String.Escape */
+ {
+  /* Orijinal: color: #ae81ff; */
+   color: oklch(var(--a)); /* Accent rengi sayılar veya sabitler için kullanılabilir */
+}
+
+
+/* Stringler (Strings) */
+.highlight .sa, /* String.Affix */
+.highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .s1, .highlight .ss, /* Çeşitli String Tipleri */
+.highlight .s, .highlight .dl /* String, String.Delimiter */
+ {
+  /* Orijinal: color: #e6db74; */
+   color: oklch(var(--wa)); /* Warning rengi stringler için yaygın kullanılır */
+}
+ .highlight .sa { /* String.Affix - genellikle farklı renklendirilir */
+   /* Orijinal: color: #66d9ef; font-weight: bold; */
+    color: oklch(var(--p)); /* Primary renk veya başka bir belirgin renk */
+    font-weight: bold;
+ }
+
+
+/* İsimler (Names/Identifiers) */
+/* Fonksiyonlar, Sınıf İsimleri, Değişkenler vb. */
+.highlight .na, /* Name.Attribute */
+.highlight .nc, /* Name.Class */
+.highlight .nd, /* Name.Decorator */
+.highlight .ne, /* Name.Exception */
+.highlight .nf, .highlight .fm /* Name.Function, Name.Function.Magic */
+ {
+  /* Orijinal: Çeşitli renkler, genellikle #a6e22e */
+   color: oklch(var(--su)); /* Success rengi isimler veya fonksiyonlar için iyi gidebilir */
+}
+/* Spesifik İsim Tipleri - daha belirgin renkler */
+.highlight .nc, .highlight .nd, .highlight .ne, .highlight .nf, .highlight .fm {
+   /* Orijinalde bold olanlar */
+   font-weight: bold;
+}
+.highlight .nt { /* Name.Tag (HTML tag isimleri gibi) */
+   /* Orijinal: color: #f92672; */
+   color: oklch(var(--er)); /* Tag isimleri operatörlere benzer renkte olabilir */
+}
+.highlight .no { /* Name.Constant */
+  /* Orijinal: #66d9ef; */
+   color: oklch(var(--p)); /* Sabitler anahtar kelimelere benzer renkte olabilir */
+}
+/* Varsayılan İsimler, Builtin'ler, Değişkenler, Boşluklar */
+.highlight .bp, .highlight .nb, .highlight .ni, .highlight .nn, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .nv, .highlight .vm, .highlight .w, .highlight .nl /* Builtin.Pseudo, Builtin, ... Variable, Whitespace, Name.Label */
+ {
+  /* Orijinal: #f8f8f2; (varsayılan metin rengi) */
+   color: oklch(var(--bc)); /* Standart metin rengi */
+}
+ .highlight .nl { /* Name.Label */
+  /* Orijinal: #f8f8f2; font-weight: bold; */
+   color: oklch(var(--bc)); /* Standart metin rengi */
+   font-weight: bold; /* Standart metin rengi için kalın yazı */
+ }
+
+
+/* Eğer farklı bir .highlight background rengi eklediyseniz ve
+   DaisyUI'nin varsayılan theme renklerinin arka planında highlight'ı kullanıyorsanız,
+   genel highlight font rengini .highlight içinde tanımlamak yerine,
+   bu rengi varsayılan --bc rengi olarak ayarlayabilirsiniz.
+   Ancak genellikle highlight kendi içinde tam bir tema setidir.
+*/

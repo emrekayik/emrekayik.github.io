@@ -1,0 +1,60 @@
+---
+layout: default
+title: Öneriler
+---
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold mb-4">🚀 Öneriler</h1>
+  <p class="mb-6 text-gray-600">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
+
+  {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
+  <div class="filter mb-6">
+    <button class="btn btn-sm btn-outline tag-btn" data-tag="">Tümü</button>
+    {% for tag in all_tags %}
+      <button class="btn btn-sm btn-outline tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
+    {% endfor %}
+  </div>
+
+  <div id="suggestion-list" class="grid md:grid-cols-2 gap-4">
+    {% for item in site.data.suggestions %}
+    <div class="card shadow-md bg-base-100 suggestion-item" data-tags="{{ item.tags | join: ' ' }}">
+      <div class="card-body">
+        <h2 class="card-title">
+          <a href="{{ item.url }}" target="_blank" class="hover:underline">{{ item.title }}</a>
+        </h2>
+        <p class="text-sm text-gray-500 mb-2">{{ item.description }}</p>
+        <div class="flex flex-wrap gap-1">
+          {% for tag in item.tags %}
+            <div class="badge badge-outline py-1">{{ tag }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".tag-btn");
+    const cards = document.querySelectorAll(".suggestion-item");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const selected = btn.dataset.tag;
+
+        buttons.forEach(b => b.classList.remove("btn-active"));
+        btn.classList.add("btn-active");
+
+        cards.forEach(card => {
+          const tags = card.dataset.tags.split(" ");
+          if (!selected || tags.includes(selected)) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      });
+    });
+  });
+</script>

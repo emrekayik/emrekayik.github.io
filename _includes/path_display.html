@@ -1,0 +1,21 @@
+<div class="breadcrumbs text-sm">
+    <ul class="flex space-x-2">
+        <li>
+            <a href="{{ '/' | relative_url }}">
+                Ana Sayfa
+            </a>
+        </li>
+        {% if page.collection == 'posts' %}
+        <li>
+            <a href="{{ '/blog/' | relative_url }}">Blog</a>
+        </li>
+        {% elsif page.collection == 'projects' %}
+        <li>
+            <a href="{{ '/projeler/' | relative_url }}">Projeler</a>
+        </li>
+        {% endif %}
+        <li class="text-gray-500">
+            {{ page.title | truncate: 40}}
+        </li>
+    </ul>
+</div>

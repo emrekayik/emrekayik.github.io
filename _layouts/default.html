@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}" data-theme="mytheme">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>{{ page.title }} - {{ site.title }}</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ " /assets/css/app.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ " /assets/css/main.css" | relative_url }}">
+
+  {{page.head | default: "" }}
+</head>
+
+<body class="max-w-4xl mx-auto bg-base-100 text-base-content" id="context-area">
+  <!--
+  <div aria-hidden="true" class="absolute inset-x-0 -top-14 bottom-0 mx-auto max-w-3xl">
+    <div class="to-base-300 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
+    </div>
+    <div class="to-base-300 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
+    </div>
+  </div>
+  -->
+  {% include navbar.html %}
+  <main id="content" class="bg-base-200 max-w-3xl mx-auto px-4 py-8">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+
+</html>

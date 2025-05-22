@@ -1,0 +1,8 @@
+- name: Anasayfa
+  link: /
+- name: Blog
+  link: /blog/
+- name: Projeler
+  link: /projects/
+- name: Öneriler
+  link: /oneriler/

@@ -1,0 +1,38 @@
+--- 
+--- 
+
+@use "base";
+@use "monokai";
+
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cupcake, bumblebee, emerald, corporate, synthwave, retro, cyberpunk, valentine, fantasy, black, dracula, cmyk, autumn, business, acid, lemonade, night, coffee, winter;
+}
+
+.antic-slab-regular {
+  font-family: "Antic Slab", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.context-menu-item {
+  @apply cursor-pointer bg-white dark:bg-gray-800 hover:bg-gray-200 transition-all ease-linear dark:hover:bg-gray-800/50 p-4 w-full h-full text-gray-800 dark:text-gray-200 relative;
+}
+
+.mermaid {
+  @apply text-primary-content bg-primary/50;
+}
+
+.prose canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+body.transition-fade {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+body.loaded {
+  opacity: 1;
+}

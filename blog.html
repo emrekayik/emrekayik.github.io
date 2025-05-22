@@ -1,0 +1,16 @@
+---
+layout: default
+title: "Yazılarım"
+---
+
+<article class="prose prose-lg">
+    <h2>Yazılarım</h2>
+    <ul class="font-mono list-disc list-inside">
+        {% for post in site.posts %}
+        <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
+            <a class="link" href="{{ post.url }}">{{ post.title }}</a>
+            <time class="text-xs text-gray-500 text-nowrap">{{ post.date | date: "%-d %B %Y" }}</time>
+        </li>
+        {% endfor %}
+    </ul>
+</article>

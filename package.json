@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "daisyui": "^4.12.24"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.9"
+  }
+}

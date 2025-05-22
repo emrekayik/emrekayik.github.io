@@ -1,0 +1,139 @@
+<div id="custom-context-menu" class="absolute
+               bg-white rounded-md shadow-lg border border-gray-200 z-50
+               invisible opacity-0 scale-95 pointer-events-none
+               transition-all duration-200 ease-out">
+    <ul class="py-1">
+        <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white"
+                data-action="edit">
+                Düzenle
+            </a>
+        </li>
+        <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-500 hover:text-white"
+                data-action="delete">
+                Sil
+            </a>
+        </li>
+        <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" data-action="copy">
+                Kopyala
+            </a>
+        </li>
+        <hr class="my-1 border-gray-200">
+        <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" data-action="info">
+                Bilgi
+            </a>
+        </li>
+    </ul>
+</div>
+<script>
+    const contextMenu = document.getElementById('custom-context-menu');
+
+    // Menüyü gizleyen fonksiyon
+    function hideMenu() {
+      // Animasyon sınıflarını ekleyerek gizle
+      contextMenu.classList.add('opacity-0', 'scale-95', 'invisible', 'pointer-events-none');
+      contextMenu.classList.remove('opacity-100', 'scale-100', 'visible', 'pointer-events-auto');
+    }
+
+    // Menüyü gösteren fonksiyon
+    function showMenu(x, y) {
+      // Menünün ekran dışına taşmasını engellemek için kontrol ekleyelim
+      const menuWidth = contextMenu.offsetWidth;
+      const menuHeight = contextMenu.offsetHeight;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      let finalX = x;
+      let finalY = y;
+
+      // Sağ kenardan taşarsa
+      if (finalX + menuWidth > windowWidth) {
+        finalX = windowWidth - menuWidth;
+      }
+
+      // Alt kenardan taşarsa
+      if (finalY + menuHeight > windowHeight) {
+        finalY = windowHeight - menuHeight;
+      }
+
+      // Sol veya üst kenardan taşarsa (çok nadir ama olabilir)
+      finalX = Math.max(0, finalX);
+      finalY = Math.max(0, finalY);
+
+
+      contextMenu.style.left = finalX + 'px';
+      contextMenu.style.top = finalY + 'px';
+
+      // Animasyon sınıflarını kaldırarak göster
+      contextMenu.classList.remove('opacity-0', 'scale-95', 'invisible', 'pointer-events-none');
+      contextMenu.classList.add('opacity-100', 'scale-100', 'visible', 'pointer-events-auto'); // 'visible' sınıfı görünürlüğü ayarlar
+    }
+
+
+    // Tüm belge üzerinde sağ tık olayını dinle
+    document.addEventListener('contextmenu', function (event) {
+      // Varsayılan tarayıcı bağlam menüsünü engelle
+      event.preventDefault();
+
+      // Menüyü farenin olduğu yerde göster
+      showMenu(event.clientX, event.clientY);
+    });
+
+    // Sayfadaki herhangi bir yere tıklandığında menüyü gizle
+    document.addEventListener('click', function (event) {
+      // Menü görünürse (visible sınıfı varsa) VE tıklanan yer menünün kendisi veya içindeki bir element değilse gizle
+      const isMenuVisible = contextMenu.classList.contains('visible');
+
+      if (isMenuVisible && !contextMenu.contains(event.target)) {
+        hideMenu();
+      }
+    });
+
+    // Menü içindeki öğelere tıklandığında (Event Delegation kullanarak)
+    contextMenu.addEventListener('click', function (event) {
+      const target = event.target; // Tıklanan elementi al
+      // Tıklanan elementin veya üst elementlerinin 'a[data-action]' selector'üne uyup uymadığını kontrol et
+      const menuItem = target.closest('a[data-action]');
+
+      if (menuItem) {
+        // Eğer bir menü öğesi bulunduysa
+        event.preventDefault(); // a etiketinin varsayılan tıklama davranışını engelle
+
+        const action = menuItem.getAttribute('data-action');
+        console.log(`Seçilen Aksiyon: ${action}`); // Konsola yazdır veya istediğin işlemi yap
+
+        if (action === 'edit') {
+          // Düzenleme işlemi
+          console.log('Düzenleme işlemi başlatıldı.');
+        } else if (action === 'delete') {
+          // Silme işlemi
+          console.log('Silme işlemi başlatıldı.');
+        } else if (action === 'copy') {
+          // Kopyalama işlemi
+          console.log('Kopyalama işlemi başlatıldı.');
+        } else if (action === 'info') {
+          // Bilgi gösterme işlemi
+          console.log('Bilgi gösterme işlemi başlatıldı.');
+        }
+
+        // Aksiyon alındıktan sonra menüyü gizle
+        hideMenu();
+      }
+      // Eğer tıklanan yer menünün içindeyse ama bir menü öğesi değilse (örneğin boş alan veya ayırıcı), menü gizlenmez.
+      // Eğer menünün *herhangi* bir yerine tıklanınca gizlenmesini isterseniz, yukarıdaki `if (menuItem)` kontrolünü kaldırıp `hideMenu()` çağrısını doğrudan bu event listener'ın içine taşıyabilirsiniz.
+      // Ancak genellikle sadece aksiyon seçildiğinde gizlenmesi beklenir. Dışarıya tıklama ise document listener tarafından zaten ele alınıyor.
+    });
+
+
+    // Sayfa kaydırıldığında menüyü gizle (UX için iyidir)
+    window.addEventListener('scroll', function () {
+      const isMenuVisible = contextMenu.classList.contains('visible');
+      if (isMenuVisible) {
+        hideMenu();
+      }
+    });
+
+  </script>

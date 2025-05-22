@@ -1,0 +1,16 @@
+---
+layout: default
+title: "Projelerim"
+---
+
+<article class="prose prose-lg">
+    <h2>Projelerim</h2>
+    <ul class="font-mono list-disc list-inside">
+        {% for project in site.projects %}
+        <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
+            <a class="link" href="{{ project.url }}">{{ project.title }}</a>
+            <time class="text-xs text-gray-500 text-nowrap">{{ project.date | date: "%-d %B %Y" }}</time>
+        </li>
+        {% endfor %}
+    </ul>
+</article>
