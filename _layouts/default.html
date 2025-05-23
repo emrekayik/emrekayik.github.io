@@ -10,8 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{ " /assets/css/app.css" | relative_url }}">
-  <link rel="stylesheet" href="{{ " /assets/css/main.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/app.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="./assets/css/app.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
 
   {{page.head | default: "" }}
 </head>
@@ -26,12 +28,13 @@
   </div>
   -->
   {% include navbar.html %}
+  {{ relative_url }}
   <main id="content" class="bg-base-200 max-w-3xl mx-auto px-4 py-8">
     {{ content }}
   </main>
   {% include footer.html %}
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  <script src="{{ './assets/js/main.js' | relative_url }}"></script>
 </body>
 
 </html>
