@@ -1,10 +1,11 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
-name: Deploy Jekyll with GitHub Pages dependencies preinstalled
+# .github/workflows/deploy.yml
+
+name: Deploy Jekyll site to Pages
 
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: [$default-branch]
+    branches: ["main"] # veya "master" hangisini kullanıyorsanız
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,17 +29,42 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # Ruby ve Bundler'ı kurar. Gem'leri cache'leyerek sonraki build'leri hızlandırır.
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # Gemfile.lock dosyanızdaki ruby versiyonuyla eşleşmeli
+          bundler-cache: true # Runs bundle install and caches gems
+
+      # Node.js'i kurar. Tailwind ve DaisyUI için gereklidir.
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # package.json motorunuza uygun bir versiyon seçin
+          cache: 'npm'
+
+      # Gerekli Node paketlerini (tailwindcss, daisyui vb.) kurar
+      - name: Install NPM dependencies
+        run: npm install
+
+      # Jekyll sitenizi production modunda build eder.
+      # Bu adım, tailwindcss-ruby gem'i sayesinde Tailwind build'ini de otomatik olarak tetikler.
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      # GitHub Pages için standart kurulum adımları
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          # Jekyll'in çıktı klasörü olan _site'ı yükle
+          path: './_site'
 
-  # Deployment job
+  # Deployment job - Bu kısım değişmedi
   deploy:
     environment:
       name: github-pages
