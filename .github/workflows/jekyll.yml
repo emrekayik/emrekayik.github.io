@@ -1,61 +1,57 @@
 name: Deploy Jekyll site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
-    branches: ["main"] # veya "master" hangisini kullanıyorsanız
-
-  # Allows you to run this workflow manually from the Actions tab
+    branches: ["main"]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Node.js'i kurar. Tailwind ve DaisyUI için gereklidir.
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2' # veya senin `.ruby-version` dosyana uygun versiyon
+          bundler-cache: true
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18' # package.json motorunuza uygun bir versiyon seçin
+          node-version: '18'
           cache: 'npm'
 
-      # Gerekli Node paketlerini (tailwindcss, daisyui vb.) kurar
+      - name: Install Ruby dependencies
+        run: bundle install
+
       - name: Install NPM dependencies
         run: npm install
 
-      # Jekyll sitenizi production modunda build eder.
-      # Bu adım, tailwindcss-ruby gem'i sayesinde Tailwind build'ini de otomatik olarak tetikler.
       - name: Build with Jekyll
         run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
-      # GitHub Pages için standart kurulum adımları
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Jekyll'in çıktı klasörü olan _site'ı yükle
           path: './_site'
 
-  # Deployment job - Bu kısım değişmedi
   deploy:
     environment:
       name: github-pages
