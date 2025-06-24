@@ -1,7 +1,7 @@
-url: "http://emrekayik.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "" # the subpath of your site, e.g. /blog
-title: "/home/emre" # the name of your site, e.g. ACME Corp.
-lang: "tr-TR" # the default language for your site
+url: "https://emrekayik.github.io"
+baseurl: ""
+title: "/home/emre"
+lang: "tr-TR"
 
 collections:
   projects:
@@ -55,7 +55,6 @@ jekyll_admin:
 reading_time:
   words_per_minute: 250 # Dakikada 250 kelime olarak ayarla
   minutes_per_image: 0.2 # Her resim için 0.2 dakika (12 saniye) ekle
-
 
 
 highlighter: rouge
