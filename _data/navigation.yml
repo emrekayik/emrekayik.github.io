@@ -1,8 +1,8 @@
 - name: Anasayfa
   link: /
 - name: Blog
-  link: /blog/
+  link: /blog.html
 - name: Projeler
-  link: /projects/
+  link: /projeler.html
 - name: Öneriler
-  link: /oneriler/
+  link: /oneriler.html
