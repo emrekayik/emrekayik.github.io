@@ -4,11 +4,14 @@ title: Öneriler
 ---
 
 <div class="max-w-4xl mx-auto px-4 py-10">
-  <h1 class="text-3xl font-bold mb-4">🚀 Öneriler</h1>
-  <p class="mb-6 text-gray-600">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold mb-4">🚀 Öneriler</h1>
+    <p class="text-gray-600">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
+    <p class="">Önerilerin hepsini json formatında görüntülemek için <a class="text-primary" target="_blank" href="/suggestions.json"><i class="ai-arrow-up-right"></i></a></p>
+  </div>
 
   {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
-  <div class="filter mb-6">
+  <div class="filter mb-6 space-y-1 space-x-2 items-center justify-start">
     <button class="btn btn-sm btn-outline tag-btn" data-tag="">Tümü</button>
     {% for tag in all_tags %}
       <button class="btn btn-sm btn-outline tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
@@ -19,13 +22,16 @@ title: Öneriler
     {% for item in site.data.suggestions %}
     <div class="card shadow-md bg-base-100 suggestion-item" data-tags="{{ item.tags | join: ' ' }}">
       <div class="card-body">
-        <h2 class="card-title">
+        <h2 class="card-title flex items-center justify-between">
           <a href="{{ item.url }}" target="_blank" class="hover:underline">{{ item.title }}</a>
+          {% if item.category %}
+            <i class="{{ site.data.social[item.category].icon }} text-[24px]"></i>
+          {% endif %}
         </h2>
         <p class="text-sm text-gray-500 mb-2">{{ item.description }}</p>
         <div class="flex flex-wrap gap-1">
           {% for tag in item.tags %}
-            <div class="badge badge-outline py-1">{{ tag }}</div>
+            <div class="badge badge-outline p-1">{{ tag }}</div>
           {% endfor %}
         </div>
       </div>

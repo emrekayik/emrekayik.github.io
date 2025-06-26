@@ -1,6 +1,7 @@
 ---
 layout: post
 title: JavaScript’te Zaman Kazanmak İçin 20 Kısaltma
+description: JavaScript’te Zaman Kazanmak İçin 20 Kısaltma
 
 sources:
   - title: "20 JavaScript shorthand to save time"

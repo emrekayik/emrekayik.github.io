@@ -1,0 +1,24 @@
+github:
+  icon: "ai-github-fill"
+  prefix: "https://github.com/"
+linkedin:
+  icon: "ai-linkedin-fill"
+  prefix: "https://www.linkedin.com/in/"
+instagram:
+  icon: "ai-instagram-fill"
+  prefix: "https://instagram.com/"
+x:
+  icon: "ai-x-fill"
+  prefix: "https://x.com/"
+mail:
+  icon: "ai-envelope"
+  prefix: "mailto:"
+location:
+  icon: "ai-location"
+  prefix: ""
+web:
+  icon: "ai-globe"
+  prefix: ""
+youtube:
+  icon: "ai-youtube-fill"
+  prefix: ""

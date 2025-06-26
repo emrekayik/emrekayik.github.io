@@ -2,6 +2,8 @@
 layout: post
 
 title: "Flutter’da Çerçevesiz Windows Uygulaması Nasıl Yapılır?"
+decription: Flutter’da Çerçevesiz Windows Uygulaması Nasıl Yapılır?
+comments: true
 ---
 
 Flutter’da çerçevesiz (frameless) pencere uygulaması oluşturmak için araştırma yaparken, Türkçe kaynak bulamadım. Bu yüzden bir blog yazısı yazmaya karar verdim.

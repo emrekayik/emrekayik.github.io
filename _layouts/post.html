@@ -68,4 +68,7 @@ head: |
         </div>
         {% endif %}
     </div>
+    {% if site.disqus.shortname %}
+    {% include disqus_comments.html %}
+    {% endif %}
 </div>

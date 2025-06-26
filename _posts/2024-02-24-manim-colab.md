@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Manim, Colab’da nasıl çalıştırılır?"
+description: Manim, Colab’da nasıl çalıştırılır?
 
 sources:
     - title: "ManimCE resmi web adresi"

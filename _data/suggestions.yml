@@ -1,17 +1,32 @@
 - title: "Fireship"
   url: "https://www.youtube.com/c/Fireship"
-  category: "YouTube"
+  description: "Kısa ve öz frontend ve yazılım videoları."
+  category: "youtube"
   tags:
     - javascript
     - frontend
     - youtube
-  description: "Kısa ve öz frontend ve yazılım videoları."
 
 - title: "OverAPI"
   url: "https://overapi.com"
-  category: "Web"
+  description: "Kodlama için harika referanslar ve cheat sheet'ler."
+  category: "web"
   tags:
     - cheatsheet
     - web
-    - kaynak
-  description: "Kodlama için harika referanslar ve cheat sheet'ler."
+    - source
+
+- title: "The Internet Movie Script Database (IMSDb)"
+  url: "https://imsdb.com/"
+  description: "Filmlerin senaryolarına erişebileceğiniz web adresi."
+  category: "web"
+  tags:
+    - cinema
+    - database
+
+- title: "gluon lang"
+  url: "https://github.com/gluon-lang/gluon"
+  description: "Rust ile yazılmış statik, tip çıkarımlı ve gömülebilir bir dil."
+  category: "github"
+  tags:
+    - lang

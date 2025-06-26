@@ -1,12 +1,22 @@
 url: "https://emrekayik.github.io"
 baseurl: ""
-title: "/home/emre"
 lang: "tr-TR"
+
+title: "/home/emre"
+description: "Kişisel projelerim, yazılarım ve daha fazlası."
+author:
+  name: Emre Kayık
+  email: emrekayik1905@gmail.com
+  twitter: emrekayik0
+
+
+disqus:
+  shortname: emrekayik
 
 collections:
   projects:
     output: true
-    permalink: /projects/:title/
+    permalink: /projeler/:title/
   posts:
     output: true
     permalink: /blog/:title/
@@ -17,7 +27,7 @@ collections:
 defaults:
   - scope:
       path: ""
-      type: "projects"
+      type: "projeler"
     values:
       layout: "project"
   - scope:

@@ -1,5 +1,6 @@
 ---
 title: Go dilinde Kısa Değişken Tanımlama(:=) Avantajları-Dezavantajları
+description: Go dilinde Kısa Değişken Tanımlama(:=) Avantajları-Dezavantajları
 layout: post
 reading_time: true
 ---
