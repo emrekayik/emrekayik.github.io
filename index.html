@@ -8,7 +8,7 @@ title: "Merhaba"
     <p>İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web teknolojileriyle çalışan bir
         geliştiriciyim.</p>
     <p>Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi bulacaksınız.</p>
-    <h2>Yazılarım</h2>
+    <h2 class="flex justify-between">Yazılarım<i class="ai-book-close"></i></h2>
     <ul class="font-mono list-disc list-inside">
         {% for post in site.posts limit:5 %}
         <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
@@ -17,10 +17,10 @@ title: "Merhaba"
         </li>
         {% endfor %}
         <li class="flex flex justify-end space-x-2 items-center">
-            <a class="link" href="{{ '/blog/' | relative_url }}">Tüm Yazılarım</a>
+            <a class="link" href="{{ '/blog.html' | relative_url }}">Tüm Yazılarım</a>
         </li>
     </ul>
-    <h2>Projelerim</h2>
+    <h2 class="flex justify-between">Projelerim <i class="ai-folder"></i></h2>
     <ul class="font-mono list-disc list-inside">
         {% for project in site.projects %}
         <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
@@ -28,5 +28,8 @@ title: "Merhaba"
             <time class="text-xs text-gray-500 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
         </li>
         {% endfor %}
+        <li class="flex flex justify-end space-x-2 items-center">
+            <a class="link" href="{{ '/projeler.html' | relative_url }}">Tüm Projelerim</a>
+        </li>
     </ul>
 </article>

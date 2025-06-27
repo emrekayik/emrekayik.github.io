@@ -4,63 +4,92 @@ title: Öneriler
 ---
 
 <div class="max-w-4xl mx-auto px-4 py-10">
-  <div class="mb-6">
-    <h1 class="text-3xl font-bold mb-4">🚀 Öneriler</h1>
-    <p class="text-gray-600">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
-    <p class="">Önerilerin hepsini json formatında görüntülemek için <a class="text-primary" target="_blank" href="/suggestions.json"><i class="ai-arrow-up-right"></i></a></p>
-  </div>
-
-  {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
-  <div class="filter mb-6 space-y-1 space-x-2 items-center justify-start">
-    <button class="btn btn-sm btn-outline tag-btn" data-tag="">Tümü</button>
-    {% for tag in all_tags %}
-      <button class="btn btn-sm btn-outline tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
-    {% endfor %}
-  </div>
-
-  <div id="suggestion-list" class="grid md:grid-cols-2 gap-4">
-    {% for item in site.data.suggestions %}
-    <div class="card shadow-md bg-base-100 suggestion-item" data-tags="{{ item.tags | join: ' ' }}">
-      <div class="card-body">
-        <h2 class="card-title flex items-center justify-between">
-          <a href="{{ item.url }}" target="_blank" class="hover:underline">{{ item.title }}</a>
-          {% if item.category %}
-            <i class="{{ site.data.social[item.category].icon }} text-[24px]"></i>
-          {% endif %}
-        </h2>
-        <p class="text-sm text-gray-500 mb-2">{{ item.description }}</p>
-        <div class="flex flex-wrap gap-1">
-          {% for tag in item.tags %}
-            <div class="badge badge-outline p-1">{{ tag }}</div>
-          {% endfor %}
-        </div>
-      </div>
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold mb-4">🚀 Öneriler</h1>
+        <p class="text-accent">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
+        <p class="">Önerilerin hepsini json formatında görüntülemek için <a class="text-primary" target="_blank"
+                                                                            href="/suggestions.json"><i
+                class="ai-arrow-up-right text-primary"></i></a></p>
     </div>
-    {% endfor %}
-  </div>
+
+    {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
+    <div class="filter mb-6 space-y-1 space-x-2 items-center justify-start">
+        <button class="btn btn-sm btn-outline tag-btn" data-tag="">Tümü</button>
+        {% for tag in all_tags %}
+        <button class="btn btn-sm btn-outline tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
+        {% endfor %}
+    </div>
+
+    <div id="suggestion-list" class="grid md:grid-cols-2 gap-4">
+        {% for item in site.data.suggestions %}
+        <div class="card shadow-md bg-base-100 suggestion-item" data-tags="{{ item.tags | join: ' ' }}">
+            <div class="card-body">
+                <h2 class="card-title flex items-center justify-between">
+                    <a href="{{ item.url }}" target="_blank" class="hover:underline">{{ item.title }}</a>
+                    {% if item.category %}
+                    <i class="{{ site.data.social[item.category].icon }} text-[24px]"></i>
+                    {% endif %}
+                </h2>
+                <p class="text-sm text-gray-500 mb-2">{{ item.description }}</p>
+                <div class="flex flex-wrap gap-1">
+                    {% for tag in item.tags %}
+                    <div class="badge badge-outline p-1">{{ tag }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".tag-btn");
-    const cards = document.querySelectorAll(".suggestion-item");
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".tag-btn");
+        const cards = document.querySelectorAll(".suggestion-item");
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const selected = btn.dataset.tag;
+        const selectedTags = new Set();
 
-        buttons.forEach(b => b.classList.remove("btn-active"));
-        btn.classList.add("btn-active");
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const tag = btn.dataset.tag;
 
-        cards.forEach(card => {
-          const tags = card.dataset.tags.split(" ");
-          if (!selected || tags.includes(selected)) {
-            card.classList.remove("hidden");
-          } else {
-            card.classList.add("hidden");
-          }
+                // Tümü butonuysa tüm filtreleri kaldır
+                if (tag === "") {
+                    selectedTags.clear();
+                    buttons.forEach(b => b.classList.remove("btn-active"));
+                    btn.classList.add("btn-active");
+                } else {
+                    // Tümü butonunu pasifleştir
+                    const allBtn = document.querySelector('.tag-btn[data-tag=""]');
+                    allBtn.classList.remove("btn-active");
+
+                    // Toggle: tag seçildiyse kaldır, değilse ekle
+                    if (selectedTags.has(tag)) {
+                        selectedTags.delete(tag);
+                        btn.classList.remove("btn-active");
+                    } else {
+                        selectedTags.add(tag);
+                        btn.classList.add("btn-active");
+                    }
+
+                    // Seçim yoksa Tümü’ne dön
+                    if (selectedTags.size === 0) {
+                        allBtn.classList.add("btn-active");
+                    }
+                }
+
+                // Kartları filtrele
+                cards.forEach(card => {
+                    const cardTags = card.dataset.tags.split(" ");
+                    if (selectedTags.size === 0) {
+                        card.classList.remove("hidden");
+                    } else {
+                        const show = [...selectedTags].some(tag => cardTags.includes(tag));
+                        card.classList.toggle("hidden", !show);
+                    }
+                });
+            });
         });
-      });
     });
-  });
+
 </script>
