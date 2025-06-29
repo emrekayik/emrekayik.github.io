@@ -79,9 +79,6 @@ layout: default
         {% endif %}
 
     </article>
-    {% if page.comments %}
-        {% include disqus_comments.html %}
-    {% endif %}
 
     <div class="flex justify-between items-center w-full max-w-4xl mt-12">
         {% if page.previous %}
@@ -111,5 +108,3 @@ layout: default
         {% endif %}
     </div>
 </div>
-
-<script id="dsq-count-scr" src="//emrekayik.disqus.com/count.js" async></script>
