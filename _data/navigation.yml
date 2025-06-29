@@ -2,11 +2,17 @@
   link: /
   icon: ai-home-alt1
 - name: Blog
-  link: /blog.html
+  link: /blog
   icon: ai-book-close
 - name: Projeler
-  link: /projeler.html
+  link: /projeler
   icon: ai-folder
 - name: Öneriler
-  link: /oneriler.html
+  link: /oneriler
   icon: ai-ribbon
+- name: Kullandıklarım
+  link: /kullandiklarim
+  icon: ai-pointer-hand
+- name: Özgeçmiş
+  link: /ozgecmis
+  icon: ai-newspaper

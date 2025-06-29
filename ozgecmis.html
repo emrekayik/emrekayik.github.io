@@ -1,14 +1,168 @@
 ---
 layout: default
 title: "Özgeçmiş - CV"
+permalink: /ozgecmis/
+head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
 ---
 
-<div class="prose w-full mx-auto">
+<div class="flex w-full flex-col gap-y-10 px-4">
+    <section class="flex flex-col items-center gap-y-7 antic-slab-regular">
+        <div class="flex flex-col items-center gap-y-4">
+            <h1 class="text-3xl font-bold intersect:motion-preset-slide-left">{{ site.data.cv.contact.name }}</h1>
+            <h2 class="text-2xl intersect:motion-preset-slide-right">{{ site.data.cv.contact.title }}</h2>
+            <div class="flex flex-wrap justify-center gap-x-7 gap-y-3 intersect:motion-preset-slide-up">
+                <div class="flex flex-row items-center justify-center gap-x-2">
+                    <i class="ph ph-bag"></i>
+                    <p>StudioEK</p>
+                </div>
+                <div class="flex flex-row items-center justify-center gap-x-2">
+                    <i class="ph ph-map-pin"></i>
+                    <p>Bilecik</p>
+                </div>
+                <a class="flex flex-row items-center justify-center gap-x-2 hover:opacity-75 transition-all"
+                   href="{{ site.data.cv.contact.linkedin }}" target="_blank">
+                    <i class="ph ph-linkedin-logo"></i>
+                    <p>Linkedin'den Bağlantı Kurun</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+        <div class="text-xl font-semibold md:w-1/4 intersect:motion-preset-slide-right">
+            <h2>Hakkımda</h2>
+        </div>
+        <div class="flex flex-col gap-y-3 md:w-3/4 motion-preset-slide-up-sm">
+            <p class="text-muted-foreground">
+                {{ site.data.cv.profile }}
+            </p>
+        </div>
+    </section>
+    <section class="flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+        <div class="text-xl font-semibold md:w-1/4 intersect:motion-preset-slide-right">
+            <h2>Deneyim</h2>
+        </div>
+        <div class="flex flex-col gap-y-3 md:w-3/4">
+            <ol
+                    class="px-5 py-3 relative space-y-8 before:absolute before:-ml-px before:h-full before:w-0.5 before:rounded-full before:bg-gray-200 not-prose"
+            >
+                {% for item in site.data.cv.experience %}
+                <li class="relative -ms-1.5 flex items-start gap-4 intersect:motion-preset-slide-up">
+                    <span class="size-3 shrink-0 rounded-full bg-accent"></span>
 
-<h1>Emre Kayık</h1>
-<h2>Geliştirici | Tasarımcı</h2>
-<h2>Bilecik, Türkiye</h2>
+                    <div class="-mt-2">
+                        <time class="text-xs/none font-medium">{{ item.dates }}</time>
 
-<hr>
+                        <h3 class="text-lg font-bold">{{ item.company }}</h3>
+                        <h4>{{ item.job_title }}</h4>
+                        <h4>{{ item.location }}</h4>
 
+                        <p class="mt-0.5 text-sm">
+                            {{ item.description | markdownify }}
+                        </p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </section>
+    <section class="flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+        <div class="text-xl font-semibold md:w-1/4 intersect:motion-preset-slide-right">
+            <h2>Yetenekler</h2>
+        </div>
+        <div class="flex flex-col gap-y-3 md:w-3/4">
+            {% for group in site.data.cv.skills %}
+            <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5 md:gap-y-0 intersect:motion-preset-slide-up">
+                <h3 class="w-full font-medium md:w-1/5">{{ group.group_name }}</h3>
+
+                <div class="flex w-full flex-row flex-wrap gap-x-3 gap-y-2 md:w-4/5">
+                    {% for skill in group.items %}
+                    <div class="badge badge-outline">
+                        <p>{{ skill }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+        <div class="text-xl font-semibold md:w-1/4 intersect:motion-preset-slide-right">
+            <h2>Eğitim</h2>
+        </div>
+        <div class="flex flex-col gap-y-3 md:w-3/4">
+            {% for item in site.data.cv.education %}
+            <div class="relative rounded-2xl border border-border bg-primary-foreground px-5 py-3 intersect:motion-preset-slide-up">
+                <div class="flex flex-col gap-y-1.5">
+                    <div class="flex flex-col gap-y-0.5">
+                        <h1 class="text-lg font-medium">{{ item.degree }}</h1>
+                        <h2 class="text-muted-foreground">{{ item.school }}</h2>
+                        <h2 class="text-muted-foreground">{{ item.dates }}</h2>
+                    </div>
+                    <!--
+                    <ul class="ml-4 list-disc text-muted-foreground">
+                        <li>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
+                            molestiae laboriosam pariatur!
+                        </li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
+                    </ul>
+                    -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+        <div class="text-xl font-semibold md:w-1/4 intersect:motion-preset-slide-right">
+            <h2>Sertifikalar</h2>
+        </div>
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-3 md:w-3/4">
+            {% for item in site.data.cv.certificates %}
+            <div class="relative rounded-2xl border border-border bg-primary-foreground px-5 py-3 intersect:motion-preset-slide-up">
+                <div class="flex flex-col gap-y-1.5">
+                    <div class="flex flex-col gap-y-0.5">
+                        <h1 class="text-lg font-medium">{{ item.name }}</h1>
+                        <h2 class="text-muted-foreground">{{ item.company }}</h2>
+                        <h2 class="text-muted-foreground">{{ item.dates }}</h2>
+                    </div>
+                    <!--
+                    <ul class="ml-4 list-disc text-muted-foreground">
+                        <li>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
+                            molestiae laboriosam pariatur!
+                        </li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
+                    </ul>
+                    -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 </div>
+
+<!--
+
+    <aside class="cv-sidebar">
+        <section class="cv-section" id="contact">
+            <h2>İletişim</h2>
+            <ul>
+                <li><strong>Email:</strong> {{ site.data.cv.contact.email }}</li>
+                <li><strong>Website:</strong> <a href="{{ site.data.cv.contact.website }}">{{ site.data.cv.contact.website }}</a></li>
+                <li><strong>LinkedIn:</strong> <a href="{{ site.data.cv.contact.linkedin }}">/in/emrekayik</a>
+                </li>
+                <li><strong>GitHub:</strong> <a href="{{ site.data.cv.contact.github }}">/emrekayik</a></li>
+            </ul>
+        </section>
+
+        <section class="cv-section" id="projects">
+            <h2>Projeler</h2>
+            <ul>
+                {% for project in site.data.cv.projects %}
+                <li><a href="{{ project.link }}">{{ project.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+    </aside>
+    -->

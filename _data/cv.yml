@@ -1,0 +1,151 @@
+contact:
+  name: Emre Kayık
+  title: Geliştirici | Tasarımcı
+  email: emrekayik1905@gmail.com
+# phone: +
+  website: https://emrekayik.github.io
+  linkedin: https://linkedin.com/in/emrekayik
+  github: https://github.com/emrekayik
+
+profile: |
+  Web teknolojileri konusunda 5+ yıl deneyime sahip, yenilikçi ve sonuç odaklı bir yazılım geliştiriciyim.
+  Bu evrene ortaokulda merak saldım ve o günden bu yana kod yazıyorum.
+  Modern JavaScript çatıları ve statik site oluşturucuları ile çalışmaktan keyif alıyorum.
+  Verileri görselleştirmeyi, manipüle etmeyi ve veriden hikaye çıkarmayı severim.
+  Temiz kod yazmaya ve kullanıcı dostu arayüzler oluşturmaya özen gösteririm.
+  
+
+experience:
+  - job_title: Founder / Full Stack Developer
+    company: StudioEK (voluntarily)
+    location: Turkiye
+    dates: "09/30 2021 — present"
+    description: |
+      - This account was established to showcase StudioEK’s projects. StudioEK, publish open source project on Github.
+      - Usually Jekyll and Javascript Projects.
+
+  - job_title: Frontend Developer
+    company: KUBBA Biyoteknoloji Sanayi ve Tic. A.Ş.
+    location: İzmir/Turkiye (Remote)
+    dates: "01/2025 — 03/2025"
+    description: |
+      - In this business where I worked as a frontend developer, we developed a quality management system.
+      - Use Next.js and shadcn and similar frontend technologies.
+
+
+  - job_title: Founder / Lead
+    company: Bilgisayar ve Teknoloji Kulübü(Computer and Technology Club)
+    location: Turkiye
+    dates: "09/2023 — present"
+    description: |
+      - I am the leader of the Bilgisayar ve Teknoloji Kulübü(Computer and Technology Club) I founded at the university.
+
+
+  - job_title: Co-Founder / Front-End Developer
+    company: Cibza
+    location: Turkiye
+    dates: "07/2020 — 2021"
+    description: |
+      - This project I started with my friend was not successful due to financial incompetence.
+      - Search Engine, Map Systems, e-mail systems etc.
+
+  - job_title: Translator
+    company: Circuittree / Mantex Studios
+    location: Italy (remote)
+    dates: "05/2020 — 08/2020"
+    description: |
+      - Mobile application translating
+
+  - job_title: Translator
+    company: Translate Selected Text (voluntarily)
+    location: Global (remote)
+    dates: "05/2021"
+    description: |
+      - Open source browser extension translating 
+
+  - job_title: Front-End Developer
+    company: Devlife
+    location: Turkiye (remote)
+    dates: "03/2019"
+    description: |
+      - Devlife was a social media web project for Developers, it was discontinued due to lack of budget 
+
+education:
+  - degree: İstatistik ve Bilgisayar Bilimleri (Lisans)
+    school: Bilecik Şeyh Edebali Üniversitesi
+    dates: "2022 - 2026"
+
+certificates:
+  - name: Google DSC Certificate of completion
+    company: Google Developer Groups Turkey
+    dates: 07/2024
+  - name: HackerRank Software Engineer
+    company: HackerRank
+    dates: 04/2024
+  - name: Yetkin Gençler (YetGen)
+    company: Yetkin Gençler
+    dates: 07/2023
+  - name: Flutter Certificate Of Achievement
+    company: GDSC Galatasaray University
+    dates: 01/2022
+  - name: Computer Operating Course (163 hours)
+    company: Halk Eğitim Merkezi
+    dates: 06/2022
+  - name: Introduction to Python
+    company: GlobalAIHub
+    dates: 06/2022
+  - name: Data Analysis
+    company: GlobalAIHub
+    dates: 07/2022
+  - name: WEB3 Fundamentals
+    company: Patika.dev
+    dates: 07/2022
+
+skills:
+  - group_name: Diller
+    items:
+      - Typescript
+      - Python
+      - Julia
+      - Lua
+      - R
+      - Ruby
+      - NodeJS
+      - Rust
+      - Dart
+      - Go
+
+  - group_name: Kütüphaneler
+    items:
+      - Next.js
+      - Svelte
+      - Flutter
+      - Jekyll
+      - React Native
+
+  - group_name: Veri Bilimi
+    items:
+      - Pandas
+      - Numpy
+      - Tensorflow
+      - Keras
+
+  - group_name: Araçlar
+    items:
+      - Git
+      - GitHub
+      - VS Code
+      - Figma
+      - Docker
+      - Vercel
+
+  - group_name: Konuşma Dilleri
+    items:
+      - "Türkçe (Ana Dil)"
+      - "İngilizce (A2)"
+      - "Almanca (A1)"
+
+projects:
+  - name: Kişisel Web Sitem
+    description: "Bu site! Jekyll ve minimal-mistakes teması kullanılarak geliştirildi."
+    link: https://siteadresiniz.com

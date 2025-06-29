@@ -1,0 +1,108 @@
+- category: Donanım
+  items:
+    - name: HP 255 G8
+      description: Günlük işlerim ve kodlama için kullandığım ana bilgisayarım. Günlük işlerimde yetersizliğini hissettirse de yükümüz taşıyor.
+      link: https://support.hp.com/us-en/drivers/hp-255-g8-notebook-pc/38151405
+      icon: "ph ph-laptop"
+
+    - name: Huawei Matepad 11.5
+      description: Alırken tereddüt ettiğim fakat aldıktan sonra bayıldığım ürün. Klavye kombinasyonuyla harika oluyor, yazılım işlerimin bir kısmını bile bu tabletle halledebiliyorum.
+      link: https://consumer.huawei.com/tr/tablets/matepad-11-5/
+      icon: "ph ph-device-tablet"
+
+- category: Yazılım Geliştirme Araçlarım
+  items:
+    - name: Visual Studio Code
+      description: Neredeyse tüm kodlama işlerim için kullandığım metin editörü. Eklenti desteği sayesinde çok güçlü.
+      link: https://code.visualstudio.com/
+      icon: "ph ph-code"
+      open_source: true
+
+    - name: WebStorm
+      description: Web geliştirme için kullandığım JetBrains'in IDE'si. Bu web adresimi de bu araçla geliştirdim.
+      link: https://www.jetbrains.com/webstorm/
+      icon: "ph ph-code"
+
+    - name: R Studio
+      description: Veri analizi ve istatistiksel modelleme için kullandığım R programlama dili IDE'si. Özellikle veri bilimi projelerimde vazgeçilmezim.
+      link: https://www.rstudio.com/
+      icon: "ph ph-code"
+      open_source: true
+
+    - name: Code::Blocks
+      description: C ve C++ programlama dilleri için kullandığım IDE. Özellikle düşük seviyeli programlama projelerimde tercih ediyorum.
+      link: https://www.codeblocks.org/
+      icon: "ph ph-code"
+      open_source: true
+
+    - name: Android Studio
+      description: Android uygulama geliştirme için kullandığım resmi IDE. Flutter ve React Native ile geliştirdiğim mobil uygulama projelerimde kullanıyorum.
+      link: https://developer.android.com/studio
+      icon: "ph ph-code"
+
+    - name: helix editor
+      description: Terminalden kolayca kod düzenlemesi yaptığım vim alternatifi, başarılı editör.
+      link: https://helix-editor.com/
+      open_source: true
+
+    - name: DBeaver
+      description: Veritabanı yönetimi ve sorgulama için kullandığım çoklu veritabanı aracı. SQL veritabanlarıyla çalışırken vazgeçilmezim.
+      link: https://dbeaver.io/
+      icon: "ph ph-database"
+      open_source: true
+
+    - name: Docker Desktop
+      description: Konteyner teknolojisi falan filan web adresinden bakabilirsiniz.
+      link: https://www.docker.com/
+      icon: "ph ph-shipping-container"
+      open_source: true
+
+    - name: Godot Engine
+      description: Kendi kendime oyun denemeleri yaptığım basit ve kullanışlı oyun motoru.
+      link: https://godotengine.org/
+      icon: "ph ph-game-controller"
+      open_source: true
+
+
+- category: Tasarım Araçlarım
+  items:
+    - name: Figma
+      description: Web tasarımı ve prototipleme için vazgeçilmezim. Buradan yaptığım tasarımlarımı koda dökmeye bayılıyorum.
+      link: https://www.figma.com/
+      icon: "ph ph-pen-nib"
+
+    - name: Inkscape
+      description: Vektör tabanlı grafik tasarım için kullandığım açık kaynaklı yazılım.
+      link: https://inkscape.org/
+      icon: "ph ph-pen-nib"
+      open_source: true
+
+    - name: GIMP
+      description: Fotoğraf düzenleme ve grafik tasarım için kullandığım açık kaynaklı yazılım. Photoshop'a alternatif olarak kullanıyorum.
+      link: https://www.gimp.org/
+      icon: "ph ph-file-image"
+      open_source: true
+
+    - name: Blender
+      description: 3D tasarım denemelerimi yaptığım program.
+      link: https://www.blender.org/download/
+      icon: "ph ph-cube"
+      open_source: true
+
+    - name: Spline
+      description: Blender benzeri daha kolay bir arayüze sahip araç. Keyifli işler ortaya çıkarmak aşırı kolay.
+      link: https://spline.design
+      icon: "ph ph-cube"
+
+
+- category: Üretkenlik Araçlarım
+  items:
+    - name: Obsidian
+      description: Kişisel notlarımı, fikirlerimi ve "dijital bahçemi" tuttuğum yer.
+      link: https://obsidian.md/
+      icon: "ph ph-note-pencil"
+
+    - name: Notion
+      description: Projelerimi, görevlerimi ve günlük işlerimi takip ettiğim yer. Aynı zamanda blog yazılarımın taslaklarını da burada tutuyorum.
+      link: https://www.notion.so/
+      icon: "ph ph-notepad"

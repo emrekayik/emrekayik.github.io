@@ -1,0 +1,45 @@
+---
+layout: default
+title: Kullandıklarım
+permalink: /kullandiklarim/
+head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+---
+
+<article class="prose prose-lg w-full mx-auto">
+    <p>Günlük işlerimde ve projelerimde verimliliğimi artıran, severek kullandığım araç ve gereçlerin bir listesi.</p>
+
+    {% for category in site.data.equipment %}
+    <h2 class="equipment-category">{{ category.category }}</h2>
+    <div class="grid md:grid-cols-2 gap-2 not-prose">
+        {% for item in category.items %}
+        <div class="card card-border bg-base-100">
+            <div class="card-body">
+                <h2 class="card-title font-semibold flex items-center justify-between">
+                    <span class="text-lg">{{ item.name }}</span>
+                    {% if item.icon %}
+                    <i class="{{ item.icon }}"></i>
+                    {% endif %}
+                </h2>
+                {% if item.description %}
+                <p class="text-sm">{{ item.description }}</p>
+                {% endif %}
+                {% if item.link %}
+                <div class="card-actions flex items-center justify-between">
+                    {% if item.open_source %}
+                    <div class="badge badge-sm badge-outline badge-secondary flex items-center justify-center">
+                        <span>açık kaynak <i class="ph ph-heart"></i></span>
+                    </div>
+                    {% else %}
+                    <div></div>
+                    {% endif %}
+                    <a class="btn btn-primary btn-xs" href="{{ item.link }}" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> {{ item.name }}'e Git
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</article>
