@@ -1,9 +1,5 @@
 ---
 layout: default
-
-head: |
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script id="dsq-count-scr" src="//emrekayik.disqus.com/count.js" async></script>
 ---
 
 <style>
@@ -84,7 +80,7 @@ head: |
 
     </article>
     {% if page.comments %}
-    {% include disqus_comments.html %}
+        {% include disqus_comments.html %}
     {% endif %}
 
     <div class="flex justify-between items-center w-full max-w-4xl mt-12">
@@ -115,3 +111,5 @@ head: |
         {% endif %}
     </div>
 </div>
+
+<script id="dsq-count-scr" src="//emrekayik.disqus.com/count.js" async></script>
