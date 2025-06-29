@@ -14,12 +14,22 @@ permalink: /oneriler/
     </div>
 
     {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
+    <span
+            class="md:join grid grid-cols-3 mb-6"
+    >
+        <button class="btn btn-sm btn-outline join-item rounded-none tag-btn" data-tag="">Tümü</button>
+        {% for tag in all_tags %}
+        <button class="btn btn-sm btn-outline join-item rounded-none tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
+        {% endfor %}
+    </span>
+    <!--
     <div class="filter mb-6 space-y-1 space-x-2 items-center justify-start">
         <button class="btn btn-sm btn-outline tag-btn" data-tag="">Tümü</button>
         {% for tag in all_tags %}
         <button class="btn btn-sm btn-outline tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
         {% endfor %}
     </div>
+    -->
 
     <div id="suggestion-list" class="grid md:grid-cols-2 gap-4">
         {% for item in site.data.suggestions %}
@@ -34,7 +44,7 @@ permalink: /oneriler/
                 <p class="text-sm text-gray-500 mb-2">{{ item.description }}</p>
                 <div class="flex flex-wrap gap-1">
                     {% for tag in item.tags %}
-                    <div class="badge badge-outline p-1">{{ tag }}</div>
+                    <div class="badge badge-outline badge-primary !h-auto">{{ tag }}</div>
                     {% endfor %}
                 </div>
             </div>
