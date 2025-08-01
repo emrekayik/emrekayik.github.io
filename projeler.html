@@ -10,7 +10,7 @@ permalink: /projeler/
         {% for project in site.projects %}
         <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
             <a class="link" href="{{ project.url }}">{{ project.title }}</a>
-            <time class="text-xs text-gray-500 text-nowrap">{{ project.date | date: "%-d %B %Y" }}</time>
+            <time class="text-xs text-gray-500 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
         </li>
         {% endfor %}
     </ul>

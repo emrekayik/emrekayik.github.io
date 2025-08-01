@@ -6,7 +6,31 @@ module.exports = {
         './*.{html,md}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            animation: {
+                'marquee': 'marquee 20s linear infinite',
+                'infinite-scroll': 'infinite-scroll 25s linear infinite',
+                'infinite-vertical-scroll': 'infinite-vertical-scroll 25s linear infinite',
+            },
+            keyframes: {
+                'marquee': {
+                    '0%': {
+                        transform: 'translateX(0)'
+                    },
+                    '100%': {
+                        transform: 'translateX(-100%)'
+                    },
+                },
+                'infinite-scroll': {
+                    from: { transform: 'translateX(0)' },
+                    to: { transform: 'translateX(-50%)' },
+                },
+                'infinite-vertical-scroll': {
+                    from: { transform: 'translateY(0)' },
+                    to: { transform: 'translateY(-50%)' },
+                },
+            }
+        },
     },
     daisyui: {
         themes: [

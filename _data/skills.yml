@@ -1,0 +1,31 @@
+- name: Python
+  icon: fa-python
+  color: text-yellow-500
+
+- name: JavaScript
+  icon: fa-js
+  color: text-yellow-400
+
+- name: React
+  icon: fa-react
+  color: text-cyan-400
+
+- name: Node.js
+  icon: fa-node
+  color: text-green-500
+
+- name: Figma
+  icon: fa-figma
+  color: text-red-400
+
+- name: Behance
+  icon: fa-behance
+  color: text-blue-400
+
+- name: Rust
+  icon: fa-rust
+  color: text-orange-400
+
+- name: Terminal
+  icon: fa-terminal
+  color: text-gray-600

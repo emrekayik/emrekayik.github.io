@@ -4,8 +4,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
-
 
     <!-- Analytics -->
     <meta name="google-site-verification" content="9XpwUtKuwRYynL-F49caBUhSrEPeSOncQKYHCAkx-9E"/>
@@ -13,7 +11,6 @@
 
     <link rel="manifest" href="{{ '/manifest.json' | relative_url }}">
     <meta name="theme-color" content="#4ade80">
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,19 +21,12 @@
 
     {{ page.head | default: "" }}
     {% seo %}
-
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/akar-icons-fonts"></script>
 </head>
 
 <body class="max-w-4xl mx-auto bg-base-100 text-base-content" id="context-area">
-    <!--
-    <div aria-hidden="true" class="absolute inset-x-0 -top-14 bottom-0 mx-auto max-w-3xl">
-      <div class="to-base-300 absolute bottom-0 left-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
-      </div>
-      <div class="to-base-300 absolute bottom-0 right-0 top-0 w-px bg-gradient-to-b from-transparent to-75%">
-      </div>
-    </div>
-    -->
     {% include navbar.html %}
     <main id="content" class="bg-base-200 max-w-3xl mx-auto px-4 py-8">
         {{ content }}
@@ -44,16 +34,6 @@
     {% include footer.html %}
     <script defer src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker.register("{{ '/service-worker.js' | relative_url }}")
-                    .then(reg => console.log("Service Worker kayıtlı:", reg))
-                    .catch(err => console.log("SW kayıt hatası:", err));
-            });
-        }
-    </script>
-
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 
