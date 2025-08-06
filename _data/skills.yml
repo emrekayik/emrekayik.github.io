@@ -23,9 +23,9 @@
   color: text-blue-400
 
 - name: Rust
-  icon: fa-rust
+  icon: fa-brands fa-rust
   color: text-orange-400
 
 - name: Terminal
-  icon: fa-terminal
+  icon: fa-solid fa-terminal
   color: text-gray-600
