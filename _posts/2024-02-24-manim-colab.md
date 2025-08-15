@@ -5,7 +5,7 @@ description: Manim, Colab’da nasıl çalıştırılır?
 
 sources:
     - title: "ManimCE resmi web adresi"
-    - url: "https://docs.manim.community/en/stable/index.html"
+      url: "https://docs.manim.community/en/stable/index.html"
 ---
 
 *Manim*, özellikle matematik ve fizik konularında animasyonlar üretmenize olanak sağlayan bir Python kütüphanesidir.

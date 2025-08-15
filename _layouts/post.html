@@ -12,42 +12,13 @@ layout: default
     }
 </style>
 
-<div id="font-switcher">
-    <select class="select" id="font-select">
-        <option disabled selected>Font Seç</option>
-        <option value="Antic Slab, serif">Antic Slab</option>
-        <option value="'Georgia', serif">Georgia</option>
-        <option value="'Arial', sans-serif">Arial</option>
-        <option value="'Courier New', monospace">Courier</option>
-        <option value="'Comic Sans MS', cursive">Comic Sans 😎</option>
-    </select>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const select = document.getElementById("font-select");
-        const root = document.documentElement;
-
-        // Önceki seçim varsa onu yükle
-        const savedFont = localStorage.getItem("preferredFont");
-        if (savedFont) {
-            root.style.setProperty("--active-font", savedFont);
-            select.value = savedFont;
-        }
-
-        select.addEventListener("change", () => {
-            const selectedFont = select.value;
-            root.style.setProperty("--active-font", selectedFont);
-            localStorage.setItem("preferredFont", selectedFont);
-        });
-    });
-</script>
-
+{% include context_menu.html %}
 
 <div class="w-full flex flex-col items-center justify-center px-4">
-    <article class="prose lg:prose-lg prose-neutral dark:prose-invert max-w-4xl w-full blog-page">
+    <article id="post-content" class="prose lg:prose-lg prose-neutral dark:prose-invert max-w-4xl w-full blog-page">
         <h1 class="text-primary">{{ page.title }}</h1>
 
-        <div class="text-sm text-gray-500 flex items-center gap-2 mb-2">
+        <div class="text-sm text-gray-500 grid grid-cols-1 md:flex md:items-center gap-2 mb-2">
             <span class="badge badge-outline text-nowrap">{{ page.date | localize: '%-d %B %Y' }}</span>
             {% if page.last_modified_at %}
             <span class="badge badge-outline badge-secondary text-nowrap">
@@ -60,6 +31,7 @@ layout: default
             </span>
             {% endif %}
         </div>
+        <div class="divider"></div>
 
         {{ content }}
 
@@ -84,11 +56,7 @@ layout: default
         {% if page.previous %}
         <div class="tooltip" data-tip="{{ page.previous.title }}">
             <a href="{{ page.previous.url }}" class="btn btn-outline btn-accent">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M20.3284 11.0001V13.0001L7.50011 13.0001L10.7426 16.2426L9.32842 17.6568L3.67157 12L9.32842 6.34314L10.7426 7.75735L7.49988 11.0001L20.3284 11.0001Z"
-                            fill="currentColor"/>
-                </svg>
+                <i class="ai-arrow-left"></i>
                 Geri
             </a>
         </div>
@@ -98,11 +66,7 @@ layout: default
         <div class="tooltip" data-tip="{{ page.next.title }}">
             <a href="{{ page.next.url }}" class="btn btn-outline btn-accent">
                 İleri
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                            d="M15.0378 6.34317L13.6269 7.76069L16.8972 11.0157L3.29211 11.0293L3.29413 13.0293L16.8619 13.0157L13.6467 16.2459L15.0643 17.6568L20.7079 11.9868L15.0378 6.34317Z"
-                            fill="currentColor"/>
-                </svg>
+                <i class="ai-arrow-right"></i>
             </a>
         </div>
         {% endif %}

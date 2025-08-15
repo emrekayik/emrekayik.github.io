@@ -1,3 +1,8 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @config "./tailwind.config.js";
+
+::selection {
+    background-color: hsl(var(--p));   /* DaisyUI primary rengi */
+    color: hsl(var(--pc));            /* DaisyUI primary-content rengi */
+}

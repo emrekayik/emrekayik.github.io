@@ -94,6 +94,12 @@
       link: https://spline.design
       icon: "ph ph-cube"
 
+    - name: MagicaVoxel
+      description: Piksel tabanlı 3D modelleme için kullandığım araç. Özellikle retro tarzı projelerimde kullanıyorum.
+      link: https://ephtracy.github.io/
+      icon: "ph ph-cube"
+      open_source: true
+
 
 - category: Üretkenlik Araçlarım
   items:
@@ -106,3 +112,8 @@
       description: Projelerimi, görevlerimi ve günlük işlerimi takip ettiğim yer. Aynı zamanda blog yazılarımın taslaklarını da burada tutuyorum.
       link: https://www.notion.so/
       icon: "ph ph-notepad"
+
+    - name: Clockify
+      description: Zaman takibi ve görev yönetimi için kullandığım basit ama etkili araç. Günlük işlerimi düzenli tutmamda yardımcı oluyor.
+      link: https://clockify.me/
+      icon: "ph ph-clock"

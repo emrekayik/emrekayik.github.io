@@ -24,6 +24,9 @@
             {% endfor %}
 
             {% include theme_changer.html %}
+            {% if page.url contains '/blog/' %}
+            {% include font_changer.html %}
+            {% endif %}
 
         </ul>
     </div>

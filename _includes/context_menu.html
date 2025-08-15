@@ -1,4 +1,4 @@
-<div id="custom-context-menu" class="absolute
+<div id="custom-context-menu" class="fixed
                bg-white rounded-md shadow-lg border border-gray-200 z-50
                invisible opacity-0 scale-95 pointer-events-none
                transition-all duration-200 ease-out">
@@ -20,7 +20,12 @@
                 Kopyala
             </a>
         </li>
-        <hr class="my-1 border-gray-200">
+        <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white" data-action="share">
+                Paylaş
+            </a>
+        </li>
+        <hr class="my-1 border-gray-200"/>
         <li>
             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" data-action="info">
                 Bilgi
@@ -73,11 +78,11 @@
     }
 
 
-    // Tüm belge üzerinde sağ tık olayını dinle
-    document.addEventListener('contextmenu', function (event) {
+    // Sağ tık olayını sadece yazı (post) alanında dinle (yoksa belgeye düşer)
+    const contextTarget = document.getElementById('post-content') || document.getElementById('content') || document;
+    contextTarget.addEventListener('contextmenu', function (event) {
       // Varsayılan tarayıcı bağlam menüsünü engelle
       event.preventDefault();
-
       // Menüyü farenin olduğu yerde göster
       showMenu(event.clientX, event.clientY);
     });
@@ -91,6 +96,55 @@
         hideMenu();
       }
     });
+
+    // Kopyalama yardımcı fonksiyonu
+    async function copyTextToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) { /* no-op */ }
+      }
+      try {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Paylaşım yardımcı fonksiyonu
+    async function shareCurrentPost() {
+      const url = window.location.href.split('#')[0];
+      const h1 = document.querySelector('#post-content h1') || document.querySelector('article h1') || document.querySelector('h1');
+      const title = h1 ? h1.innerText.trim() : document.title;
+      const selected = window.getSelection ? (window.getSelection().toString().trim()) : '';
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: title, text: selected || title, url: url });
+          if (window.showToast) { window.showToast('Paylaşıldı.', 'success'); }
+        } else {
+          const ok = await copyTextToClipboard(url);
+          if (ok) {
+            if (window.showToast) { window.showToast('Bağlantı panoya kopyalandı.', 'success'); }
+          } else {
+            prompt('Bu bağlantıyı kopyalayın:', url);
+            if (window.showToast) { window.showToast('Paylaşım desteklenmiyor. Bağlantıyı manuel kopyalayın.', 'warning', 4000); }
+          }
+        }
+      } catch (err) {
+        console.debug('Paylaşım iptal edildi veya başarısız:', err);
+        if (window.showToast) { window.showToast('Paylaşım iptal edildi veya başarısız.', 'warning'); }
+      }
+    }
 
     // Menü içindeki öğelere tıklandığında (Event Delegation kullanarak)
     contextMenu.addEventListener('click', function (event) {
@@ -106,16 +160,20 @@
         console.log(`Seçilen Aksiyon: ${action}`); // Konsola yazdır veya istediğin işlemi yap
 
         if (action === 'edit') {
-          // Düzenleme işlemi
           console.log('Düzenleme işlemi başlatıldı.');
         } else if (action === 'delete') {
-          // Silme işlemi
           console.log('Silme işlemi başlatıldı.');
         } else if (action === 'copy') {
-          // Kopyalama işlemi
-          console.log('Kopyalama işlemi başlatıldı.');
+          const selection = window.getSelection ? window.getSelection().toString().trim() : '';
+          const textToCopy = selection || window.location.href.split('#')[0];
+          copyTextToClipboard(textToCopy).then(function(ok){
+            if (ok) {
+              if (window.showToast) { window.showToast('Kopyalandı.', 'success'); }
+            }
+          });
+        } else if (action === 'share') {
+          shareCurrentPost();
         } else if (action === 'info') {
-          // Bilgi gösterme işlemi
           console.log('Bilgi gösterme işlemi başlatıldı.');
         }
 
