@@ -37,3 +37,70 @@ body.transition-fade {
 body.loaded {
   opacity: 1;
 }
+
+/* Global text selection colors based on current theme */
+::selection {
+  background-color: oklch(var(--p) / 0.3);
+  color: oklch(var(--pc));
+}
+
+::-moz-selection {
+  background-color: oklch(var(--p) / 0.3);
+  color: oklch(var(--pc));
+}
+
+/* Focus styles for inputs and buttons */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: 2px;
+}
+
+/* Link selection colors */
+a::selection {
+  background-color: oklch(var(--s) / 0.3);
+  color: oklch(var(--sc));
+}
+
+a::-moz-selection {
+  background-color: oklch(var(--s) / 0.3);
+  color: oklch(var(--sc));
+}
+
+/* Code block selection colors */
+code::selection,
+pre::selection {
+  background-color: oklch(var(--a) / 0.3);
+  color: oklch(var(--ac));
+}
+
+code::-moz-selection,
+pre::-moz-selection {
+  background-color: oklch(var(--a) / 0.3);
+  color: oklch(var(--ac));
+}
+
+/* Scrollbar styling for entire project */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(var(--b2));
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--bc) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--bc) / 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: oklch(var(--b2));
+}

@@ -1,36 +1,106 @@
-<li class="dropdown w-full">
-  <div tabindex="0" role="button" class="btn btn-ghost gap-2 flex w-full justify-between hover:!bg-transparent focus:!bg-transparent active:!bg-transparent hover:!text-current focus:!text-current active:!text-current">
-    <span class="flex items-center gap-2">
-      <i class="ai-magic-wand"></i>
-      Tema
-    </span>
-    <i class="ai-chevron-down"></i>
-  </div>
-  <ul tabindex="0" class="dropdown-content z-[1] menu p-3 shadow-xl bg-base-200 rounded-box mt-2">
-    <li>
-      <div class="flex flex-col gap-2 max-h-96 overflow-y-auto pr-1">
-        {% assign themes = "system,light,dark,cupcake,synthwave,retro,valentine,lofi,mytheme" | split: "," %}
-        {% for theme in themes %}
-          {% if theme == 'system' %}
-            {% assign preview = 'light' %}
-          {% else %}
-            {% assign preview = theme %}
-          {% endif %}
-          <label class="cursor-pointer">
-            <input type="radio" name="theme-dropdown" class="theme-controller sr-only peer" aria-label="{{ theme | capitalize }}" value="{{ theme }}" />
-            <div data-theme="{{ preview }}" class="flex flex-col items-center justify-between gap-3 rounded-lg border border-base-300 bg-base-100 px-3 py-2 transition-colors peer-checked:border-primary peer-checked:ring-2 peer-checked:ring-primary">
-              <div class="flex w-16 items-center gap-2">
-                <span class="w-4 h-4 rounded-full bg-primary"></span>
-                <span class="w-4 h-4 rounded-full bg-secondary"></span>
-                <span class="w-4 h-4 rounded-full bg-accent"></span>
-              </div>
-              <div class="text-sm font-medium">
-                {% if theme == 'system' %}Sistem{% else %}{{ theme | capitalize }}{% endif %}
-              </div>
+<div class="dropdown dropdown-bottom w-full">
+    <div tabindex="0" role="button" class="btn btn-ghost justify-between w-full">
+        <span class="flex items-center gap-2">
+            <span>Tema</span>
+        </span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+    </div>
+
+    <div tabindex="0" class="dropdown-content bg-base-100 rounded-box mt-1 w-full shadow-xl z-50">
+        <div class="p-2">
+            <div class="theme-list max-h-80 overflow-y-auto space-y-1">
+
+                {% comment %} Define themes list {% endcomment %}
+                {% if include.themes %}
+                {% assign themes = include.themes | split: "," %}
+                {% else %}
+                {% assign themes = "system,light,dark,mytheme,cupcake,synthwave,retro,cyberpunk,valentine,halloween,garden,forest,aqua,pastel" | split: "," %}
+                {% endif %}
+
+                {% for theme in themes %}
+                {% comment %} Set preview theme (system shows as light) {% endcomment %}
+                {% if theme == 'system' %}
+                {% assign preview = 'light' %}
+                {% assign display_name = 'Sistem' %}
+
+                {% elsif theme == 'mytheme' %}
+                {% assign preview = 'mytheme' %}
+                {% assign display_name = 'My Theme' %}
+                {% else %}
+                {% assign preview = theme %}
+                {% assign display_name = theme | capitalize %}
+                {% endif %}
+
+                <label class="cursor-pointer block">
+                    <input type="radio"
+                           name="{{ include.name | default: 'theme-dropdown' }}"
+                           class="theme-controller sr-only peer"
+                           aria-label="{{ display_name }}"
+                           value="{{ theme }}"
+                           {% if include.default == theme %}checked{% endif %}/>
+
+                    <div data-theme="{{ preview }}"
+                         class="flex items-center justify-between gap-3 rounded-lg border-2 border-transparent bg-base-100 px-3 py-3 transition-all duration-200 hover:bg-base-200 peer-checked:border-primary peer-checked:bg-primary/10">
+
+                        <!-- Theme colors preview -->
+                        <div class="flex items-center gap-2">
+                            <span class="w-4 h-4 rounded-full bg-primary border border-base-content/20"></span>
+                            <span class="w-4 h-4 rounded-full bg-secondary border border-base-content/20"></span>
+                            <span class="w-4 h-4 rounded-full bg-accent border border-base-content/20"></span>
+                        </div>
+
+                        <!-- Theme name -->
+                        <div class="text-sm font-medium text-base-content">
+                            {{ display_name }}
+                        </div>
+                    </div>
+                </label>
+                {% endfor %}
+
             </div>
-          </label>
-        {% endfor %}
-      </div>
-    </li>
-  </ul>
-</li>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Custom scrollbar for theme dropdown */
+    .theme-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .theme-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .theme-list::-webkit-scrollbar-thumb {
+        background: oklch(var(--bc) / 0.2);
+        border-radius: 3px;
+    }
+
+    .theme-list::-webkit-scrollbar-thumb:hover {
+        background: oklch(var(--bc) / 0.3);
+    }
+
+    /* Ensure theme colors are visible */
+    [data-theme] .bg-primary {
+        background-color: oklch(var(--p));
+    }
+
+    [data-theme] .bg-secondary {
+        background-color: oklch(var(--s));
+    }
+
+    [data-theme] .bg-accent {
+        background-color: oklch(var(--a));
+    }
+
+    [data-theme] .bg-base-100 {
+        background-color: oklch(var(--b1));
+    }
+
+    [data-theme] .text-base-content {
+        color: oklch(var(--bc));
+    }
+</style>
