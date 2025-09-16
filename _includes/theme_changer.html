@@ -16,7 +16,7 @@
                 {% if include.themes %}
                 {% assign themes = include.themes | split: "," %}
                 {% else %}
-                {% assign themes = "system,light,dark,mytheme,cupcake,synthwave,retro,cyberpunk,valentine,halloween,garden,forest,aqua,pastel" | split: "," %}
+                {% assign themes = "system,light,dark,mytheme,cupcake,synthwave,retro,valentine,garden,forest,pastel" | split: "," %}
                 {% endif %}
 
                 {% for theme in themes %}

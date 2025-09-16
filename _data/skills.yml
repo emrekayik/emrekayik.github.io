@@ -1,48 +1,48 @@
 - name: Python
   icon: ai-python-fill
-  color: fill-yellow-500
+  color: text-yellow-500
 
 - name: JavaScript
   icon: ai-javascript-fill
-  color: fill-yellow-400
+  color: text-yellow-400
 
 - name: React
   icon: ai-react-fill
-  color: fill-cyan-400
+  color: text-cyan-400
 
 - name: Next.js
   icon: ai-nextjs-fill
-  color: fill-gray-600
+  color: text-gray-600
 
 - name: Vue.js
   icon: ai-vue-fill
-  color: fill-green-400
+  color: text-green-400
 
 - name: Node.js
   icon: ai-node-fill
-  color: fill-green-500
+  color: text-green-500
 
 - name: Figma
   icon: ai-figma-fill
-  color: fill-red-400
+  color: text-red-400
 
 - name: Behance
   icon: ai-behance-fill
-  color: fill-blue-400
+  color: text-blue-400
 
 - name: Rust
   icon: fa-brands fa-rust
-  color: fill-orange-400
+  color: text-orange-400
 
 - name: Github
   icon: ai-github-fill
-  color: fill-gray-600
+  color: text-gray-600
 
 - name: Android
   icon: ai-android-fill
-  color: fill-green-400
+  color: text-green-400
 
 - name: postgresql
   icon: ai-postresql-fill
-  color: fill-blue-400
+  color: text-blue-400
 

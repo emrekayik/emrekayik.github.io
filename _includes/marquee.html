@@ -1,0 +1,59 @@
+<div
+        x-data
+        x-init="
+            $nextTick(() => {
+                const content = $refs.content;
+                const item = $refs.item;
+                const clone = item.cloneNode(true);
+                content.appendChild(clone);
+            });
+        "
+        class="relative w-full container-block [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
+>
+    <div
+            class="relative w-full py-3 mx-auto overflow-hidden text-lg italic tracking-wide uppercase max-w-7xl sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl"
+    >
+        <div x-ref="content" class="flex animate-marquee">
+            <div x-ref="item" class="flex items-center justify-around flex-shrink-0 w-full py-2 space-x-2">
+                {% for skill in site.data.skills %}
+                <i class="{{ skill.icon }} text-2xl"></i>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /*
+     *  This is the marquee animation styles.
+     *  Instead of adding this CSS you may wish to implement in your tailwind config.
+     *  Learn more in the marquee Tailwind Config section
+     */
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    .animate-marquee {
+        animation: marquee 20s linear infinite;
+    }
+</style>
+<style>
+    /*
+     *  This is a container query used for the demo that does not need to be included
+     */
+    .container-block {
+        container-type: inline-size;
+    }
+
+    @container (max-width: 1100px) {
+        .container-block svg:nth-child(3),
+        .container-block svg:nth-child(4) {
+            display: none;
+        }
+    }
+</style>

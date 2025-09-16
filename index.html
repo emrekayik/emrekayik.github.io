@@ -3,7 +3,7 @@ layout: default
 title: "Merhaba"
 ---
 
-<article class="prose prose-lg w-full mx-auto prose-li:text-md md:prose-li:text-lg">
+<article class="w-full mx-auto prose max-w-none md:prose-lg md:max-w-prose lg:prose-xl">
     <h1 class="antic-slab-regular">Merhaba, ben Emre!</h1>
     <p>İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web teknolojileriyle çalışan bir
         geliştiriciyim.</p>
@@ -33,28 +33,5 @@ title: "Merhaba"
         </li>
     </ul>
 
-    <div
-            x-data
-            x-init="
-            $nextTick(() => {
-                const content = $refs.content;
-                const item = $refs.item;
-                const clone = item.cloneNode(true);
-                content.appendChild(clone);
-            });
-    "
-            class="relative w-full container-block [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
-    >
-        <div class="relative w-full py-4 mx-auto overflow-hidden text-lg italic tracking-wide max-w-7xl sm:text-xs md:text-sm lg:text-base xl:text-xl 2xl:text-2xl">
-            <div x-ref="content" class="flex animate-marquee">
-                <div x-ref="item" class="flex items-center justify-around flex-shrink-0 w-full py-2 space-x-10">
-                    {% for logo in site.data.skills %}
-                        <div class="tooltip" data-tip="{{ logo.name }}">
-                            <i class="fab {{ logo.icon }} {{ logo.color }}"></i>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
+    {% include marquee.html %}
 </article>
