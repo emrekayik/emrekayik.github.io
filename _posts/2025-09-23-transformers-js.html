@@ -1,0 +1,310 @@
+---
+layout: post
+title: "Tarayıcıda Yapay Zeka: Transformers.js"
+description: ""
+last_modified_at: 24-09-2025
+
+sources:
+  - title: "Transformers.js resmi dokümantasyonu"
+    url: "https://huggingface.co/docs/transformers.js/"
+  - title: "Transformers.js içinde kullanabileceğimiz modeller"
+    url: "https://huggingface.co/models?library=transformers.js"
+---
+
+<article>
+  <h1>Transformers.js nedir?</h1>
+  <p>
+    <b>Hugging Face</b> tarafından geliştirilen Python için yazılmış
+    <b>Transformers</b> kütüphanesinin bir Javascript uygulamasıdır. Bu
+    kütüphane aracılığıyla yapay zeka modellerini doğrudan tarayıcıda sunucuya
+    ihtiyaç duymadan çalıştırabiliyoruz.
+  </p>
+  <ul>
+    <li>Doğal dil işleme(metin sınıflandırma, özetleme, çeviri vb.)</li>
+    <li>
+      Bilgisayarlı görü(görüntü sınıflandırma, nesne tespti, segmentasyon vb.)
+    </li>
+    <li>Ses işleme(konuşma tanıma, metinden sese)</li>
+  </ul>
+  <p>gibi uygulamarı basit bir şekilde geliştirebiliyoruz.</p>
+
+  <p>
+    Ben bugün bir metin sınıflandırma aracı yazacağım. Yazının tüm kaynak
+    kodları için sayfa kaynağını görüntüleyebilirsiniz. Ayrıca sayfada bir hata
+    alıyorsanız bana ulaşıp sorunu bildirebilirsiniz.
+  </p>
+
+  <h2>Metnin hangi dille yazıldığını bulan program:</h2>
+  <div class="card bg-base-100 p-6 shadow-lg">
+    <div class="mb-6">
+      <button class="btn btn-primary" onclick="loadModel()">
+        Modeli Yükle
+      </button>
+      <div id="status" class="hidden mt-3 alert transition-all"></div>
+    </div>
+    <div class="mt-6">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Metin girin</span>
+        </label>
+        <textarea
+          id="txt"
+          placeholder="Analiz edilecek metni buraya yazın..."
+          class="textarea textarea-bordered w-full"
+          rows="4"
+          style="min-height: 100px"
+        ></textarea>
+      </div>
+
+      <div class="mt-4 flex gap-3">
+        <button
+          class="btn btn-neutral"
+          onclick="run()"
+          id="analyzeBtn"
+          disabled
+        >
+          Metni Analiz Et
+        </button>
+        <button class="btn btn-outline" onclick="clearResults()" id="clearBtn">
+          Temizle
+        </button>
+      </div>
+
+      <div id="results" class="mt-6 hidden">
+        <h3 class="text-lg font-semibold mb-4">Sonuçlar:</h3>
+        <div id="output" class="card bg-base-100 shadow-xl">
+          <div class="card-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p>
+      Bu araç, metinlerin hangi dille yazıldığını tespit etmek için
+      kullanılabilir hem de sunucuya ihtiyaç duymaksızın. Şimdi nasıl
+      yapıldığına geçelim.
+    </p>
+    {% highlight javascript %} 
+    // Transformers.js kütüphanesini dinamik olarak yükle 
+    let { pipeline, env } = await import(
+        "https://cdn.jsdelivr.net/npm/@huggingface/transformers" 
+        ); 
+    // Yerel model kontrolünü engelle (sadece önceden hazırlanmış modelleri kullan)
+    env.allowLocalModels = false; 
+    {% endhighlight %}
+
+    <p>Ardından dil algılama için bir pipeline oluşturuyoruz:</p>
+
+    {% highlight javascript %} 
+    // Dil algılama pipeline'ını oluştur. 
+    const pipe = await pipeline( 
+        "text-classification",
+        "onnx-community/language_detection-ONNX", 
+        { 
+            device: "webgpu", // GPU desteği
+            dtype: "q4" // Küçük model boyutu için
+        }
+    ); 
+    {% endhighlight %}
+
+    <p>Son olarak metni analiz etmek için pipeline'ı kullanırız:</p>
+
+    {% highlight javascript %} 
+    // Metni analiz et 
+    const text = "Bu bir Türkçe metin örneğidir."; 
+    const result = await pipe(text); 
+    console.log(result); 
+    // Çıktı: [{ label: "turkish", score: 0.9876... }, ...] 
+    {% endhighlight %}
+
+    <p>Bu şekilde basit bir Transformers.js uygulaması oluşturmuş olduk.</p>
+    <p>
+      Kullanabileceğiniz diğer modeller için Kaynakları takip edebilirsiniz.
+    </p>
+  </div>
+</article>
+
+<script>
+  let pipe;
+  const txtInput = document.querySelector("#txt");
+  const status = document.querySelector("#status");
+  const analyzeBtn = document.querySelector("#analyzeBtn");
+  const clearBtn = document.querySelector("#clearBtn");
+  const resultsDiv = document.querySelector("#results");
+  const outputDiv = document.querySelector("#output");
+
+  async function loadModel() {
+    status.classList.remove("alert-success");
+    status.textContent = "Model Yükleniyor";
+    status.classList.remove("hidden");
+    status.classList.add("alert-info");
+    let { pipeline, env } = await import(
+      "https://cdn.jsdelivr.net/npm/@huggingface/transformers"
+    );
+    // yerel model kontrolünü engelle
+    env.allowLocalModels = false;
+
+    try {
+      pipe = await pipeline(
+        "text-classification",
+        "onnx-community/language_detection-ONNX",
+        {
+          device: "webgpu",
+          dtype: "q4",
+        }
+      );
+    } catch (e) {
+      console.error(e);
+      /*
+            status.textContent = `Model yüklenemedi!`;
+            status.classList.remove("badge-outline", "badge-info");
+            status.classList.add("badge-error");
+             */
+      pipe = await pipeline(
+        "text-classification",
+        "onnx-community/language_detection-ONNX"
+      );
+      return;
+    }
+
+    status.textContent = "Model yüklendi!";
+    status.classList.remove("alert-info");
+    status.classList.add("alert-success");
+
+    // Enable analyze button when model is loaded
+    analyzeBtn.disabled = false;
+  }
+
+  async function run() {
+    if (!pipe) {
+      status.textContent = "Önce modeli yükle!";
+      status.classList.remove(
+        "alert-success",
+        "alert-info",
+        "alert-warning",
+        "hidden"
+      );
+      status.classList.add("alert-error");
+      return;
+    }
+
+    const text = txtInput.value.trim();
+    if (!text) {
+      status.textContent = "Lütfen analiz edilecek bir metin girin!";
+      status.classList.remove(
+        "alert-success",
+        "alert-info",
+        "alert-error",
+        "hidden"
+      );
+      status.classList.add("alert-warning");
+      return;
+    }
+
+    // Show processing status
+    analyzeBtn.disabled = true;
+    analyzeBtn.textContent = "Analiz ediliyor...";
+    status.textContent = "Metin işleniyor...";
+    status.classList.remove(
+      "alert-error",
+      "alert-warning",
+      "alert-success",
+      "hidden"
+    );
+    status.classList.add("alert-info");
+
+    try {
+      const out = await pipe(text);
+
+      // Display results
+      displayResults(out, text);
+
+      status.textContent = "Analiz tamamlandı!";
+      status.classList.remove("alert-info");
+      status.classList.add("alert-success");
+    } catch (error) {
+      console.error("Analiz hatası:", error);
+      status.textContent = "Analiz sırasında hata oluştu!";
+      status.classList.remove("alert-info");
+      status.classList.add("alert-error");
+    } finally {
+      analyzeBtn.disabled = false;
+      analyzeBtn.textContent = "Metni Analiz Et";
+    }
+  }
+
+  function displayResults(results, originalText) {
+    resultsDiv.classList.remove("hidden");
+
+    let html = `<div class="alert alert-info mb-4">
+                  <div>
+                    <strong>Analiz edilen metin:</strong><br>
+                    <em>"${originalText.substring(0, 200)}${
+      originalText.length > 200 ? "..." : ""
+    }"</em>
+                  </div>
+                </div>`;
+
+    html += `<div class="mb-4"><strong>Tespit edilen diller:</strong></div>`;
+
+    if (Array.isArray(results)) {
+      html += `<div class="space-y-3">`;
+      results.forEach((result, index) => {
+        const confidence = (result.score * 100).toFixed(1);
+        const barWidth = result.score * 100;
+
+        html += `
+          <div class="card bg-base-200 shadow-sm">
+            <div class="card-body p-4">
+              <div class="flex items-center justify-between">
+                <div class="flex-1">
+                  <span class="font-semibold">${result.label}</span>
+                  <progress class="progress progress-primary w-full mt-2" value="${barWidth}" max="100"></progress>
+                </div>
+                <div class="badge badge-neutral ml-4">${confidence}%</div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div class="mockup-code">
+                 <pre><code>${JSON.stringify(results, null, 2)}</code></pre>
+               </div>`;
+    }
+
+    outputDiv.querySelector(".card-body").innerHTML = html;
+  }
+
+  function clearResults() {
+    txtInput.value = "";
+    resultsDiv.classList.add("hidden");
+    outputDiv.querySelector(".card-body").innerHTML = "";
+    status.classList.add("hidden");
+  }
+
+  // Add event listeners
+  document.addEventListener("DOMContentLoaded", function () {
+    // Enable real-time input validation
+    txtInput.addEventListener("input", function () {
+      if (this.value.trim() && pipe && !analyzeBtn.disabled) {
+        analyzeBtn.classList.remove("btn-neutral");
+        analyzeBtn.classList.add("btn-primary");
+      } else {
+        analyzeBtn.classList.remove("btn-primary");
+        analyzeBtn.classList.add("btn-neutral");
+      }
+    });
+
+    // Allow Enter+Ctrl to run analysis
+    txtInput.addEventListener("keydown", function (e) {
+      if (e.ctrlKey && e.key === "Enter") {
+        e.preventDefault();
+        if (!analyzeBtn.disabled && this.value.trim()) {
+          run();
+        }
+      }
+    });
+  });
+</script>

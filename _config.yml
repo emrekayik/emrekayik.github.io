@@ -49,7 +49,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-spaceship
 
-
 date_locale: tr
 
 

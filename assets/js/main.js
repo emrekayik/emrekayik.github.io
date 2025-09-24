@@ -136,3 +136,25 @@ document.addEventListener("mousemove", (e) => {
     }
   }
 })();
+
+
+// PWA Ayarları
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    // otomatik banner'ı engelle
+    e.preventDefault();
+    deferredPrompt = e;
+
+    // kendi butonunu ya da bildirimi göster
+    const installBtn = document.getElementById("install-btn");
+    installBtn.style.display = "block";
+
+    installBtn.addEventListener("click", async () => {
+        installBtn.style.display = "none";
+        deferredPrompt.prompt(); // tarayıcı banner'ı açılır
+        const choiceResult = await deferredPrompt.userChoice;
+        console.log("User choice:", choiceResult.outcome);
+        deferredPrompt = null;
+    });
+});
