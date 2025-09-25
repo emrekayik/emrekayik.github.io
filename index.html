@@ -9,7 +9,7 @@ title: "Merhaba, ben Emre Kayık"
         geliştiriciyim.</p>
     <p>Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi bulacaksınız.</p>
     <h2 class="flex justify-between">Yazılarım<i class="ai-book-close"></i></h2>
-    <ul class="font-mono">
+    <ul class="font-mono list-disc">
         {% for post in site.posts limit:5 %}
         <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
             <a class="link" href="{{ post.url }}">{{ post.title }}</a>

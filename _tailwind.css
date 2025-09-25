@@ -6,3 +6,8 @@
     background-color: hsl(var(--p));   /* DaisyUI primary rengi */
     color: hsl(var(--pc));            /* DaisyUI primary-content rengi */
 }
+
+/* type checkbox */
+.task-list-item-checkbox {
+    @apply bg-amber-500;
+}
