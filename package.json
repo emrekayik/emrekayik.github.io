@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "daisyui": "^5.1.14",
+    "daisyui": "^4.12.24",
     "tailwindcss-intersect": "^2.2.0",
     "tailwindcss-motion": "^1.1.1"
   },
