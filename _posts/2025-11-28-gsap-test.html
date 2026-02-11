@@ -1,0 +1,29 @@
+---
+layout: post
+
+title: "GSAP test"
+description: GSAP test
+
+---
+
+deneme
+
+
+
+<div class="w-24 h-24 bg-green-500 green"></div>
+<div class="w-24 h-24 bg-purple-500 purple"></div>
+<div class="w-24 h-24 bg-blue-500 blue"></div>
+
+<script src="/assets/lib/gsap.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // gsap.to(".w-24", { rotation: 27, x: 100, duration: 1 });
+
+        let tl = gsap.timeline();
+        tl.to(".green", {duration: 1, x: 786})
+            .to(".blue", {duration: 2, x: 786})
+            .to(".purple", {duration: 1, x: 786})
+    });
+
+</script>

@@ -5,6 +5,7 @@
     "tailwindcss-motion": "^1.1.1"
   },
   "dependencies": {
-    "chart.js": "^4.5.0"
+    "chart.js": "^4.5.0",
+    "gsap": "^3.13.0"
   }
 }
