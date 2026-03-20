@@ -2,7 +2,7 @@ contact:
   name: Emre Kayık
   title: Geliştirici | Tasarımcı
   email: emrekayik1905@gmail.com
-# phone: +
+  # phone: +
   website: https://emrekayik.github.io
   linkedin: https://linkedin.com/in/emrekayik
   github: https://github.com/emrekayik
@@ -13,9 +13,15 @@ profile: |
   Modern JavaScript çatıları ve statik site oluşturucuları ile çalışmaktan keyif alıyorum.
   Verileri görselleştirmeyi, manipüle etmeyi ve veriden hikaye çıkarmayı severim.
   Temiz kod yazmaya ve kullanıcı dostu arayüzler oluşturmaya özen gösteririm.
-  
 
 experience:
+  - job_title: Founcer / Lead
+    company: Softweal
+    location: Turkiye
+    dates: "03/2022 - present"
+    description: |
+      - Open-Source technologies and Blog Posts
+
   - job_title: Founder / Full Stack Developer
     company: StudioEK (voluntarily)
     location: Turkiye
@@ -32,14 +38,12 @@ experience:
       - In this business where I worked as a frontend developer, we developed a quality management system.
       - Use Next.js and shadcn and similar frontend technologies.
 
-
   - job_title: Founder / Lead
     company: Bilgisayar ve Teknoloji Kulübü(Computer and Technology Club)
     location: Turkiye
     dates: "09/2023 — present"
     description: |
       - I am the leader of the Bilgisayar ve Teknoloji Kulübü(Computer and Technology Club) I founded at the university.
-
 
   - job_title: Co-Founder / Front-End Developer
     company: Cibza
@@ -61,14 +65,14 @@ experience:
     location: Global (remote)
     dates: "05/2021"
     description: |
-      - Open source browser extension translating 
+      - Open source browser extension translating
 
   - job_title: Front-End Developer
     company: Devlife
     location: Turkiye (remote)
     dates: "03/2019"
     description: |
-      - Devlife was a social media web project for Developers, it was discontinued due to lack of budget 
+      - Devlife was a social media web project for Developers, it was discontinued due to lack of budget
 
 education:
   - degree: İstatistik ve Bilgisayar Bilimleri (Lisans)
@@ -114,6 +118,8 @@ skills:
       - Rust
       - Dart
       - Go
+      - Nim
+      - Zig
 
   - group_name: Kütüphaneler
     items:
@@ -129,6 +135,7 @@ skills:
       - Numpy
       - Tensorflow
       - Keras
+      - Jax
 
   - group_name: Araçlar
     items:
@@ -146,6 +153,14 @@ skills:
       - "Almanca (A1)"
 
 projects:
-  - name: Kişisel Web Sitem
-    description: "Bu site! Jekyll ve minimal-mistakes teması kullanılarak geliştirildi."
-    link: https://siteadresiniz.com
+  - name: Personal Web Site
+    description: "This site is built with Jekyll and Tailwind CSS."
+    link: https://emrekayik.github.io
+
+  - name: Nootle
+    description: "Your personal productivity assistant."
+    link: https://emrekayik.github.io/nootle
+
+  - name: Moviek
+    description: "hybrid movie recommendation system"
+    link: https://github.com/emrekayik/moviek
