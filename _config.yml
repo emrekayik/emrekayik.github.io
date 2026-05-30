@@ -68,6 +68,11 @@ reading_time:
 
 highlighter: rouge
 
+# Jekyll Tailwind configuration
+tailwind:
+  input: assets/css/tailwind.css
+  output: assets/css/app.css
+
 postcss:
   cache: false
 
@@ -94,6 +99,7 @@ exclude:
   - package.json
   - package-lock.json
   - tailwind.config.js
+  - assets/css/tailwind.css
 
 # Where things are
 jekyll-spaceship:

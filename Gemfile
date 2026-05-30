@@ -6,7 +6,7 @@ source "https://rubygems.org"
 
 gem 'rouge'
 gem "jekyll", "~> 4.4.1"
-gem 'tailwindcss-ruby', '>=3', '<4'
+gem 'tailwindcss-ruby', '~> 4.0'
 gem 'yaml'
 gem 'json'
 gem 'securerandom'

@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Custom DaisyUI Theme: mytheme */
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true;
+  color-scheme: dark;
+
+  --color-primary: #f06e67;
+  --color-primary-content: #140404;
+  --color-secondary: #71ee5b;
+  --color-secondary-content: #041403;
+  --color-accent: #6f8de9;
+  --color-accent-content: #040713;
+  --color-neutral: #262931;
+  --color-neutral-content: #cfd0d2;
+  --color-base-100: #232035;
+  --color-base-200: #1d1a2d;
+  --color-base-300: #171525;
+  --color-base-content: #cecdd3;
+  --color-info: #2563EB;
+  --color-info-content: #d2e2ff;
+  --color-success: #16A34A;
+  --color-success-content: #000a02;
+  --color-warning: #D97706;
+  --color-warning-content: #110500;
+  --color-error: #DC2626;
+  --color-error-content: #ffd9d4;
+}
+
+/* Base DaisyUI themes */
+@plugin "daisyui/theme" { name: "light"; }
+@plugin "daisyui/theme" { name: "dark"; }
+@plugin "daisyui/theme" { name: "cupcake"; }
+@plugin "daisyui/theme" { name: "bumblebee"; }
+@plugin "daisyui/theme" { name: "emerald"; }
+@plugin "daisyui/theme" { name: "corporate"; }
+@plugin "daisyui/theme" { name: "synthwave"; }
+@plugin "daisyui/theme" { name: "retro"; }
+@plugin "daisyui/theme" { name: "cyberpunk"; }
+@plugin "daisyui/theme" { name: "valentine"; }
+@plugin "daisyui/theme" { name: "halloween"; }
+@plugin "daisyui/theme" { name: "garden"; }
+@plugin "daisyui/theme" { name: "forest"; }
+@plugin "daisyui/theme" { name: "aqua"; }
+@plugin "daisyui/theme" { name: "lofi"; }
+@plugin "daisyui/theme" { name: "pastel"; }
+
+/* Plugins */
+@plugin "tailwindcss-motion";
+@plugin "tailwindcss-intersect";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/container-queries";
+
+@theme {
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+  --animate-infinite-vertical-scroll: infinite-vertical-scroll 25s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  @keyframes infinite-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes infinite-vertical-scroll {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+}
+
+/* Global Styles */
+body {
+  @apply bg-base-100 text-base-content;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.antic-slab-regular {
+  font-family: "Antic Slab", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.context-menu-item {
+  @apply cursor-pointer bg-white dark:bg-gray-800 hover:bg-gray-200 transition-all ease-linear dark:hover:bg-gray-800/50 p-4 w-full h-full text-gray-800 dark:text-gray-200 relative;
+}
+
+.mermaid {
+  @apply text-primary-content bg-primary/50;
+}
+
+.prose canvas {
+  @apply w-full h-auto block;
+}
+
+body.transition-fade {
+  @apply opacity-0 transition-opacity duration-400 ease-in-out;
+}
+
+body.loaded {
+  @apply opacity-100;
+}
+
+/* Selection */
+::selection {
+    background-color: oklch(var(--p) / 0.3);
+    color: oklch(var(--pc));
+}
+
+::-moz-selection {
+  background-color: oklch(var(--p) / 0.3);
+  color: oklch(var(--pc));
+}
+
+/* Focus styles */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: 2px solid oklch(var(--p));
+  outline-offset: 2px;
+}
+
+/* Link selection */
+a::selection {
+  background-color: oklch(var(--s) / 0.3);
+  color: oklch(var(--sc));
+}
+
+/* Code block selection */
+code::selection,
+pre::selection {
+  background-color: oklch(var(--a) / 0.3);
+  color: oklch(var(--ac));
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(var(--b2));
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--bc) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--bc) / 0.5);
+}
+
+/* Task list checkbox */
+.task-list-item-checkbox {
+    @apply bg-amber-500;
+}
+
+.container-block {
+  container-type: inline-size;
+}
+
+@container (max-width: 1100px) {
+  .container-block svg:nth-child(3),
+  .container-block svg:nth-child(4) {
+    display: none;
+  }
+}
+
+/* Highlight / Monokai styles */
+@import "../../_sass/monokai.scss";
