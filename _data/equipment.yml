@@ -20,6 +20,28 @@
       link: https://www.mi.com/tr/redmi-note-12/
       icon: "ph ph-device-mobile"
 
+- category: Yapay Zeka Araçlarım
+  items:
+    - name: Gemini
+      description: Google'ın gelişmiş yapay zeka modeli. Hem araştırma hem de fikir geliştirme süreçlerimde sıkça başvurduğum asistanım.
+      link: https://gemini.google.com/
+      icon: "ph ph-sparkle"
+
+    - name: Claude
+      description: Anthropic tarafından geliştirilen, kod yazma ve metin analizinde oldukça başarılı bulduğum yapay zeka modeli.
+      link: https://claude.ai/
+      icon: "ph ph-robot"
+
+    - name: Antigravity
+      description: Google tarafından geliştirilen yapay zeka destekli kod editörü. Modern ve hızlı yapısıyla kodlama deneyimini üst seviyeye taşıyor.
+      link: https://antigravity.ai/
+      icon: "ph ph-code"
+
+    - name: OpenCode
+      description: Yapay zeka destekli, geliştirici odaklı verimlilik ve kodlama aracı.
+      link: https://opencode.com/
+      icon: "ph ph-brain"
+
 - category: Yazılım Geliştirme Araçlarım
   items:
     - name: Visual Studio Code
@@ -60,11 +82,6 @@
       link: https://zed.dev/
       icon: "ph ph-code"
       open_source: true
-
-    - name: Antigravity
-      description: Google tarafından geliştirilen yapay zeka destekli kod editörü.
-      link: https://antigravity.ai/
-      icon: "ph ph-code"
 
     - name: DBeaver
       description: Veritabanı yönetimi ve sorgulama için kullandığım çoklu veritabanı aracı. SQL veritabanlarıyla çalışırken vazgeçilmezim.

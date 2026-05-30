@@ -1,106 +1,87 @@
-<div class="dropdown dropdown-bottom w-full">
-    <div tabindex="0" role="button" class="btn btn-ghost justify-between w-full">
-        <span class="flex items-center gap-2">
-            <span>Tema</span>
-        </span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-        </svg>
+<div class="collapse collapse-arrow bg-base-100 border border-base-300 mt-4 overflow-visible">
+    <input type="checkbox" checked /> 
+    <div class="collapse-title text-sm font-bold flex items-center gap-2 text-base-content">
+        <i class="ai-paint-brush text-primary"></i>
+        Görünüm Ayarları
     </div>
-
-    <div tabindex="0" class="dropdown-content bg-base-100 rounded-box mt-1 w-full shadow-xl z-50">
-        <div class="p-2">
-            <div class="theme-list max-h-80 overflow-y-auto space-y-1">
-
-                {% comment %} Define themes list {% endcomment %}
-                {% if include.themes %}
-                {% assign themes = include.themes | split: "," %}
-                {% else %}
-                {% assign themes = "system,light,dark,mytheme,cupcake,synthwave,retro,valentine,garden,forest,pastel" | split: "," %}
-                {% endif %}
-
-                {% for theme in themes %}
-                {% comment %} Set preview theme (system shows as light) {% endcomment %}
-                {% if theme == 'system' %}
-                {% assign preview = 'light' %}
-                {% assign display_name = 'Sistem' %}
-
-                {% elsif theme == 'mytheme' %}
-                {% assign preview = 'mytheme' %}
-                {% assign display_name = 'My Theme' %}
-                {% else %}
-                {% assign preview = theme %}
-                {% assign display_name = theme | capitalize %}
-                {% endif %}
-
-                <label class="cursor-pointer block">
-                    <input type="radio"
-                           name="{{ include.name | default: 'theme-dropdown' }}"
-                           class="theme-controller sr-only peer"
-                           aria-label="{{ display_name }}"
-                           value="{{ theme }}"
-                           {% if include.default == theme %}checked{% endif %}/>
-
-                    <div data-theme="{{ preview }}"
-                         class="flex items-center justify-between gap-3 rounded-lg border-2 border-transparent bg-base-100 px-3 py-3 transition-all duration-200 hover:bg-base-200 peer-checked:border-primary peer-checked:bg-primary/10">
-
-                        <!-- Theme colors preview -->
-                        <div class="flex items-center gap-2">
-                            <span class="w-4 h-4 rounded-full bg-primary border border-base-content/20"></span>
-                            <span class="w-4 h-4 rounded-full bg-secondary border border-base-content/20"></span>
-                            <span class="w-4 h-4 rounded-full bg-accent border border-base-content/20"></span>
-                        </div>
-
-                        <!-- Theme name -->
-                        <div class="text-sm font-medium text-base-content">
-                            {{ display_name }}
+    <div class="collapse-content p-0">
+        <div class="p-3 space-y-4 max-h-[60vh] overflow-y-auto theme-list">
+            
+            <!-- Category: Special -->
+            <div class="space-y-1">
+                <span class="text-[10px] uppercase tracking-widest opacity-50 font-bold px-1">Özel</span>
+                <label class="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-base-200 transition-all border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/10 group">
+                    <input type="radio" name="{{ include.name | default: 'theme-dropdown' }}" class="theme-controller radio radio-primary radio-xs" value="system" />
+                    <div class="flex-1 flex items-center justify-between">
+                        <span class="text-sm font-semibold">Sistem</span>
+                        <div class="flex gap-1">
+                            <i class="ai-desktop-device opacity-50 text-xs"></i>
                         </div>
                     </div>
                 </label>
-                {% endfor %}
-
+                <label class="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-base-200 transition-all border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                    <input type="radio" name="{{ include.name | default: 'theme-dropdown' }}" class="theme-controller radio radio-primary radio-xs" value="mytheme" />
+                    <div data-theme="mytheme" class="flex-1 flex items-center justify-between px-3 py-1.5 rounded-lg bg-base-100 border border-base-content/20 shadow-sm">
+                        <span class="text-sm font-bold text-base-content">My Theme</span>
+                        <div class="flex gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-primary ring-1 ring-base-content/10"></span>
+                            <span class="w-3 h-3 rounded-full bg-secondary ring-1 ring-base-content/10"></span>
+                        </div>
+                    </div>
+                </label>
             </div>
+
+            <!-- Category: Light Themes -->
+            <div class="space-y-1">
+                <span class="text-[10px] uppercase tracking-widest text-orange-500 font-bold px-1">Aydınlık Temalar</span>
+                <div class="grid grid-cols-1 gap-1">
+                    {% assign light_themes = "light,cupcake,bumblebee,emerald,corporate,garden,pastel" | split: "," %}
+                    {% for theme in light_themes %}
+                    <label class="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-base-200 transition-all border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                        <input type="radio" name="{{ include.name | default: 'theme-dropdown' }}" class="theme-controller radio radio-primary radio-xs" value="{{ theme }}" />
+                        <div data-theme="{{ theme }}" class="flex-1 flex items-center justify-between px-3 py-1.5 rounded-lg bg-white border border-black/10 shadow-sm">
+                            <span class="text-xs font-bold text-black">{{ theme | capitalize }}</span>
+                            <div class="flex gap-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                            </div>
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Category: Dark Themes -->
+            <div class="space-y-1">
+                <span class="text-[10px] uppercase tracking-widest text-blue-400 font-bold px-1">Karanlık Temalar</span>
+                <div class="grid grid-cols-1 gap-1">
+                    {% assign dark_themes = "dark,synthwave,retro,cyberpunk,valentine,halloween,forest,aqua,lofi" | split: "," %}
+                    {% for theme in dark_themes %}
+                    <label class="flex items-center gap-3 p-2 rounded-xl cursor-pointer hover:bg-base-200 transition-all border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                        <input type="radio" name="{{ include.name | default: 'theme-dropdown' }}" class="theme-controller radio radio-primary radio-xs" value="{{ theme }}" />
+                        <div data-theme="{{ theme }}" class="flex-1 flex items-center justify-between px-3 py-1.5 rounded-lg bg-neutral border border-white/10 shadow-sm">
+                            <span class="text-xs font-bold text-neutral-content">{{ theme | capitalize }}</span>
+                            <div class="flex gap-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+                            </div>
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
 <style>
-    /* Custom scrollbar for theme dropdown */
-    .theme-list::-webkit-scrollbar {
-        width: 6px;
+    .theme-list::-webkit-scrollbar { width: 5px; }
+    .theme-list::-webkit-scrollbar-track { background: transparent; }
+    .theme-list::-webkit-scrollbar-thumb { 
+        background: oklch(var(--bc) / 0.15); 
+        border-radius: 10px;
     }
-
-    .theme-list::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .theme-list::-webkit-scrollbar-thumb {
-        background: oklch(var(--bc) / 0.2);
-        border-radius: 3px;
-    }
-
-    .theme-list::-webkit-scrollbar-thumb:hover {
-        background: oklch(var(--bc) / 0.3);
-    }
-
-    /* Ensure theme colors are visible */
-    [data-theme] .bg-primary {
-        background-color: oklch(var(--p));
-    }
-
-    [data-theme] .bg-secondary {
-        background-color: oklch(var(--s));
-    }
-
-    [data-theme] .bg-accent {
-        background-color: oklch(var(--a));
-    }
-
-    [data-theme] .bg-base-100 {
-        background-color: oklch(var(--b1));
-    }
-
-    [data-theme] .text-base-content {
-        color: oklch(var(--bc));
-    }
+    /* Hover enhancement */
+    .theme-list label:hover div { transform: translateX(2px); transition: transform 0.2s; }
 </style>

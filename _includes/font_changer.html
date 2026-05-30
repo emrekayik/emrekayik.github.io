@@ -1,50 +1,43 @@
-<div class="dropdown dropdown-bottom w-full">
-    <div tabindex="0" role="button" class="btn btn-ghost justify-between w-full">
-        <span class="flex items-center gap-2">
-            <span>Yazı Tipi</span>
-        </span>
-        <i class="ai-chevron-down"></i>
+<div class="collapse collapse-arrow bg-base-100 border border-base-300 mt-2">
+    <input type="checkbox" /> 
+    <div class="collapse-title text-sm font-medium flex items-center gap-2">
+        <i class="ai-text-italic"></i>
+        Yazı Tipi
     </div>
+    <div class="collapse-content p-0">
+        <div class="grid grid-cols-1 gap-1 p-2 max-h-80 overflow-y-auto font-list">
+            <label class="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-base-200 transition-colors border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                <input type="radio" name="{{ include.name | default: 'font-dropdown' }}"
+                       class="radio radio-primary radio-sm"
+                       value="system-ui, -apple-system, sans-serif"
+                       {% if include.default == 'system' %}checked{% endif %}>
+                <div class="flex-1 flex items-center justify-between px-2 py-1 rounded bg-base-100 border border-base-content/10" style="font-family: system-ui, -apple-system, sans-serif;">
+                    <span class="text-xs font-medium">Aa Bb Cc</span>
+                    <span class="text-[10px] opacity-60">Sistem</span>
+                </div>
+            </label>
 
-    <div tabindex="0" class="dropdown-content bg-base-100 rounded-box mt-1 w-full shadow-xl border border-base-300 z-50">
-        <div class="p-2">
-            <div class="font-list max-h-80 overflow-y-auto space-y-1">
-                <label class="cursor-pointer block">
-                    <input type="radio" name="{{ include.name | default: 'font-dropdown' }}"
-                           class="sr-only peer"
-                           value="system-ui, -apple-system, sans-serif"
-                           {% if include.default == 'system' %}checked{% endif %}>
-                    <div class="flex items-center justify-between gap-3 rounded-lg border-2 border-transparent bg-base-200 px-3 py-3 transition-all duration-200 hover:bg-base-300 peer-checked:border-primary peer-checked:bg-primary/10"
-                         style="font-family: system-ui, -apple-system, sans-serif;">
-                        <span class="text-lg font-medium">Aa Bb Cc</span>
-                        <span class="text-sm opacity-70">Sistem</span>
-                    </div>
-                </label>
+            {% comment %} Define font list {% endcomment %}
+            {% assign fonts = "Georgia,serif,Georgia|Times New Roman,serif,Times New Roman|Courier New,monospace,Courier New|Comic Sans MS,cursive,Comic Sans MS|Brush Script MT,cursive,Brush Script" | split: "|" %}
 
-                {% comment %} Define font list {% endcomment %}
-                {% assign fonts = "Georgia,serif,Georgia|Times New Roman,serif,Times New Roman|Courier New,monospace,Courier New|Comic Sans MS,cursive,Comic Sans MS|Brush Script MT,cursive,Brush Script" | split: "|" %}
+            {% for font in fonts %}
+            {% assign font_data = font | split: "," %}
+            {% assign font_name = font_data[0] %}
+            {% assign font_type = font_data[1] %}
+            {% assign font_display = font_data[2] %}
+            {% assign font_family = font_name | append: ", " | append: font_type %}
 
-                {% for font in fonts %}
-                {% assign font_data = font | split: "," %}
-                {% assign font_name = font_data[0] %}
-                {% assign font_type = font_data[1] %}
-                {% assign font_display = font_data[2] %}
-                {% assign font_family = font_name | append: ", " | append: font_type %}
-
-                <label class="cursor-pointer block">
-                    <input type="radio" name="{{ include.name | default: 'font-dropdown' }}"
-                           class="sr-only peer"
-                           value="{{ font_family }}"
-                           {% if include.default == font_name %}checked{% endif %}>
-                    <div class="flex items-center justify-between gap-3 rounded-lg border-2 border-transparent bg-base-200 px-3 py-3 transition-all duration-200 hover:bg-base-300 peer-checked:border-primary peer-checked:bg-primary/10"
-                         style="font-family: {{ font_family }};">
-                        <span class="text-lg font-medium">Aa Bb Cc</span>
-                        <span class="text-sm opacity-70">{{ font_display }}</span>
-                    </div>
-                </label>
-                {% endfor %}
-
-            </div>
+            <label class="flex items-center gap-3 p-2 rounded-lg cursor-pointer hover:bg-base-200 transition-colors border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/5">
+                <input type="radio" name="{{ include.name | default: 'font-dropdown' }}"
+                       class="radio radio-primary radio-sm"
+                       value="{{ font_family }}"
+                       {% if include.default == font_name %}checked{% endif %}>
+                <div class="flex-1 flex items-center justify-between px-2 py-1 rounded bg-base-100 border border-base-content/10" style="font-family: {{ font_family }};">
+                    <span class="text-xs font-medium">Aa Bb Cc</span>
+                    <span class="text-[10px] opacity-60">{{ font_display }}</span>
+                </div>
+            </label>
+            {% endfor %}
         </div>
     </div>
 </div>
@@ -53,27 +46,18 @@
     :root {
         --active-font: {{ include.default_font | default: 'system-ui, -apple-system, sans-serif' }};
     }
-
     .font-preview {
         font-family: var(--active-font);
     }
-
-    /* Custom scrollbar */
     .font-list::-webkit-scrollbar {
-        width: 6px;
+        width: 4px;
     }
-
     .font-list::-webkit-scrollbar-track {
         background: transparent;
     }
-
     .font-list::-webkit-scrollbar-thumb {
         background: oklch(var(--bc) / 0.2);
-        border-radius: 3px;
-    }
-
-    .font-list::-webkit-scrollbar-thumb:hover {
-        background: oklch(var(--bc) / 0.3);
+        border-radius: 2px;
     }
 </style>
 
@@ -84,7 +68,6 @@
         const inputs = document.querySelectorAll(`input[name="${dropdownName}"]`);
         const storageKey = "{{ include.storage_key | default: 'preferredFont' }}";
 
-        // Load saved font
         const savedFont = localStorage.getItem(storageKey);
         if (savedFont) {
             root.style.setProperty("--active-font", savedFont);
@@ -95,22 +78,11 @@
             });
         }
 
-        // Handle font changes
         inputs.forEach(inp => {
             inp.addEventListener("change", () => {
                 if (inp.checked) {
                     root.style.setProperty("--active-font", inp.value);
                     localStorage.setItem(storageKey, inp.value);
-
-                    // Optional callback
-                    {% if include.callback %}
-                    if (typeof {{ include.callback }} === 'function') {
-                        {{ include.callback }}(inp.value);
-                    }
-                    {% endif %}
-
-                    // Close dropdown after selection
-                    document.activeElement.blur();
                 }
             });
         });
