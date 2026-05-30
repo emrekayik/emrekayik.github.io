@@ -4,13 +4,13 @@ title: "Projelerim"
 permalink: /projeler/
 ---
 
-<article class="prose prose-lg w-full mx-auto">
-    <h2 class="flex justify-between">Projelerim <i class="ai-folder"></i></h2>
-    <ul class="font-mono list-disc list-inside">
+<article class="prose w-full mx-auto">
+    <h2 class="flex justify-between items-center">Projelerim <i class="ai-folder text-2xl"></i></h2>
+    <ul class="font-mono space-y-2">
         {% for project in site.projects %}
-        <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
-            <a class="link" href="{{ project.url }}">{{ project.title }}</a>
-            <time class="text-xs text-gray-500 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
+        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
+            <a class="link hover:text-secondary transition-colors" href="{{ project.url }}">{{ project.title }}</a>
+            <time class="text-xs text-base-content/60 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
         </li>
         {% endfor %}
     </ul>

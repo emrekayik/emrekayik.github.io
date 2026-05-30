@@ -3,33 +3,33 @@ layout: default
 title: "Merhaba, ben Emre Kayık"
 ---
 
-<article class="w-full mx-auto prose max-w-none md:prose-lg md:max-w-prose lg:prose-xl">
+<article class="w-full mx-auto prose max-w-none md:max-w-prose lg:max-w-screen-md">
     <h1 class="antic-slab-regular">Merhaba, ben Emre!</h1>
     <p>İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web teknolojileriyle çalışan bir
         geliştiriciyim.</p>
     <p>Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi bulacaksınız.</p>
-    <h2 class="flex justify-between">Yazılarım<i class="ai-book-close"></i></h2>
-    <ul class="font-mono list-disc">
+    <h2 class="flex justify-between items-center">Yazılarım<i class="ai-book-close text-2xl"></i></h2>
+    <ul class="font-mono space-y-2">
         {% for post in site.posts limit:5 %}
-        <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
-            <a class="link" href="{{ post.url }}">{{ post.title }}</a>
-            <time class="text-xs text-gray-500 text-nowrap">{{ post.date | localize: '%-d %B %Y' }}</time>
+        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
+            <a class="link hover:text-primary transition-colors" href="{{ post.url }}">{{ post.title }}</a>
+            <time class="text-xs text-base-content/60 text-nowrap">{{ post.date | localize: '%-d %B %Y' }}</time>
         </li>
         {% endfor %}
-        <li class="flex flex justify-end space-x-2 items-center">
-            <a class="link" href="{{ '/blog/' | relative_url }}">Tüm Yazılarım</a>
+        <li class="flex flex justify-end pt-2">
+            <a class="btn btn-ghost btn-sm" href="{{ '/blog/' | relative_url }}">Tüm Yazılarım →</a>
         </li>
     </ul>
-    <h2 class="flex justify-between">Projelerim <i class="ai-folder"></i></h2>
-    <ul class="font-mono">
+    <h2 class="flex justify-between items-center">Projelerim <i class="ai-folder text-2xl"></i></h2>
+    <ul class="font-mono space-y-2">
         {% for project in site.projects %}
-        <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
-            <a class="link " href="{{ project.url }}">{{ project.title }}</a>
-            <time class="text-xs text-gray-500 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
+        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
+            <a class="link hover:text-secondary transition-colors" href="{{ project.url }}">{{ project.title }}</a>
+            <time class="text-xs text-base-content/60 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
         </li>
         {% endfor %}
-        <li class="flex flex justify-end space-x-2 items-center">
-            <a class="link" href="{{ '/projeler/' | relative_url }}">Tüm Projelerim</a>
+        <li class="flex flex justify-end pt-2">
+            <a class="btn btn-ghost btn-sm" href="{{ '/projeler/' | relative_url }}">Tüm Projelerim →</a>
         </li>
     </ul>
 

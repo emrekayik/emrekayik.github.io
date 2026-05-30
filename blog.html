@@ -4,13 +4,13 @@ title: "Yazılarım"
 permalink: /blog/
 ---
 
-<article class="prose prose-lg w-full mx-auto">
-    <h2 class="flex justify-between">Yazılarım<i class="ai-book-close"></i></h2>
-    <ul class="font-mono list-disc list-inside">
+<article class="prose w-full mx-auto">
+    <h2 class="flex justify-between items-center">Yazılarım<i class="ai-book-close text-2xl"></i></h2>
+    <ul class="font-mono space-y-2">
         {% for post in site.posts %}
-        <li class="flex flex justify-between space-x-2 items-center border-b-4 border-base-100 pl-2">
-            <a class="link" href="{{ post.url }}">{{ post.title }}</a>
-            <time class="text-xs text-gray-500 text-nowrap">{{ post.date | localize: '%-d %B %Y' }}</time>
+        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
+            <a class="link hover:text-primary transition-colors" href="{{ post.url }}">{{ post.title }}</a>
+            <time class="text-xs text-base-content/60 text-nowrap">{{ post.date | localize: '%-d %B %Y' }}</time>
         </li>
         {% endfor %}
     </ul>

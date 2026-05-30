@@ -12,7 +12,7 @@
 
 - name: Next.js
   icon: ai-nextjs-fill
-  color: text-gray-600
+  color: text-base-content/70
 
 - name: Vue.js
   icon: ai-vue-fill
@@ -36,7 +36,7 @@
 
 - name: Github
   icon: ai-github-fill
-  color: text-gray-600
+  color: text-base-content/70
 
 - name: Android
   icon: ai-android-fill
