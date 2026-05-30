@@ -5,51 +5,86 @@ permalink: /oneriler/
 ---
 
 <div class="max-w-4xl mx-auto px-4 py-10">
-    <div class="mb-6">
-        <h1 class="text-3xl font-bold mb-4">🚀 Öneriler</h1>
-        <p class="text-accent">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
-        <p class="">Önerilerin hepsini json formatında görüntülemek için <a class="text-primary" target="_blank"
-                                                                            href="/suggestions.json"><i
-                class="ai-arrow-up-right text-primary"></i></a></p>
+    <div class="mb-10">
+        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">🚀 Öneriler</h1>
+        <p class="text-base-content/70 text-lg max-w-2xl leading-relaxed">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
+        <div class="mt-4 flex items-center gap-2 text-sm opacity-50 hover:opacity-100 transition-opacity">
+            <i class="ai-info"></i>
+            <span>Verileri JSON olarak gör:</span>
+            <a class="text-primary font-mono hover:underline" target="_blank" href="/suggestions.json">/suggestions.json</a>
+        </div>
     </div>
 
-    {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
-    <span
-            class="md:join grid grid-cols-3 mb-6"
-    >
-        <button class="btn btn-sm btn-outline join-item rounded-none tag-btn" data-tag="">Tümü</button>
-        {% for tag in all_tags %}
-        <button class="btn btn-sm btn-outline join-item rounded-none tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
-        {% endfor %}
-    </span>
-    <!--
-    <div class="filter mb-6 space-y-1 space-x-2 items-center justify-start">
-        <button class="btn btn-sm btn-outline tag-btn" data-tag="">Tümü</button>
-        {% for tag in all_tags %}
-        <button class="btn btn-sm btn-outline tag-btn" data-tag="{{ tag }}">{{ tag }}</button>
-        {% endfor %}
+    <!-- Filter Section -->
+    <div class="mb-12 sticky top-16 z-30 bg-base-100/80 backdrop-blur-xl py-6 -mx-4 px-6 rounded-2xl border border-base-300 shadow-lg">
+        <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                <i class="ai-filter"></i>
+            </div>
+            <span class="text-xs font-black uppercase tracking-[0.2em] opacity-60">Filtreleme Menüsü</span>
+        </div>
+        
+        {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
+        <div class="flex flex-wrap gap-2">
+            <button class="btn btn-sm tag-btn btn-primary px-6 rounded-full" data-tag="">
+                Tümü
+            </button>
+            {% for tag in all_tags %}
+            <button class="btn btn-sm tag-btn btn-outline border-base-300 hover:bg-primary/10 hover:text-primary transition-all rounded-full px-4" data-tag="{{ tag }}">
+                #{{ tag }}
+            </button>
+            {% endfor %}
+        </div>
+        
+        <div id="filter-stats" class="mt-4 text-[10px] font-mono opacity-40 flex justify-between items-center px-1">
+            <span id="active-filter-count" class="uppercase tracking-widest">Tümü gösteriliyor</span>
+            <span id="visible-item-count" class="font-bold"></span>
+        </div>
     </div>
-    -->
 
-    <div id="suggestion-list" class="grid md:grid-cols-2 gap-4">
+    <!-- Suggestion List -->
+    <div id="suggestion-list" class="grid md:grid-cols-2 gap-8">
         {% for item in site.data.suggestions %}
-        <div class="card shadow-md bg-base-100 suggestion-item" data-tags="{{ item.tags | join: ' ' }}">
-            <div class="card-body">
-                <h2 class="card-title flex items-center justify-between">
-                    <a href="{{ item.url }}" target="_blank" class="hover:underline">{{ item.title }}</a>
-                    {% if item.category %}
-                    <i class="{{ site.data.social[item.category].icon }} text-[24px]"></i>
-                    {% endif %}
-                </h2>
-                <p class="text-sm text-base-content/60 mb-2">{{ item.description }}</p>
-                <div class="flex flex-wrap gap-1">
+        {% assign item_tags = item.tags | default: "" %}
+        <div class="ui-card group suggestion-item h-full flex flex-col" data-tags="{{ item_tags | join: ' ' }}">
+            <div class="flex flex-col h-full">
+                <div class="flex items-start justify-between gap-4 mb-4">
+                    <h2 class="text-xl font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                        <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+                    </h2>
+                    <div class="bg-base-200 p-3 rounded-xl group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300">
+                        {% if item.category %}
+                        <i class="{{ site.data.social[item.category].icon | default: 'ai-globe' }} text-xl"></i>
+                        {% else %}
+                        <i class="ai-globe text-xl"></i>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <p class="ui-card-description mb-6 line-clamp-3 flex-1">{{ item.description }}</p>
+                
+                <div class="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-base-300/50">
                     {% for tag in item.tags %}
-                    <div class="badge badge-outline badge-primary !h-auto">{{ tag }}</div>
+                    <span class="ui-badge bg-base-200 text-base-content/50 group-hover:text-primary/70 transition-colors">
+                        {{ tag }}
+                    </span>
                     {% endfor %}
                 </div>
             </div>
+            
+            <a href="{{ item.url }}" target="_blank" class="absolute inset-0 z-10" aria-label="{{ item.title }}"></a>
         </div>
         {% endfor %}
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden py-32 text-center space-y-6 bg-base-100/50 rounded-[2rem] border-2 border-dashed border-base-300">
+        <div class="text-6xl animate-bounce">🔍</div>
+        <div>
+            <h3 class="text-2xl font-black opacity-80 mb-2">Sonuç Bulunamadı</h3>
+            <p class="text-base-content/50 max-w-xs mx-auto">Seçtiğiniz etiket kombinasyonuna uygun bir öneri mevcut değil.</p>
+        </div>
+        <button onclick="resetFilters()" class="btn btn-primary rounded-full px-8">Filtreleri Temizle</button>
     </div>
 </div>
 
@@ -57,50 +92,83 @@ permalink: /oneriler/
     document.addEventListener("DOMContentLoaded", () => {
         const buttons = document.querySelectorAll(".tag-btn");
         const cards = document.querySelectorAll(".suggestion-item");
+        const emptyState = document.getElementById("empty-state");
+        const visibleCountSpan = document.getElementById("visible-item-count");
+        const activeFilterSpan = document.getElementById("active-filter-count");
 
         const selectedTags = new Set();
+
+        window.resetFilters = () => {
+            selectedTags.clear();
+            updateUI();
+        };
 
         buttons.forEach(btn => {
             btn.addEventListener("click", () => {
                 const tag = btn.dataset.tag;
 
-                // Tümü butonuysa tüm filtreleri kaldır
                 if (tag === "") {
                     selectedTags.clear();
-                    buttons.forEach(b => b.classList.remove("btn-active"));
-                    btn.classList.add("btn-active");
                 } else {
-                    // Tümü butonunu pasifleştir
-                    const allBtn = document.querySelector('.tag-btn[data-tag=""]');
-                    allBtn.classList.remove("btn-active");
-
-                    // Toggle: tag seçildiyse kaldır, değilse ekle
                     if (selectedTags.has(tag)) {
                         selectedTags.delete(tag);
-                        btn.classList.remove("btn-active");
                     } else {
                         selectedTags.add(tag);
-                        btn.classList.add("btn-active");
-                    }
-
-                    // Seçim yoksa Tümü’ne dön
-                    if (selectedTags.size === 0) {
-                        allBtn.classList.add("btn-active");
                     }
                 }
-
-                // Kartları filtrele
-                cards.forEach(card => {
-                    const cardTags = card.dataset.tags.split(" ");
-                    if (selectedTags.size === 0) {
-                        card.classList.remove("hidden");
-                    } else {
-                        const show = [...selectedTags].some(tag => cardTags.includes(tag));
-                        card.classList.toggle("hidden", !show);
-                    }
-                });
+                updateUI();
             });
         });
-    });
 
+        function updateUI() {
+            let visibleCount = 0;
+            const allBtn = document.querySelector('.tag-btn[data-tag=""]');
+
+            buttons.forEach(b => {
+                const tag = b.dataset.tag;
+                if (tag === "") {
+                    b.classList.toggle("btn-primary", selectedTags.size === 0);
+                    b.classList.toggle("btn-outline", selectedTags.size !== 0);
+                } else {
+                    const isActive = selectedTags.has(tag);
+                    b.classList.toggle("btn-primary", isActive);
+                    b.classList.toggle("btn-outline", !isActive);
+                }
+            });
+
+            cards.forEach(card => {
+                const cardTags = card.dataset.tags.split(" ").filter(t => t);
+                let show = true;
+                
+                if (selectedTags.size > 0) {
+                    show = [...selectedTags].every(tag => cardTags.includes(tag));
+                }
+
+                card.classList.toggle("hidden", !show);
+                if (show) {
+                    visibleCount++;
+                    card.style.animation = "none";
+                    card.offsetHeight; 
+                    card.style.animation = "fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards";
+                }
+            });
+
+            visibleCountSpan.textContent = `${visibleCount} ÖĞE BULUNDU`;
+            activeFilterSpan.textContent = selectedTags.size > 0 
+                ? `${selectedTags.size} ETİKET AKTİF` 
+                : "TÜMÜ GÖSTERİLİYOR";
+            
+            emptyState.classList.toggle("hidden", visibleCount > 0);
+            document.getElementById("suggestion-list").classList.toggle("hidden", visibleCount === 0);
+        }
+        
+        updateUI();
+    });
 </script>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+</style>

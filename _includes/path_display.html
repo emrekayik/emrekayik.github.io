@@ -1,9 +1,9 @@
-<div class="breadcrumbs text-sm">
-    <ul class="flex space-x-2">
-        <i class="ai-sparkles"></i>
-        <li>
-            <a href="{{ '/' | relative_url }}">
-                Ana Sayfa
+<div class="breadcrumbs text-xs md:text-sm overflow-hidden">
+    <ul class="flex items-center">
+        <li class="flex items-center gap-1">
+            <a href="{{ '/' | relative_url }}" class="flex items-center gap-1">
+                <i class="ai-sparkles text-primary"></i>
+                <span class="hidden xs:inline">Ana Sayfa</span>
             </a>
         </li>
         {% if page.collection == 'posts' %}
@@ -15,8 +15,8 @@
             <a href="{{ '/projeler/' | relative_url }}">Projeler</a>
         </li>
         {% endif %}
-        <li class="text-neutral-500 max-w-[120px] truncate sm:max-w-[250px]">
-            {{ page.title | truncate: 40}}
+        <li class="opacity-50 truncate max-w-[80px] xs:max-w-[150px] md:max-w-[300px]">
+            {{ page.title }}
         </li>
     </ul>
 </div>

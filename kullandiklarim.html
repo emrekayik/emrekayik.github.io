@@ -5,39 +5,43 @@ permalink: /kullandiklarim/
 head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
 ---
 
-<article class="prose prose-lg w-full mx-auto">
-    <p>Günlük işlerimde ve projelerimde verimliliğimi artıran, severek kullandığım araç ve gereçlerin bir listesi.</p>
+<article class="prose w-full mx-auto">
+    <p class="text-lg opacity-70">Günlük işlerimde ve projelerimde verimliliğimi artıran, severek kullandığım araç ve gereçlerin bir listesi.</p>
 
     {% for category in site.data.equipment %}
-    <h2 class="equipment-category">{{ category.category }}</h2>
-    <div class="grid md:grid-cols-2 gap-2 not-prose">
+    <h2 class="equipment-category border-b border-base-300 pb-2 mb-6">{{ category.category }}</h2>
+    <div class="grid md:grid-cols-2 gap-6 not-prose mb-12">
         {% for item in category.items %}
-        <div class="card card-border bg-base-100">
-            <div class="card-body">
-                <h2 class="card-title font-semibold flex items-center justify-between">
-                    <span class="text-lg">{{ item.name }}</span>
+        <div class="ui-card flex flex-col h-full group">
+            <div class="flex items-start justify-between mb-4">
+                <div class="p-3 rounded-xl bg-base-200 text-primary group-hover:bg-primary/10 transition-colors">
                     {% if item.icon %}
-                    <i class="{{ item.icon }}"></i>
-                    {% endif %}
-                </h2>
-                {% if item.description %}
-                <p class="text-sm">{{ item.description }}</p>
-                {% endif %}
-                {% if item.link %}
-                <div class="card-actions flex items-center justify-between">
-                    {% if item.open_source %}
-                    <div class="badge badge-sm badge-outline badge-secondary flex items-center justify-center">
-                        <span>açık kaynak <i class="ph ph-heart"></i></span>
-                    </div>
+                    <i class="{{ item.icon }} text-2xl"></i>
                     {% else %}
-                    <div></div>
+                    <i class="ph ph-cube text-2xl"></i>
                     {% endif %}
-                    <a class="btn btn-primary btn-xs" href="{{ item.link }}" target="_blank" rel="noopener">
-                        <i class="fas fa-external-link-alt"></i> {{ item.name }}'e Git
-                    </a>
                 </div>
+                {% if item.open_source %}
+                <span class="ui-badge bg-secondary/10 text-secondary border border-secondary/20">
+                    Açık Kaynak
+                </span>
                 {% endif %}
             </div>
+            
+            <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{{ item.name }}</h3>
+            
+            {% if item.description %}
+            <p class="ui-card-description flex-1">{{ item.description }}</p>
+            {% endif %}
+            
+            {% if item.link %}
+            <div class="mt-auto pt-4">
+                <a class="btn btn-primary btn-sm btn-block gap-2 group/btn" href="{{ item.link }}" target="_blank" rel="noopener">
+                    <span>İncele</span>
+                    <i class="ai-arrow-up-right group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"></i>
+                </a>
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>

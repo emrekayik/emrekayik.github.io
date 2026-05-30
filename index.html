@@ -8,30 +8,41 @@ title: "Merhaba, ben Emre Kayık"
     <p>İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web teknolojileriyle çalışan bir
         geliştiriciyim.</p>
     <p>Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi bulacaksınız.</p>
-    <h2 class="flex justify-between items-center">Yazılarım<i class="ai-book-close text-2xl"></i></h2>
-    <ul class="font-mono space-y-2">
+    <h2 class="flex justify-between items-center group">
+        <span>Yazılarım</span>
+        <div class="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-content transition-all">
+            <i class="ai-book-close text-xl"></i>
+        </div>
+    </h2>
+    <div class="grid grid-cols-1 gap-3 not-prose">
         {% for post in site.posts limit:5 %}
-        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
-            <a class="link hover:text-primary transition-colors" href="{{ post.url }}">{{ post.title }}</a>
-            <time class="text-xs text-base-content/60 text-nowrap">{{ post.date | localize: '%-d %B %Y' }}</time>
-        </li>
+        <a href="{{ post.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-primary/50 hover:shadow-lg transition-all group">
+            <span class="font-bold text-base-content group-hover:text-primary transition-colors">{{ post.title }}</span>
+            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ post.date | localize: '%-d %B %Y' }}</time>
+        </a>
         {% endfor %}
-        <li class="flex flex justify-end pt-2">
-            <a class="btn btn-ghost btn-sm" href="{{ '/blog/' | relative_url }}">Tüm Yazılarım →</a>
-        </li>
-    </ul>
-    <h2 class="flex justify-between items-center">Projelerim <i class="ai-folder text-2xl"></i></h2>
-    <ul class="font-mono space-y-2">
+        <a href="{{ '/blog/' | relative_url }}" class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100">
+            Tüm Yazılarım <i class="ai-arrow-right ml-1"></i>
+        </a>
+    </div>
+
+    <h2 class="flex justify-between items-center group mt-12">
+        <span>Projelerim</span>
+        <div class="p-2 rounded-lg bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-secondary-content transition-all">
+            <i class="ai-folder text-xl"></i>
+        </div>
+    </h2>
+    <div class="grid grid-cols-1 gap-3 not-prose">
         {% for project in site.projects %}
-        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
-            <a class="link hover:text-secondary transition-colors" href="{{ project.url }}">{{ project.title }}</a>
-            <time class="text-xs text-base-content/60 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
-        </li>
+        <a href="{{ project.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group">
+            <span class="font-bold text-base-content group-hover:text-secondary transition-colors">{{ project.title }}</span>
+            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ project.date | localize: '%-d %B %Y' }}</time>
+        </a>
         {% endfor %}
-        <li class="flex flex justify-end pt-2">
-            <a class="btn btn-ghost btn-sm" href="{{ '/projeler/' | relative_url }}">Tüm Projelerim →</a>
-        </li>
-    </ul>
+        <a href="{{ '/projeler/' | relative_url }}" class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100">
+            Tüm Projelerim <i class="ai-arrow-right ml-1"></i>
+        </a>
+    </div>
 
     {% include marquee.html %}
 </article>

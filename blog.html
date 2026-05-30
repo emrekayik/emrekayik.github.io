@@ -5,13 +5,18 @@ permalink: /blog/
 ---
 
 <article class="prose w-full mx-auto">
-    <h2 class="flex justify-between items-center">Yazılarım<i class="ai-book-close text-2xl"></i></h2>
-    <ul class="font-mono space-y-2">
+    <h2 class="flex justify-between items-center group">
+        <span>Yazılarım</span>
+        <div class="p-2 rounded-lg bg-primary/10 text-primary transition-all">
+            <i class="ai-book-close text-xl"></i>
+        </div>
+    </h2>
+    <div class="grid grid-cols-1 gap-3 not-prose mt-8">
         {% for post in site.posts %}
-        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
-            <a class="link hover:text-primary transition-colors" href="{{ post.url }}">{{ post.title }}</a>
-            <time class="text-xs text-base-content/60 text-nowrap">{{ post.date | localize: '%-d %B %Y' }}</time>
-        </li>
+        <a href="{{ post.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-primary/50 hover:shadow-lg transition-all group">
+            <span class="font-bold text-base-content group-hover:text-primary transition-colors">{{ post.title }}</span>
+            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ post.date | localize: '%-d %B %Y' }}</time>
+        </a>
         {% endfor %}
-    </ul>
+    </div>
 </article>

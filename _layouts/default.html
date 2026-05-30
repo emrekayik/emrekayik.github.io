@@ -52,8 +52,10 @@
         <input id="my-drawer" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col min-h-screen">
             {% include navbar.html %}
-            <main id="content" class="flex-1 bg-base-200 max-w-4xl w-full mx-auto px-4 py-8">
-                {{ content }}
+            <main id="content" class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 md:py-12 bg-base-100 md:bg-base-200/30">
+                <div class="bg-base-100 rounded-3xl p-0 md:p-8 lg:p-12 md:shadow-sm md:border border-base-300/50">
+                    {{ content }}
+                </div>
             </main>
             {% include footer.html %}
         </div>

@@ -5,13 +5,18 @@ permalink: /projeler/
 ---
 
 <article class="prose w-full mx-auto">
-    <h2 class="flex justify-between items-center">Projelerim <i class="ai-folder text-2xl"></i></h2>
-    <ul class="font-mono space-y-2">
+    <h2 class="flex justify-between items-center group">
+        <span>Projelerim</span>
+        <div class="p-2 rounded-lg bg-secondary/10 text-secondary transition-all">
+            <i class="ai-folder text-xl"></i>
+        </div>
+    </h2>
+    <div class="grid grid-cols-1 gap-3 not-prose mt-8">
         {% for project in site.projects %}
-        <li class="flex flex justify-between space-x-2 items-center border-b border-base-300 pb-1">
-            <a class="link hover:text-secondary transition-colors" href="{{ project.url }}">{{ project.title }}</a>
-            <time class="text-xs text-base-content/60 text-nowrap">{{ project.date | localize: '%-d %B %Y' }}</time>
-        </li>
+        <a href="{{ project.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group">
+            <span class="font-bold text-base-content group-hover:text-secondary transition-colors">{{ project.title }}</span>
+            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ project.date | localize: '%-d %B %Y' }}</time>
+        </a>
         {% endfor %}
-    </ul>
+    </div>
 </article>
