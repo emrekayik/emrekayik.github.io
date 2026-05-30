@@ -1,0 +1,26 @@
+<ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 pt-6">
+    <li class="menu-title text-base-content opacity-50 mb-2">Navigasyon</li>
+    {% for item in site.data.navigation %}
+    <li>
+        <a href="{{ item.link | relative_url }}" {% if page.url == item.link or page.url == item.link | append: '/' %}class="active" {% endif %}>
+            <i class="{{ item.icon }} text-lg"></i>
+            {{ item.name }}
+        </a>
+    </li>
+    {% endfor %}
+
+    <li class="menu-title text-base-content opacity-50 mt-6 mb-2">Ayarlar</li>
+    <div class="px-2">
+        {% include theme_changer.html %}
+        {% if page.url contains '/blog/' or page.layout == 'post' %}
+        {% include font_changer.html %}
+        {% endif %}
+    </div>
+
+    <div class="mt-auto pt-6">
+        <button id="installPwaBtn" class="btn btn-primary btn-block hidden pwa-install-btn">
+            📲 Uygulamayı Yükle
+        </button>
+        <p class="text-center text-[10px] opacity-30 mt-4 font-mono">emrekayik.github.io</p>
+    </div>
+</ul>
