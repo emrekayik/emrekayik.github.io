@@ -33,7 +33,8 @@ title: "Merhaba, ben Emre Kayık"
         </div>
     </h2>
     <div class="grid grid-cols-1 gap-3 not-prose">
-        {% for project in site.projects %}
+        {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
+        {% for project in sorted_projects %}
         <a href="{{ project.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group">
             <span class="font-bold text-base-content group-hover:text-secondary transition-colors">{{ project.title }}</span>
             <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ project.date | localize: '%-d %B %Y' }}</time>

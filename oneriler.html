@@ -46,7 +46,8 @@ permalink: /oneriler/
 
     <!-- Suggestion List -->
     <div id="suggestion-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {% for item in site.data.suggestions %}
+        {% assign sorted_suggestions = site.data.suggestions | sort: 'created' | reverse %}
+        {% for item in sorted_suggestions %}
         {% assign item_tags = item.tags | default: "" %}
         <div class="ui-card group suggestion-item h-full flex flex-col" data-tags="{{ item_tags | join: ' ' }}">
             <div class="flex flex-col h-full">

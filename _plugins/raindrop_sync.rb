@@ -46,9 +46,12 @@ module Jekyll
 
           # Merge with existing suggestions if any
           existing = site.data['suggestions'] || []
-          site.data['suggestions'] = (mapped_suggestions + existing).uniq { |s| s['url'] }
+          all_suggestions = (mapped_suggestions + existing).uniq { |s| s['url'] }
           
-          Jekyll.logger.info "RaindropGenerator:", "Successfully synced #{mapped_suggestions.size} items from Raindrop."
+          # Sort by date descending
+          site.data['suggestions'] = all_suggestions.sort_by { |s| s['created'] || '0000-00-00' }.reverse
+          
+          Jekyll.logger.info "RaindropGenerator:", "Successfully synced and sorted #{site.data['suggestions'].size} items."
         else
           Jekyll.logger.error "RaindropGenerator:", "Failed to fetch from Raindrop. Code: #{response.code}, Body: #{response.body}"
         end
