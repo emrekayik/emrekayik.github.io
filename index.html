@@ -3,44 +3,79 @@ layout: default
 title: "Merhaba, ben Emre Kayık"
 ---
 
-<article class="w-full mx-auto prose max-w-none md:max-w-prose lg:max-w-screen-md">
+<article
+    class="w-full mx-auto prose max-w-none md:max-w-prose lg:max-w-screen-md"
+>
     <h1 class="antic-slab-regular">Merhaba, ben Emre!</h1>
-    <p>İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web teknolojileriyle çalışan bir
-        geliştiriciyim.</p>
-    <p>Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi bulacaksınız.</p>
+    <p>
+        İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web
+        teknolojileriyle çalışan bir geliştiriciyim.
+    </p>
+    <p>
+        Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi
+        bulacaksınız.
+    </p>
     <h2 class="flex justify-between items-center group">
         <span>Yazılarım</span>
-        <div class="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-content transition-all">
+        <div
+            class="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-content transition-all"
+        >
             <i class="ai-book-close text-xl"></i>
         </div>
     </h2>
     <div class="grid grid-cols-1 gap-3 not-prose">
         {% for post in site.posts limit:5 %}
-        <a href="{{ post.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-primary/50 hover:shadow-lg transition-all group">
-            <span class="font-bold text-base-content group-hover:text-primary transition-colors">{{ post.title }}</span>
-            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ post.date | localize: '%-d %B %Y' }}</time>
+        <a
+            href="{{ post.url | relative_url }}"
+            class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-primary/50 hover:shadow-lg transition-all group"
+        >
+            <span
+                class="font-bold text-base-content group-hover:text-primary transition-colors"
+                >{{ post.title }}</span
+            >
+            <time
+                class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+                >{{ post.date | localize: '%-d %B %Y' }}</time
+            >
         </a>
         {% endfor %}
-        <a href="{{ '/blog/' | relative_url }}" class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100">
+        <a
+            href="{{ '/blog/' | relative_url }}"
+            class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100"
+        >
             Tüm Yazılarım <i class="ai-arrow-right ml-1"></i>
         </a>
     </div>
 
     <h2 class="flex justify-between items-center group mt-12">
         <span>Projelerim</span>
-        <div class="p-2 rounded-lg bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-secondary-content transition-all">
+        <div
+            class="p-2 rounded-lg bg-secondary/10 text-secondary group-hover:bg-secondary group-hover:text-secondary-content transition-all"
+        >
             <i class="ai-folder text-xl"></i>
         </div>
     </h2>
     <div class="grid grid-cols-1 gap-3 not-prose">
-        {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
-        {% for project in sorted_projects %}
-        <a href="{{ project.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group">
-            <span class="font-bold text-base-content group-hover:text-secondary transition-colors">{{ project.title }}</span>
-            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ project.date | localize: '%-d %B %Y' }}</time>
+        {% assign sorted_projects = site.projects | sort: 'date' | reverse %} {%
+        for project in sorted_projects limit:5 %}
+        <a
+            href="{{ project.url | relative_url }}"
+            class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group"
+        >
+            <span
+                class="font-bold text-base-content group-hover:text-secondary transition-colors"
+                >{{ project.title }}</span
+            >
+            <time
+                class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+                >{{ project.date | localize: '%-d %B %Y' }}</time
+            >
         </a>
         {% endfor %}
-        <a href="{{ '/projeler/' | relative_url }}" class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100">
+        <a
+            href="{{ '/projeler/' | relative_url }}"
+            class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100"
+        >
             Tüm Projelerim <i class="ai-arrow-right ml-1"></i>
         </a>
     </div>
