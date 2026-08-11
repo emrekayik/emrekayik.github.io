@@ -216,7 +216,7 @@ DEPENDENCIES
   ostruct
   rouge
   securerandom
-  tailwindcss-ruby (~> 4.0)
+  tailwindcss-ruby (~> 4.3.3)
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1)
