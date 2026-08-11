@@ -1,75 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ site.lang | default: 'en-US' }}" data-theme="mytheme">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
+        <!-- Icon -->
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/assets/icons/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/assets/icons/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/assets/icons/favicon-16x16.png"
+        />
 
-    <!-- Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-    
-    <link rel="manifest" href="{{ '/manifest.json' | relative_url }}">
-    <meta name="theme-color" content="#4ade80">
+        <link rel="manifest" href="{{ '/manifest.json' | relative_url }}" />
+        <meta name="theme-color" content="#4ade80" />
 
-    <!-- Analytics -->
-    <meta name="google-site-verification" content="9XpwUtKuwRYynL-F49caBUhSrEPeSOncQKYHCAkx-9E"/>
-    <meta name="yandex-verification" content="aa9c0ff5a8dc05c3"/>
+        <!-- Analytics -->
+        <meta
+            name="google-site-verification"
+            content="9XpwUtKuwRYynL-F49caBUhSrEPeSOncQKYHCAkx-9E"
+        />
+        <meta name="yandex-verification" content="aa9c0ff5a8dc05c3" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Antic+Slab&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet"
+        />
 
-    <script>
-        (function () {
-            try {
-                var t = localStorage.getItem('selected-theme') || 'system';
-                if (t === 'system') {
-                    var m = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
-                    t = (m && m.matches) ? 'dark' : 'light';
-                }
-                document.documentElement.setAttribute('data-theme', t);
-            } catch (e) {
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("selected-theme") || "system";
+                    if (t === "system") {
+                        var m =
+                            window.matchMedia &&
+                            window.matchMedia("(prefers-color-scheme: dark)");
+                        t = m && m.matches ? "dark" : "light";
+                    }
+                    document.documentElement.setAttribute("data-theme", t);
+                } catch (e) {}
+            })();
+        </script>
+        <style>
+            [x-cloak] {
+                display: none;
             }
-        })();
-    </script>
-    <style>[x-cloak] {
-        display: none
-    }</style>
-    <link rel="stylesheet" href="{{ '/assets/css/app.css' | relative_url }}">
+        </style>
+        <link
+            rel="stylesheet"
+            href="{{ '/assets/css/app.css' | relative_url }}"
+        />
 
-    {{ page.head | default: "" }}
-    {% seo %}
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <script src="https://unpkg.com/akar-icons-fonts"></script>
+    </head>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://unpkg.com/akar-icons-fonts"></script>
-</head>
+    <body
+        class="bg-base-100 text-base-content overflow-x-hidden"
+        id="context-area"
+    >
+        <div class="drawer drawer-end">
+            <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+            <div class="drawer-content flex flex-col min-h-screen">
+                {% include navbar.html %}
+                <main
+                    id="content"
+                    class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 md:py-12 bg-base-100"
+                >
+                    <div class="p-0 md:p-8 lg:p-12">{{ content }}</div>
+                </main>
+                {% include footer.html %}
+            </div>
 
-<body class="bg-base-100 text-base-content overflow-x-hidden" id="context-area">
-    <div class="drawer drawer-end">
-        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col min-h-screen">
-            {% include navbar.html %}
-            <main id="content" class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 md:py-12 bg-base-100 md:bg-base-200/30">
-                <div class="bg-base-100 rounded-3xl p-0 md:p-8 lg:p-12 md:shadow-sm md:border border-base-300/50">
-                    {{ content }}
-                </div>
-            </main>
-            {% include footer.html %}
+            <div class="drawer-side z-[100]">
+                <label
+                    for="my-drawer"
+                    aria-label="close sidebar"
+                    class="drawer-overlay"
+                ></label>
+                {% include sidebar.html %}
+            </div>
         </div>
-        
-        <div class="drawer-side z-[100]">
-            <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-            {% include sidebar.html %}
-        </div>
-    </div>
 
-    <script defer src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-
-</body>
-
+        <script
+            defer
+            src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    </body>
 </html>
