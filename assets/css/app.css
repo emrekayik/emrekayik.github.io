@@ -7865,6 +7865,9 @@
       box-shadow: none;
     }
   }
+  .my-2 {
+    margin-block: calc(var(--spacing) * 2);
+  }
   .my-8 {
     margin-block: calc(var(--spacing) * 8);
   }
@@ -9668,9 +9671,6 @@
   .w-80 {
     width: calc(var(--spacing) * 80);
   }
-  .w-96 {
-    width: calc(var(--spacing) * 96);
-  }
   .w-full {
     width: 100%;
   }
@@ -10180,6 +10180,9 @@
   .justify-center {
     justify-content: center;
   }
+  .justify-end {
+    justify-content: flex-end;
+  }
   .justify-start {
     justify-content: flex-start;
   }
@@ -10433,10 +10436,6 @@
     border-style: var(--tw-border-style);
     border-width: 2px;
   }
-  .border-t {
-    border-top-style: var(--tw-border-style);
-    border-top-width: 1px;
-  }
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
@@ -10565,12 +10564,6 @@
   }
   .border-base-300 {
     border-color: var(--color-base-300);
-  }
-  .border-base-300\/50 {
-    border-color: var(--color-base-300);
-    @supports (color: color-mix(in lab, red, red)) {
-      border-color: color-mix(in oklab, var(--color-base-300) 50%, transparent);
-    }
   }
   .border-base-content\/10 {
     border-color: var(--color-base-content);
@@ -11140,9 +11133,6 @@
   .p-2 {
     padding: calc(var(--spacing) * 2);
   }
-  .p-2\.5 {
-    padding: calc(var(--spacing) * 2.5);
-  }
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
@@ -11348,6 +11338,10 @@
   .text-7xl {
     font-size: var(--text-7xl);
     line-height: var(--tw-leading, var(--text-7xl--line-height));
+  }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
   }
   .text-lg {
     font-size: var(--text-lg);
@@ -11885,12 +11879,6 @@
   }
   .text-base-content {
     color: var(--color-base-content);
-  }
-  .text-base-content\/50 {
-    color: var(--color-base-content);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-base-content) 50%, transparent);
-    }
   }
   .text-base-content\/60 {
     color: var(--color-base-content);
@@ -13210,14 +13198,6 @@
     .group-hover\:text-primary:is(:where(.group):hover *) {
       color: var(--color-primary);
     }
-    .group-hover\:text-primary\/70:is(:where(.group):hover *) {
-      color: var(--color-primary);
-    }
-    @supports (color: color-mix(in lab, red, red)) {
-      .group-hover\:text-primary\/70:is(:where(.group):hover *) {
-        color: color-mix(in oklab, var(--color-primary) 70%, transparent);
-      }
-    }
     .group-hover\:text-secondary:is(:where(.group):hover *) {
       color: var(--color-secondary);
     }
@@ -13258,6 +13238,9 @@
     background-color: var(--color-gray-200);
   }
   @media (hover: hover) {
+    .hover\:border-primary:hover {
+      border-color: var(--color-primary);
+    }
     .hover\:border-primary\/50:hover {
       border-color: var(--color-primary);
     }
@@ -13416,17 +13399,11 @@
     .md\:items-center {
       align-items: center;
     }
-    .md\:gap-8 {
-      gap: calc(var(--spacing) * 8);
-    }
     .md\:gap-x-5 {
       column-gap: calc(var(--spacing) * 5);
     }
     .md\:gap-y-0 {
       row-gap: 0px;
-    }
-    .md\:p-3 {
-      padding: calc(var(--spacing) * 3);
     }
     .md\:p-8 {
       padding: calc(var(--spacing) * 8);
@@ -13447,25 +13424,17 @@
       font-size: var(--text-2xl);
       line-height: var(--tw-leading, var(--text-2xl--line-height));
     }
-    .md\:text-5xl {
-      font-size: var(--text-5xl);
-      line-height: var(--tw-leading, var(--text-5xl--line-height));
+    .md\:text-3xl {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
     }
     .md\:text-6xl {
       font-size: var(--text-6xl);
       line-height: var(--tw-leading, var(--text-6xl--line-height));
     }
-    .md\:text-base {
-      font-size: var(--text-base);
-      line-height: var(--tw-leading, var(--text-base--line-height));
-    }
     .md\:text-sm {
       font-size: var(--text-sm);
       line-height: var(--tw-leading, var(--text-sm--line-height));
-    }
-    .md\:text-xl {
-      font-size: var(--text-xl);
-      line-height: var(--tw-leading, var(--text-xl--line-height));
     }
     @layer daisyui.l1.l2 {
       .md\:btn-md {
