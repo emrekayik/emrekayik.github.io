@@ -71,6 +71,8 @@ module Jekyll
         'github'
       elsif link.include?('youtube.com') || link.include?('youtu.be')
         'youtube'
+      elsif link.include?('instagram.com')
+        'instagram'
       elsif tags.include?('article') || tags.include?('blog')
         'web'
       else

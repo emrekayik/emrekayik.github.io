@@ -12,7 +12,7 @@ head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/
     <h2 class="equipment-category border-b border-base-300 pb-2 mb-6">{{ category.category }}</h2>
     <div class="grid md:grid-cols-2 gap-6 not-prose mb-12">
         {% for item in category.items %}
-        <div class="ui-card flex flex-col h-full group">
+        <div class="card flex flex-col h-full group">
             <div class="flex items-start justify-between mb-4">
                 <div class="p-3 rounded-xl bg-base-200 text-primary group-hover:bg-primary/10 transition-colors">
                     {% if item.icon %}
@@ -22,7 +22,7 @@ head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/
                     {% endif %}
                 </div>
                 {% if item.open_source %}
-                <span class="ui-badge bg-secondary/10 text-secondary border border-secondary/20">
+                <span class="badge badge-primary">
                     Açık Kaynak
                 </span>
                 {% endif %}
@@ -31,7 +31,7 @@ head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/
             <h3 class="text-lg font-bold mb-2 group-hover:text-primary transition-colors">{{ item.name }}</h3>
             
             {% if item.description %}
-            <p class="ui-card-description flex-1">{{ item.description }}</p>
+            <p class="text-sm text-base-content/70 leading-relaxed mb-4 flex-1">{{ item.description }}</p>
             {% endif %}
             
             {% if item.link %}

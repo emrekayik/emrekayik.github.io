@@ -1,5 +1,18 @@
 [
   {
+    "title": "Stanford Online",
+    "url": "https://www.youtube.com/@stanfordonline",
+    "description": "You can gain access to a world of education through Stanford Online, the Stanford School of Engineering’s portal for academic and professional education offered by schools and units throughout Stanford University. https://online.stanford.edu/\n\nOur robust catalog of degree programs, credit-bearing education, professional certificate programs, and free and open content is developed by Stanford faculty, enabling you to expand your knowledge, advance your career, and enhance your life.\n\nStanford Online is operated and managed by the Stanford Engineering Center for Global & Online Education (CGOE). CGOE expands access to Stanford teaching and research, working in collaboration with faculty in the School of Engineering and throughout Stanford University to design and deliver extensive global, online, and enterprise education to a global audience.",
+    "tags": [
+      "youtube_channel",
+      "math",
+      "statistics",
+      "physics"
+    ],
+    "category": "youtube",
+    "created": "2026-08-11T21:27:53.921Z"
+  },
+  {
     "title": "A new, modern UI component library built on top of Base UI - coss ui",
     "url": "https://coss.com/ui",
     "description": "Built for developers and AI.",
@@ -406,18 +419,6 @@
     "created": "2024-09-30T17:13:07.629Z"
   },
   {
-    "title": "Colors - House of van Schneider",
-    "url": "https://vanschneider.com/colors",
-    "description": "A collection of unique color combinations for your design projects.",
-    "tags": [
-      "color",
-      "ui",
-      "ux"
-    ],
-    "category": "web",
-    "created": "2024-09-30T17:13:07.628Z"
-  },
-  {
     "title": "Tangle: a JavaScript library for reactive documents",
     "url": "http://worrydream.com/Tangle",
     "description": "",
@@ -442,6 +443,18 @@
     "created": "2024-09-30T17:13:07.628Z"
   },
   {
+    "title": "Colors - House of van Schneider",
+    "url": "https://vanschneider.com/colors",
+    "description": "A collection of unique color combinations for your design projects.",
+    "tags": [
+      "color",
+      "ui",
+      "ux"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.628Z"
+  },
+  {
     "title": "HTML Cheat Sheet",
     "url": "https://htmlcheatsheet.com",
     "description": "Online interactive HTML Cheat Sheet contains useful code examples and web developer tools, markup generators and more.",
@@ -453,30 +466,9 @@
     "created": "2024-09-30T17:13:07.497Z"
   },
   {
-    "title": "sorrycc/awesome-javascript: 🐢 A collection of awesome browser-side JavaScript libraries, resources and shiny things.",
-    "url": "https://github.com/sorrycc/awesome-javascript",
-    "description": "🐢 A collection of awesome browser-side  JavaScript libraries, resources and shiny things. - sorrycc/awesome-javascript",
-    "tags": [
-      "awesome",
-      "javascript"
-    ],
-    "category": "github",
-    "created": "2024-09-30T17:13:07.496Z"
-  },
-  {
     "title": "Online Interactive JavaScript (JS) Cheat Sheet",
     "url": "https://htmlcheatsheet.com/js",
     "description": "JavaScript Cheat Seet contains useful code examples on a single page. Not just a PDF because it's interactive! Find code for JS loops, variables, objects and",
-    "tags": [
-      "javascript"
-    ],
-    "category": "web",
-    "created": "2024-09-30T17:13:07.496Z"
-  },
-  {
-    "title": "Modern JavaScript Eğitimi",
-    "url": "https://tr.javascript.info",
-    "description": "Modern JavaScript Eğitimi: basit, fakat detaylı açıklamalar ve görevler ile anlatılmıştır. Closures, document, events ve nesne yönelimli programlama üzerine bölümleri bulunmaktadır",
     "tags": [
       "javascript"
     ],
@@ -491,6 +483,16 @@
       "javascript"
     ],
     "category": "github",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "Modern JavaScript Eğitimi",
+    "url": "https://tr.javascript.info",
+    "description": "Modern JavaScript Eğitimi: basit, fakat detaylı açıklamalar ve görevler ile anlatılmıştır. Closures, document, events ve nesne yönelimli programlama üzerine bölümleri bulunmaktadır",
+    "tags": [
+      "javascript"
+    ],
+    "category": "web",
     "created": "2024-09-30T17:13:07.496Z"
   },
   {
@@ -529,6 +531,17 @@
     "created": "2024-09-30T17:13:07.496Z"
   },
   {
+    "title": "sorrycc/awesome-javascript: 🐢 A collection of awesome browser-side JavaScript libraries, resources and shiny things.",
+    "url": "https://github.com/sorrycc/awesome-javascript",
+    "description": "🐢 A collection of awesome browser-side  JavaScript libraries, resources and shiny things. - sorrycc/awesome-javascript",
+    "tags": [
+      "awesome",
+      "javascript"
+    ],
+    "category": "github",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
     "title": "MathItYT/mathlikeanim-rs: A Rust library to create interactive mathematical animations",
     "url": "https://github.com/MathItYT/mathlikeanim-rs",
     "description": "A Rust library to create interactive mathematical animations - MathItYT/mathlikeanim-rs",
@@ -551,18 +564,5 @@
     ],
     "category": "web",
     "created": "2024-09-12T19:19:40.000Z"
-  },
-  {
-    "title": "MotionNumber for Framer Motion",
-    "url": "https://motion-number.barvian.me",
-    "description": "Transition, format, and localize numbers with a ~3kB Framer Motion component. Accessible and customizable.",
-    "tags": [
-      "framer",
-      "animation",
-      "react",
-      "library"
-    ],
-    "category": "web",
-    "created": "2024-09-06T23:30:09.000Z"
   }
 ]
