@@ -6,88 +6,160 @@ permalink: /oneriler/
 
 <div class="max-w-4xl mx-auto px-4 py-10 md:py-16">
     <div class="mb-10">
-        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">🚀 Öneriler</h1>
-        <p class="text-base-content/70 text-lg max-w-2xl leading-relaxed">Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak filtreleyebilirsin.</p>
-        <div class="mt-4 flex items-center gap-2 text-sm opacity-50 hover:opacity-100 transition-opacity">
+        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
+            Öneriler
+        </h1>
+        <p class="text-base-content/70 text-lg max-w-2xl leading-relaxed">
+            Kanal, site ve araç önerilerim. Aşağıdan etiketlere tıklayarak
+            filtreleyebilirsin.
+        </p>
+        <div
+            class="mt-4 flex items-center gap-2 text-sm opacity-50 hover:opacity-100 transition-opacity"
+        >
             <i class="ai-info"></i>
             <span>Verileri JSON olarak gör:</span>
-            <a class="text-primary font-mono hover:underline" target="_blank" href="/suggestions.json">/suggestions.json</a>
+            <a
+                class="text-primary font-mono hover:underline"
+                target="_blank"
+                href="/suggestions.json"
+                >/suggestions.json</a
+            >
         </div>
     </div>
 
     <!-- Filter Section -->
-    <div class="mb-12 sticky top-14 md:top-16 z-30 bg-base-100/90 backdrop-blur-xl -mx-4 px-4 py-4 md:py-6 md:rounded-2xl border-y md:border border-base-300 shadow-sm md:shadow-lg">
-        <div class="flex items-center justify-between mb-4 px-1">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                    <i class="ai-filter text-xs md:text-base"></i>
-                </div>
-                <span class="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] opacity-60">Filtrele</span>
-            </div>
-            <div id="filter-stats" class="text-[10px] font-mono opacity-40 flex gap-4">
-                <span id="active-filter-count" class="hidden xs:inline">TÜMÜ GÖSTERİLİYOR</span>
-                <span id="visible-item-count" class="font-bold text-primary"></span>
-            </div>
-        </div>
-        
-        {% assign all_tags = site.data.suggestions | map: 'tags' | flatten | uniq | sort %}
-        <!-- Mobile: Horizontal Scroll | Desktop: Wrap -->
-        <div class="flex overflow-x-auto md:flex-wrap gap-2 no-scrollbar pb-2 md:pb-0 touch-pan-x">
-            <button class="btn btn-xs md:btn-sm tag-btn btn-primary px-4 md:px-6 rounded-full whitespace-nowrap" data-tag="">
+    <div
+        class="mb-8 sticky top-14 md:top-16 z-30 bg-base-100/90 backdrop-blur-xl -mx-4 px-4 py-3 border-b border-base-300 flex items-center justify-between"
+    >
+        {% assign all_tags = site.data.suggestions | map: 'tags' | flatten |
+        uniq | sort %}
+        <div class="flex overflow-x-auto gap-2 no-scrollbar touch-pan-x">
+            <button
+                class="btn btn-xs tag-btn btn-primary rounded-full whitespace-nowrap px-4"
+                data-tag=""
+            >
                 Tümü
             </button>
             {% for tag in all_tags %}
-            <button class="btn btn-xs md:btn-sm tag-btn btn-outline border-base-300 hover:bg-primary/10 hover:text-primary transition-all rounded-full px-3 md:px-4 whitespace-nowrap" data-tag="{{ tag }}">
+            <button
+                class="btn btn-xs tag-btn btn-ghost border border-base-300 hover:bg-primary/10 hover:text-primary transition-all rounded-full whitespace-nowrap px-3"
+                data-tag="{{ tag }}"
+            >
                 #{{ tag }}
             </button>
             {% endfor %}
         </div>
+        <div
+            id="filter-stats"
+            class="text-[10px] font-mono opacity-40 ml-4 hidden md:flex items-center"
+        >
+            <span id="active-filter-count">TÜMÜ</span>
+            <span
+                id="visible-item-count"
+                class="font-bold text-primary ml-1"
+            ></span>
+        </div>
     </div>
 
     <!-- Suggestion List -->
-    <div id="suggestion-list" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {% assign sorted_suggestions = site.data.suggestions | sort: 'created' | reverse %}
-        {% for item in sorted_suggestions %}
-        {% assign item_tags = item.tags | default: "" %}
-        <div class="ui-card group suggestion-item h-full flex flex-col" data-tags="{{ item_tags | join: ' ' }}">
-            <div class="flex flex-col h-full">
-                <div class="flex items-start justify-between gap-4 mb-4">
-                    <h2 class="text-lg md:text-xl font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
-                        <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+    <div
+        id="suggestion-list"
+        class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+    >
+        {% assign sorted_suggestions = site.data.suggestions | sort: 'created' |
+        reverse %} {% for item in sorted_suggestions %} {% assign item_tags =
+        item.tags | default: "" %}
+
+        <div
+            class="card w-full bg-base-100 card-border shadow-sm hover:shadow-md transition-all duration-300 group suggestion-item relative overflow-hidden"
+            data-tags="{{ item_tags | join: ' ' }}"
+        >
+            <div class="card-body p-5 md:p-6 flex flex-col h-full">
+                <!-- Kart Başlığı ve İkon -->
+                <div class="flex items-start justify-between gap-4 mb-3">
+                    <h2
+                        class="card-title text-base md:text-xl font-bold leading-snug group-hover:text-primary transition-colors"
+                    >
+                        <a
+                            href="{{ item.url }}"
+                            target="_blank"
+                            class="focus:outline-none"
+                        >
+                            {{ item.title }}
+                        </a>
                     </h2>
-                    <div class="bg-base-200 p-2.5 md:p-3 rounded-xl group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300 flex-shrink-0">
-                        {% if item.category %}
-                        <i class="{{ site.data.social[item.category].icon | default: 'ai-globe' }} text-lg md:text-xl"></i>
-                        {% else %}
-                        <i class="ai-globe text-lg md:text-xl"></i>
-                        {% endif %}
+
+                    <div class="avatar placeholder flex-shrink-0">
+                        <div
+                            class="bg-base-200 group-hover:bg-primary/10 group-hover:text-primary transition-all duration-300 text-base-content rounded-xl w-10 md:w-12 h-10 md:h-12 flex items-center justify-center"
+                        >
+                            {% if item.category %}
+                            <i
+                                class="{{ site.data.social[item.category].icon | default: 'ai-globe' }} text-lg md:text-xl"
+                            ></i>
+                            {% else %}
+                            <i class="ai-globe text-lg md:text-xl"></i>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-                
-                <p class="ui-card-description mb-6 line-clamp-3 flex-1 text-sm md:text-base leading-relaxed">{{ item.description }}</p>
-                
-                <div class="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-base-300/50">
+
+                <!-- Açıklama Metni -->
+                <p
+                    class="text-base-content/70 text-sm md:text-base leading-relaxed line-clamp-3 mb-4 flex-grow"
+                >
+                    {{ item.description }}
+                </p>
+
+                <!-- Tag'ler / Etiketler -->
+                {% if item.tags and item.tags.size > 0 %}
+                <div
+                    class="card-actions justify-start pt-3 border-t border-base-200/80 gap-1.5 mt-auto"
+                >
                     {% for tag in item.tags %}
-                    <span class="ui-badge bg-base-200 text-base-content/50 group-hover:text-primary/70 transition-colors">
+                    <span
+                        class="badge badge-sm md:badge-md badge-ghost group-hover:badge-primary/20 group-hover:text-primary transition-colors"
+                    >
                         {{ tag }}
                     </span>
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
-            
-            <a href="{{ item.url }}" target="_blank" class="absolute inset-0 z-10" aria-label="{{ item.title }}"></a>
+
+            <!-- Tıklanabilir Tüm Kart Alanı -->
+            <a
+                href="{{ item.url }}"
+                target="_blank"
+                class="absolute inset-0 z-10"
+                aria-label="{{ item.title }}"
+            ></a>
         </div>
         {% endfor %}
     </div>
 
     <!-- Empty State -->
-    <div id="empty-state" class="hidden py-24 md:py-32 text-center space-y-6 bg-base-100/50 rounded-[2rem] border-2 border-dashed border-base-300">
+    <div
+        id="empty-state"
+        class="hidden py-24 md:py-32 text-center space-y-6 bg-base-100/50 rounded-[2rem] border-2 border-dashed border-base-300"
+    >
         <div class="text-5xl md:text-6xl animate-bounce">🔍</div>
         <div>
-            <h3 class="text-xl md:text-2xl font-black opacity-80 mb-2">Sonuç Bulunamadı</h3>
-            <p class="text-xs md:text-sm opacity-50 max-w-[240px] md:max-w-xs mx-auto">Seçtiğiniz etiket kombinasyonuna uygun bir öneri mevcut değil.</p>
+            <h3 class="text-xl md:text-2xl font-black opacity-80 mb-2">
+                Sonuç Bulunamadı
+            </h3>
+            <p
+                class="text-xs md:text-sm opacity-50 max-w-[240px] md:max-w-xs mx-auto"
+            >
+                Seçtiğiniz etiket kombinasyonuna uygun bir öneri mevcut değil.
+            </p>
         </div>
-        <button onclick="resetFilters()" class="btn btn-primary btn-sm md:btn-md rounded-full px-8">Filtreleri Temizle</button>
+        <button
+            onclick="resetFilters()"
+            class="btn btn-primary btn-sm md:btn-md rounded-full px-8"
+        >
+            Filtreleri Temizle
+        </button>
     </div>
 </div>
 
@@ -106,7 +178,7 @@ permalink: /oneriler/
             updateUI();
         };
 
-        buttons.forEach(btn => {
+        buttons.forEach((btn) => {
             btn.addEventListener("click", () => {
                 const tag = btn.dataset.tag;
 
@@ -127,7 +199,7 @@ permalink: /oneriler/
             let visibleCount = 0;
             const allBtn = document.querySelector('.tag-btn[data-tag=""]');
 
-            buttons.forEach(b => {
+            buttons.forEach((b) => {
                 const tag = b.dataset.tag;
                 if (tag === "") {
                     b.classList.toggle("btn-primary", selectedTags.size === 0);
@@ -139,42 +211,54 @@ permalink: /oneriler/
                 }
             });
 
-            cards.forEach(card => {
-                const cardTags = card.dataset.tags.split(" ").filter(t => t);
+            cards.forEach((card) => {
+                const cardTags = card.dataset.tags.split(" ").filter((t) => t);
                 let show = true;
-                
+
                 if (selectedTags.size > 0) {
-                    show = [...selectedTags].every(tag => cardTags.includes(tag));
+                    show = [...selectedTags].every((tag) =>
+                        cardTags.includes(tag),
+                    );
                 }
 
                 card.classList.toggle("hidden", !show);
                 if (show) {
                     visibleCount++;
                     card.style.animation = "none";
-                    card.offsetHeight; 
-                    card.style.animation = "fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards";
+                    card.offsetHeight;
+                    card.style.animation =
+                        "fadeIn 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards";
                 }
             });
 
             visibleCountSpan.textContent = `${visibleCount} ÖĞE`;
-            activeFilterSpan.textContent = selectedTags.size > 0 
-                ? `${selectedTags.size} AKTİF` 
-                : "TÜMÜ GÖSTERİLİYOR";
-            
+            activeFilterSpan.textContent =
+                selectedTags.size > 0
+                    ? `${selectedTags.size} AKTİF`
+                    : "TÜMÜ GÖSTERİLİYOR";
+
             emptyState.classList.toggle("hidden", visibleCount > 0);
-            document.getElementById("suggestion-list").classList.toggle("hidden", visibleCount === 0);
+            document
+                .getElementById("suggestion-list")
+                .classList.toggle("hidden", visibleCount === 0);
         }
-        
+
         updateUI();
     });
 </script>
 
 <style>
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(15px) scale(0.99); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
+        from {
+            opacity: 0;
+            transform: translateY(15px) scale(0.99);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
     }
-    
+
     .no-scrollbar::-webkit-scrollbar {
         display: none;
     }

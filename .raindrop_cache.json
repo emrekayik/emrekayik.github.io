@@ -1,0 +1,568 @@
+[
+  {
+    "title": "A new, modern UI component library built on top of Base UI - coss ui",
+    "url": "https://coss.com/ui",
+    "description": "Built for developers and AI.",
+    "tags": [
+      "ui",
+      "design",
+      "web_design"
+    ],
+    "category": "web",
+    "created": "2026-08-11T19:23:09.902Z"
+  },
+  {
+    "title": "Graphic Design and everything in between",
+    "url": "https://visuelle.co.uk/",
+    "description": "Visuelle is a popular global design platform and catalogue showcasing the best in creative studios, visual communication, and graphic design projects. Founded in 2007, it features curated work, interviews, and annual design editions.",
+    "tags": [
+      "design",
+      "inspiration"
+    ],
+    "category": "web",
+    "created": "2026-08-11T19:03:18.943Z"
+  },
+  {
+    "title": "It's Nice That",
+    "url": "https://www.itsnicethat.com/",
+    "description": "Inspiring Creativity",
+    "tags": [
+      "design",
+      "inspiration"
+    ],
+    "category": "web",
+    "created": "2026-08-11T19:03:02.707Z"
+  },
+  {
+    "title": "PlayPhrase.me: Site for cinema archaeologists.",
+    "url": "https://www.playphrase.me/#/search?q=gr%3A+I+work+every+day.&pos=3&language=en",
+    "description": "Type any quote, watch the scenes. Search millions of movie clips for language learning and cinema research.",
+    "tags": [
+      "lang",
+      "english",
+      "learn_english"
+    ],
+    "category": "web",
+    "created": "2026-08-11T18:51:14.157Z"
+  },
+  {
+    "title": "Curated Website Inspiration • Craftwork",
+    "url": "https://craftwork.design/curated/websites",
+    "description": "Discover hundreds of carefully selected websites and design patterns originally featured on Curated.design.",
+    "tags": [
+      "inspiration",
+      "web_design"
+    ],
+    "category": "web",
+    "created": "2026-07-23T14:04:33.269Z"
+  },
+  {
+    "title": "Showcase of the best 2107 Animation Websites - landing.love",
+    "url": "https://www.landing.love/",
+    "description": "Get inspired by an amazing collection of over 2107 animation website designs. With a full-page video recording showcasing the best designs out there.",
+    "tags": [
+      "inspiration",
+      "web_design"
+    ],
+    "category": "web",
+    "created": "2026-07-23T14:03:58.618Z"
+  },
+  {
+    "title": "SLP — Sorted Labeled Prompts",
+    "url": "https://slp.gallery/",
+    "description": "Curated AI image prompts, tested and labeled. Pick. Copy. Generate.",
+    "tags": [
+      "prompt",
+      "design"
+    ],
+    "category": "web",
+    "created": "2026-07-23T13:14:38.776Z"
+  },
+  {
+    "title": "THE PROJECT — Dear Data",
+    "url": "https://www.dear-data.com/theproject",
+    "description": "",
+    "tags": [
+      "dataviz",
+      "data"
+    ],
+    "category": "web",
+    "created": "2026-07-22T01:18:36.743Z"
+  },
+  {
+    "title": "The Pudding",
+    "url": "https://pudding.cool/",
+    "description": "The Pudding explains ideas with visual essays.",
+    "tags": [
+      "dataviz",
+      "data"
+    ],
+    "category": "web",
+    "created": "2026-07-22T01:18:24.619Z"
+  },
+  {
+    "title": "Photoskop visual learning: new way to learn photography",
+    "url": "https://photoskop.com/play.html?l=all_new&ch=0&sec=0&home",
+    "description": "Explore photography by interactive learning. Control your camera, studio light and interact with various scene objects.",
+    "tags": [
+      "camera"
+    ],
+    "category": "web",
+    "created": "2026-07-22T00:55:47.363Z"
+  },
+  {
+    "title": "Deep Work Plan — structured execution for AI coding agents",
+    "url": "https://deepworkplan.com/",
+    "description": "Context matters more than models. Deep Work Plan turns any repository into a structured environment where any coding agent finishes long-horizon work.",
+    "tags": [
+      "ai",
+      "development_tool",
+      "agent"
+    ],
+    "category": "web",
+    "created": "2026-06-17T23:44:36.182Z"
+  },
+  {
+    "title": "Software Design by Example",
+    "url": "https://third-bit.com/sdxjs/",
+    "description": "",
+    "tags": [
+      "book",
+      "javascript"
+    ],
+    "category": "web",
+    "created": "2026-06-03T22:57:59.650Z"
+  },
+  {
+    "title": "List of supported units - Numbat",
+    "url": "https://numbat.dev/",
+    "description": "Scientific calculator with full support for physical units",
+    "tags": [
+      "cli",
+      "math"
+    ],
+    "category": "web",
+    "created": "2026-05-31T22:13:37.751Z"
+  },
+  {
+    "title": "PyMuPDF documentation",
+    "url": "https://pymupdf.readthedocs.io/en/latest/index.html",
+    "description": "",
+    "tags": [
+      "python",
+      "pdf"
+    ],
+    "category": "web",
+    "created": "2026-05-28T22:10:55.628Z"
+  },
+  {
+    "title": "Jazz - The database that syncs.",
+    "url": "https://jazz.tools/",
+    "description": "",
+    "tags": [
+      "db"
+    ],
+    "category": "web",
+    "created": "2026-05-23T23:52:56.902Z"
+  },
+  {
+    "title": "Pyrefly: A Fast Python Type Checker and Language Server | Pyrefly",
+    "url": "https://pyrefly.org/",
+    "description": "",
+    "tags": [
+      "python",
+      "development_tool"
+    ],
+    "category": "web",
+    "created": "2026-05-15T07:50:18.963Z"
+  },
+  {
+    "title": "AI Engineering from Scratch",
+    "url": "https://aiengineeringfromscratch.com/",
+    "description": "416 lessons. 20 phases. Write the backprop, the tokenizer, the attention mechanism, and the agent loop by hand.",
+    "tags": [
+      "ai",
+      "machine_learning"
+    ],
+    "category": "web",
+    "created": "2026-05-11T07:54:59.764Z"
+  },
+  {
+    "title": "Grainrad",
+    "url": "https://grainrad.com/",
+    "description": "Free WebGPU-powered ASCII, dithering, and retro effects at 60fps",
+    "tags": [
+      "design",
+      "edit",
+      "graphic_design"
+    ],
+    "category": "web",
+    "created": "2026-04-27T21:36:07.339Z"
+  },
+  {
+    "title": "Unsloth Docs | Unsloth Documentation",
+    "url": "https://unsloth.ai/docs",
+    "description": "Train your own model with Unsloth, an open-source framework for LLM fine-tuning and reinforcement learning.",
+    "tags": [
+      "ai",
+      "finetune"
+    ],
+    "category": "web",
+    "created": "2026-04-08T21:45:16.835Z"
+  },
+  {
+    "title": "MLU-Explain",
+    "url": "https://mlu-explain.github.io/",
+    "description": "Visual explanations of core machine learning concepts.",
+    "tags": [
+      "paper",
+      "ai",
+      "blog",
+      "machine_learning",
+      "data_analysis"
+    ],
+    "category": "web",
+    "created": "2026-03-30T15:31:08.850Z"
+  },
+  {
+    "title": "Blog",
+    "url": "https://huyenchip.com/blog/",
+    "description": "I work to bring AI into production. I write about AI system design.",
+    "tags": [
+      "ai",
+      "paper",
+      "blog",
+      "machine_learning",
+      "data_analysis"
+    ],
+    "category": "web",
+    "created": "2026-03-30T15:30:40.646Z"
+  },
+  {
+    "title": "Trending Papers - Hugging Face",
+    "url": "https://huggingface.co/papers/trending",
+    "description": "Your daily dose of AI research from AK",
+    "tags": [
+      "paper",
+      "data",
+      "ai",
+      "machine_learning"
+    ],
+    "category": "web",
+    "created": "2026-03-30T15:28:48.206Z"
+  },
+  {
+    "title": "Draw all roads in a city at once",
+    "url": "https://anvaka.github.io/city-roads/?",
+    "description": "This website allows you to select a city and then draws every single road on a screen.",
+    "tags": [
+      "design"
+    ],
+    "category": "web",
+    "created": "2026-02-22T13:55:00.624Z"
+  },
+  {
+    "title": "I Love CSV – Data Analysis Tools for CSV and Excel",
+    "url": "https://ilovecsv.net/",
+    "description": "I Love CSV - Data Analysis Tools for CSV and Excel: A comprehensive suite of tools designed to help you clean, transform, visualize, and analyze your data with ease. Just upload your CSV or Excel files and start exploring!",
+    "tags": [
+      "csv",
+      "data",
+      "data_analysis"
+    ],
+    "category": "web",
+    "created": "2026-01-20T14:33:51.520Z"
+  },
+  {
+    "title": "Free Brand Mention Checker – Find Where Your Brand Is Mentioned",
+    "url": "https://brandsmention.com/check-brand-mentions/?ref=peerlist&utm_source=peerlist&i=1",
+    "description": "Use our free brand mention checker to find where your brand is mentioned on Google, News, Twitter, Reddit, and YouTube.",
+    "tags": [
+      "branding",
+      "planning"
+    ],
+    "category": "web",
+    "created": "2026-01-20T14:32:53.728Z"
+  },
+  {
+    "title": "ByteByteGoHq/system-design-101: Explain complex systems using visuals and simple terms. Help you prepare for system design interviews.",
+    "url": "https://github.com/ByteByteGoHq/system-design-101?tab=readme-ov-file",
+    "description": "Explain complex systems using visuals and simple terms. Help you prepare for system design interviews. - ByteByteGoHq/system-design-101",
+    "tags": [
+      "github",
+      "system_design"
+    ],
+    "category": "github",
+    "created": "2026-01-20T12:48:56.381Z"
+  },
+  {
+    "title": "Don't import torch. Build it.",
+    "url": "https://mlsysbook.ai/tinytorch/intro.html",
+    "description": "Recreate ML History: Walk through ML history by rebuilding its greatest breakthroughs with YOUR TinyTorch implementations. Click each milestone to see what you’ll build and how it shaped modern AI....",
+    "tags": [
+      "ai",
+      "machine_learning"
+    ],
+    "category": "web",
+    "created": "2026-01-20T12:43:17.661Z"
+  },
+  {
+    "title": "Intro",
+    "url": "https://opencode.ai/docs",
+    "description": "Get started with OpenCode.",
+    "tags": [
+      "ai",
+      "vibe_coding",
+      "prompt_engineering"
+    ],
+    "category": "web",
+    "created": "2026-01-20T12:42:57.014Z"
+  },
+  {
+    "title": "CS146S: The Modern Software Developer - Stanford University",
+    "url": "https://themodernsoftware.dev/",
+    "description": "",
+    "tags": [
+      "llm"
+    ],
+    "category": "web",
+    "created": "2026-01-20T12:38:57.407Z"
+  },
+  {
+    "title": "Network Öğrenme Platformu | Packet.School",
+    "url": "https://packet.school/tr",
+    "description": "Discover network concepts in a fun way with interactive simulations, drag-drop network building and terminal experience!",
+    "tags": [
+      "network",
+      "cyber_security"
+    ],
+    "category": "web",
+    "created": "2026-01-20T12:38:22.712Z"
+  },
+  {
+    "title": "Home - eBPF.party",
+    "url": "https://ebpf.party/",
+    "description": "",
+    "tags": [
+      "cyber_security"
+    ],
+    "category": "web",
+    "created": "2026-01-20T12:37:38.224Z"
+  },
+  {
+    "title": "The Shape of AI | UX Patterns for Artificial Intelligence Design",
+    "url": "https://www.shapeof.ai/",
+    "description": "Pattern library of AIUX patterns exploring best practices for designing AI Products.",
+    "tags": [
+      "ai",
+      "design",
+      "ux",
+      "ui"
+    ],
+    "category": "web",
+    "created": "2026-01-20T12:37:10.753Z"
+  },
+  {
+    "title": "The Internet Movie Script Database (IMSDb)",
+    "url": "https://imsdb.com/",
+    "description": "Movie scripts, Film scripts at IMSDb",
+    "tags": [
+      "movie",
+      "film"
+    ],
+    "category": "web",
+    "created": "2024-10-05T13:03:24.963Z"
+  },
+  {
+    "title": "Gluon",
+    "url": "https://github.com/gluon-lang/gluon",
+    "description": "A static, type inferred and embeddable language written in Rust. - gluon-lang/gluon",
+    "tags": [
+      "programming"
+    ],
+    "category": "github",
+    "created": "2024-09-30T17:41:38.436Z"
+  },
+  {
+    "title": "HUAWEI DevEco Studio - HUAWEI HarmonyOS APP",
+    "url": "https://developer.harmonyos.com/en/develop/deveco-studio#download_release",
+    "description": "华为开发者联盟是华为面向生态伙伴的开放合作平台，致力于从开发、测试、推广、变现等环节助力开发者，聚合了HarmonyOS鸿蒙、HMS Core、AGC等开放能力，方便开发者一站式获取，轻松完成应用开发。",
+    "tags": [
+      "devtool"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.629Z"
+  },
+  {
+    "title": "Axonometric projection - Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Axonometric_projection",
+    "description": "Axonometric projection  is a type of orthographic projection used for creating a pictorial drawing of an object, where the object is rotated around one or more of its axes to reveal multiple sides.",
+    "tags": [
+      "document",
+      "physics",
+      "game_dev"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.629Z"
+  },
+  {
+    "title": "Colors - House of van Schneider",
+    "url": "https://vanschneider.com/colors",
+    "description": "A collection of unique color combinations for your design projects.",
+    "tags": [
+      "color",
+      "ui",
+      "ux"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.628Z"
+  },
+  {
+    "title": "Tangle: a JavaScript library for reactive documents",
+    "url": "http://worrydream.com/Tangle",
+    "description": "",
+    "tags": [
+      "reactive",
+      "data",
+      "inspiration"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.628Z"
+  },
+  {
+    "title": "Book Store UI",
+    "url": "https://codepen.io/TurkAysenur/pen/JjGKKrP?editors=1000",
+    "description": "",
+    "tags": [
+      "inspiration",
+      "codepen",
+      "ui"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.628Z"
+  },
+  {
+    "title": "HTML Cheat Sheet",
+    "url": "https://htmlcheatsheet.com",
+    "description": "Online interactive HTML Cheat Sheet contains useful code examples and web developer tools, markup generators and more.",
+    "tags": [
+      "html",
+      "cheatsheet"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.497Z"
+  },
+  {
+    "title": "sorrycc/awesome-javascript: 🐢 A collection of awesome browser-side JavaScript libraries, resources and shiny things.",
+    "url": "https://github.com/sorrycc/awesome-javascript",
+    "description": "🐢 A collection of awesome browser-side  JavaScript libraries, resources and shiny things. - sorrycc/awesome-javascript",
+    "tags": [
+      "awesome",
+      "javascript"
+    ],
+    "category": "github",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "Online Interactive JavaScript (JS) Cheat Sheet",
+    "url": "https://htmlcheatsheet.com/js",
+    "description": "JavaScript Cheat Seet contains useful code examples on a single page. Not just a PDF because it's interactive! Find code for JS loops, variables, objects and",
+    "tags": [
+      "javascript"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "Modern JavaScript Eğitimi",
+    "url": "https://tr.javascript.info",
+    "description": "Modern JavaScript Eğitimi: basit, fakat detaylı açıklamalar ve görevler ile anlatılmıştır. Closures, document, events ve nesne yönelimli programlama üzerine bölümleri bulunmaktadır",
+    "tags": [
+      "javascript"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "eraycetinay/javascript: Airbnb JavaScript Kılavuzu",
+    "url": "https://github.com/eraycetinay/javascript",
+    "description": "Airbnb JavaScript Kılavuzu.",
+    "tags": [
+      "javascript"
+    ],
+    "category": "github",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "CoffeeScript",
+    "url": "http://coffeescript.org",
+    "description": "",
+    "tags": [
+      "javascript",
+      "library"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "Büyüleyen Matematik: Çarpışan Toplar",
+    "url": "https://matemacik.blogspot.com/2020/06/carpsan-toplar.html",
+    "description": "Görsel benzetimin yaygınlaşması, Corona salgının yan etkilerinden biri oldu. Hastalığın nasıl bulaşacağını ve izolasyonun etkisini tahmin ed...",
+    "tags": [
+      "physics",
+      "math",
+      "turkish",
+      "document"
+    ],
+    "category": "web",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "stepchowfun/raytracer: A browser-based real-time raytracer written in CoffeeScript.",
+    "url": "https://github.com/stepchowfun/raytracer",
+    "description": "A browser-based real-time raytracer written in CoffeeScript. - stepchowfun/raytracer",
+    "tags": [
+      "javascript",
+      "coffeescript"
+    ],
+    "category": "github",
+    "created": "2024-09-30T17:13:07.496Z"
+  },
+  {
+    "title": "MathItYT/mathlikeanim-rs: A Rust library to create interactive mathematical animations",
+    "url": "https://github.com/MathItYT/mathlikeanim-rs",
+    "description": "A Rust library to create interactive mathematical animations - MathItYT/mathlikeanim-rs",
+    "tags": [
+      "rust",
+      "library",
+      "manim"
+    ],
+    "category": "github",
+    "created": "2024-09-19T20:47:54.000Z"
+  },
+  {
+    "title": "visx | gallery",
+    "url": "https://airbnb.io/visx/gallery",
+    "description": "",
+    "tags": [
+      "data",
+      "dataviz",
+      "react"
+    ],
+    "category": "web",
+    "created": "2024-09-12T19:19:40.000Z"
+  },
+  {
+    "title": "MotionNumber for Framer Motion",
+    "url": "https://motion-number.barvian.me",
+    "description": "Transition, format, and localize numbers with a ~3kB Framer Motion component. Accessible and customizable.",
+    "tags": [
+      "framer",
+      "animation",
+      "react",
+      "library"
+    ],
+    "category": "web",
+    "created": "2024-09-06T23:30:09.000Z"
+  }
+]
