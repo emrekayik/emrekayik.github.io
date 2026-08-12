@@ -75,6 +75,72 @@ title: "Merhaba, ben Emre Kayık"
             Tüm Projelerim <i class="ai-arrow-right ml-1"></i>
         </a>
     </div>
+
+    <h2 class="flex justify-between items-center">
+        <span>Öneriler</span>
+        <div class="p-2 text-primary">
+            <i class="ai-book-open text-xl"></i>
+        </div>
+    </h2>
+    <div class="grid grid-cols-1 gap-3 not-prose">
+        {% assign sorted_suggestions = site.data.suggestions | sort: 'created' |
+        reverse %} {% for item in sorted_suggestions | limit: 5 %} {% assign
+        item_tags = item.tags | default: "" %}
+
+        <a
+            href="{{ item.url | relative_url }}"
+            target="_blank"
+            class="p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group"
+        >
+            <div class="flex justify-between items-center gap-2">
+                <span
+                    class="font-bold text-base-content group-hover:text-secondary transition-colors"
+                    >{{ item.title }}</span
+                >
+                <time
+                    class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+                    >{{ item.created | date: "%b %d, %y" | localize: '%-d %B %Y'
+                    }}</time
+                >
+            </div>
+            <div class="flex flex-col gap-2">
+                <span
+                    class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+                >
+                    {{ item.description | truncate: 60 }}
+                </span>
+                <div class="flex justify-between items-center gap-2">
+                    <span
+                        class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+                    >
+                        {% for tag in item.tags %}
+                        <div class="badge badge-xs">{{ tag }}</div>
+                        {% endfor %}
+                    </span>
+                    <span
+                        class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+                    >
+                        {% if item.category %}
+                        <i
+                            class="{{ site.data.social[item.category].icon | default: 'ai-globe' }} text-base"
+                        ></i>
+                        {% else %}
+                        <i class="ai-globe text-base"></i>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+
+        <a
+            href="{{ '/oneriler/' | relative_url }}"
+            class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100"
+        >
+            Tüm Önerilerim <i class="ai-arrow-right ml-1"></i>
+        </a>
+    </div>
+
     <div class="divider"></div>
 
     {% include marquee.html %}

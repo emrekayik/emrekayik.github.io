@@ -31,7 +31,7 @@ module Jekyll
         if response.code == "200"
           data = JSON.parse(response.body)
           raindrops = data['items'] || []
-          
+
           # Map Raindrop data to our suggestions format
           mapped_suggestions = raindrops.map do |item|
             {
@@ -47,10 +47,10 @@ module Jekyll
           # Merge with existing suggestions if any
           existing = site.data['suggestions'] || []
           all_suggestions = (mapped_suggestions + existing).uniq { |s| s['url'] }
-          
+
           # Sort by date descending
           site.data['suggestions'] = all_suggestions.sort_by { |s| s['created'] || '0000-00-00' }.reverse
-          
+
           Jekyll.logger.info "RaindropGenerator:", "Successfully synced and sorted #{site.data['suggestions'].size} items."
         else
           Jekyll.logger.error "RaindropGenerator:", "Failed to fetch from Raindrop. Code: #{response.code}, Body: #{response.body}"
@@ -73,8 +73,10 @@ module Jekyll
         'youtube'
       elsif link.include?('instagram.com')
         'instagram'
+      elsif link.include?('wikipedia.org') || link.include?('wiktionary.org')
+        'wikipedia'
       elsif tags.include?('article') || tags.include?('blog')
-        'web'
+        'blog'
       else
         'web'
       end

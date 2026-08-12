@@ -67,6 +67,7 @@
     --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --radius-2xl: 1rem;
+    --radius-4xl: 2rem;
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -5977,11 +5978,6 @@
       transform: translateX(var(--tt-trans, -50%)) translateY(var(--tt-pos, 0.25rem));
       inset: auto auto var(--tt-tail) 50%;
     }
-  }
-  .inset-0 {
-    inset: 0px;
-  }
-  @layer daisyui.l1.l2 {
     .tooltip-left > .tooltip-content {
       transform: translateX(calc(var(--tt-pos, 0.25rem) - 0.25rem)) translateY(var(--tt-trans, -50%));
       left: auto;
@@ -6873,9 +6869,6 @@
   }
   .z-1 {
     z-index: 1;
-  }
-  .z-10 {
-    z-index: 10;
   }
   .z-30 {
     z-index: 30;
@@ -7864,9 +7857,6 @@
       border-color: #0000;
       box-shadow: none;
     }
-  }
-  .my-2 {
-    margin-block: calc(var(--spacing) * 2);
   }
   .my-8 {
     margin-block: calc(var(--spacing) * 8);
@@ -9196,18 +9186,6 @@
       border: 4px solid var(--color-base-100);
     }
   }
-  .line-clamp-2 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-  }
-  .line-clamp-3 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-  }
   :root .prose {
     --tw-prose-body: var(--color-base-content);
     @supports (color: color-mix(in lab, red, red)) {
@@ -9698,9 +9676,6 @@
   .max-w-\[80px\] {
     max-width: 80px;
   }
-  .max-w-\[240px\] {
-    max-width: 240px;
-  }
   .max-w-none {
     max-width: none;
   }
@@ -10180,9 +10155,6 @@
   .justify-center {
     justify-content: center;
   }
-  .justify-end {
-    justify-content: flex-end;
-  }
   .justify-start {
     justify-content: flex-start;
   }
@@ -10410,8 +10382,8 @@
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
-  .rounded-\[2rem\] {
-    border-radius: 2rem;
+  .rounded-4xl {
+    border-radius: var(--radius-4xl);
   }
   .rounded-box {
     border-radius: var(--radius-box);
@@ -13238,9 +13210,6 @@
     background-color: var(--color-gray-200);
   }
   @media (hover: hover) {
-    .hover\:border-primary:hover {
-      border-color: var(--color-primary);
-    }
     .hover\:border-primary\/50:hover {
       border-color: var(--color-primary);
     }
@@ -13389,6 +13358,9 @@
     }
     .md\:max-w-xs {
       max-width: 20rem;
+    }
+    .md\:grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
     }
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
