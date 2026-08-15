@@ -1,12 +1,14 @@
 <!-- Minimal Social Share Bar & Instagram Story Card Generator Component -->
-{% assign badge_type = "YAZI" %}
-{% if page.layout == "note" %}
-  {% assign badge_type = "NOT" %}
-{% endif %}
+{% assign badge_type = "YAZI" %} {% if page.layout == "note" %} {% assign
+badge_type = "NOT" %} {% endif %}
 
 <!-- Minimal Share Actions Bar -->
-<div class="w-full mt-6 pt-4 border-t border-base-200 not-prose font-sans text-xs flex items-center justify-between text-base-content/60">
-  <span class="text-[11px] font-mono uppercase tracking-widest opacity-50">Paylaş</span>
+<div
+  class="w-full mt-6 pt-4 border-t border-base-200 not-prose font-sans text-xs flex items-center justify-between text-base-content/60"
+>
+  <span class="text-[11px] font-mono uppercase tracking-widest opacity-50"
+    >Paylaş</span
+  >
   <div class="flex items-center gap-4">
     <!-- Instagram Story Button -->
     <button
@@ -52,28 +54,90 @@
       </form>
     </div>
 
-    <!-- Format & Theme Selector -->
+    <!-- Format, Theme & Image Controls -->
     <div class="flex flex-col gap-2 mb-3 w-full items-center text-xs">
       <!-- Format Switcher -->
       <div class="flex items-center gap-1.5">
         <span class="opacity-50 text-[10px] font-mono">Format:</span>
-        <button onclick="setStoryFormat('story')" class="btn btn-xs rounded-full btn-active font-sans" id="format-btn-story">Hikaye (9:16)</button>
-        <button onclick="setStoryFormat('og')" class="btn btn-xs rounded-full btn-outline font-sans" id="format-btn-og">OG Görsel (1200x630)</button>
+        <button
+          onclick="setStoryFormat('story')"
+          class="btn btn-xs rounded-full btn-active font-sans"
+          id="format-btn-story"
+        >
+          Hikaye (9:16)
+        </button>
+        <button
+          onclick="setStoryFormat('og')"
+          class="btn btn-xs rounded-full btn-outline font-sans"
+          id="format-btn-og"
+        >
+          OG Görsel (1200x630)
+        </button>
       </div>
 
       <!-- Theme Switcher -->
       <div class="flex items-center gap-1.5">
         <span class="opacity-50 text-[10px] font-mono">Tema:</span>
-        <button onclick="setStoryTheme('dark')" class="btn btn-xs rounded-full border border-white/20 font-sans btn-active" id="theme-btn-dark">Karanlık</button>
-        <button onclick="setStoryTheme('light')" class="btn btn-xs rounded-full btn-outline font-sans" id="theme-btn-light">Aydınlık</button>
-        <button onclick="setStoryTheme('emerald')" class="btn btn-xs rounded-full btn-outline font-sans" id="theme-btn-emerald">Zümrüt</button>
-        <button onclick="setStoryTheme('purple')" class="btn btn-xs rounded-full btn-outline font-sans" id="theme-btn-purple">Mor</button>
+        <button
+          onclick="setStoryTheme('dark')"
+          class="btn btn-xs rounded-full border border-white/20 font-sans btn-active"
+          id="theme-btn-dark"
+        >
+          Karanlık
+        </button>
+        <button
+          onclick="setStoryTheme('light')"
+          class="btn btn-xs rounded-full btn-outline font-sans"
+          id="theme-btn-light"
+        >
+          Aydınlık
+        </button>
+        <button
+          onclick="setStoryTheme('emerald')"
+          class="btn btn-xs rounded-full btn-outline font-sans"
+          id="theme-btn-emerald"
+        >
+          Zümrüt
+        </button>
+        <button
+          onclick="setStoryTheme('purple')"
+          class="btn btn-xs rounded-full btn-outline font-sans"
+          id="theme-btn-purple"
+        >
+          Mor
+        </button>
+      </div>
+
+      <!-- Photo Upload Controls -->
+      <div class="flex items-center gap-3 pt-1">
+        <label
+          for="story-image-input"
+          class="cursor-pointer text-[11px] font-sans text-primary hover:underline flex items-center gap-1"
+        >
+          <i class="ai-image text-xs"></i> Fotoğraf Ekle / Değiştir
+        </label>
+        <input
+          type="file"
+          id="story-image-input"
+          accept="image/*"
+          onchange="handleStoryImageUpload(this)"
+          class="hidden"
+        />
+        <button
+          id="remove-image-btn"
+          onclick="removeStoryImage()"
+          class="hidden text-[11px] font-sans text-error hover:underline flex items-center gap-1"
+        >
+          <i class="ai-cross text-[10px]"></i> Fotoğrafı Kaldır
+        </button>
       </div>
     </div>
 
     <!-- Subtle Collapsible Text Edit Section -->
     <details class="w-full mb-2 group text-xs">
-      <summary class="cursor-pointer text-[10px] font-mono text-base-content/40 hover:text-primary transition-colors flex items-center justify-center gap-1 py-0.5 select-none">
+      <summary
+        class="cursor-pointer text-[10px] font-mono text-base-content/40 hover:text-primary transition-colors flex items-center justify-center gap-1 py-0.5 select-none"
+      >
         <i class="ai-edit text-[11px]"></i> Metni Düzenle
       </summary>
       <div class="pt-1.5 pb-1">
@@ -87,47 +151,103 @@
       </div>
     </details>
 
-    <!-- Medium Style Story / OG Card Preview Area -->
-    <div class="w-full flex justify-center py-2 bg-base-200/40 rounded-xl border border-base-300/40 overflow-hidden">
-      <!-- Story / OG Card Container -->
+    <!-- Medium Style 9:16 / OG Card Preview Area -->
+    <div
+      class="w-full flex justify-center py-2 bg-base-200/40 rounded-xl border border-base-300/40 overflow-hidden"
+    >
+      <!-- 9:16 Story / OG Card Container -->
       <div
         id="story-card"
-        style="background: linear-gradient(135deg, #18181b 0%, #09090b 100%); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.15);"
-        class="w-[310px] h-[520px] p-7 rounded-3xl shadow-2xl flex flex-col justify-between transition-all duration-300 relative select-none font-serif"
+        style="
+          background: linear-gradient(135deg, #18181b 0%, #09090b 100%);
+          color: #ffffff;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+        "
+        class="w-[310px] h-[520px] p-7 rounded-3xl shadow-2xl flex flex-col justify-between transition-all duration-300 relative select-none font-serif overflow-hidden"
       >
+        <!-- Background Photo Layer -->
+        <div
+          id="story-card-bg"
+          class="absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-300 pointer-events-none z-0"
+        >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/35"></div>
+        </div>
+
         <!-- Medium Card Header -->
-        <div class="flex items-center justify-between not-prose font-sans">
+        <div class="flex items-center justify-between not-prose font-sans z-10 relative">
           <div class="flex items-center gap-2.5">
-            <div id="story-avatar" style="background-color: rgba(74, 222, 128, 0.2); border-color: rgba(74, 222, 128, 0.4); color: #4ade80;" class="w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold border">
+            <div
+              id="story-avatar"
+              style="
+                background-color: rgba(74, 222, 128, 0.2);
+                border-color: rgba(74, 222, 128, 0.4);
+                color: #4ade80;
+              "
+              class="w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold border"
+            >
               E
             </div>
             <div class="flex flex-col">
-              <span id="story-author-name" class="text-xs font-bold leading-tight">Emre Kayık</span>
-              <span id="story-author-domain" class="text-[10px] font-mono opacity-60">emrekayik.github.io</span>
+              <span
+                id="story-author-name"
+                class="text-xs font-bold leading-tight"
+                >Emre Kayık</span
+              >
+              <span
+                id="story-author-domain"
+                class="text-[10px] font-mono opacity-60"
+                >emrekayik.github.io</span
+              >
             </div>
           </div>
-          <span id="story-badge" style="color: #4ade80;" class="text-[10px] font-mono font-semibold tracking-wider uppercase">{{ badge_type }}</span>
+          <span
+            id="story-badge"
+            style="color: #4ade80"
+            class="text-[10px] font-mono font-semibold tracking-wider uppercase"
+            >{{ badge_type }}</span
+          >
         </div>
 
         <!-- Medium Center Quote Body -->
-        <div class="my-auto py-2 flex flex-col gap-2.5">
-          <span id="story-quote-mark" style="color: #4ade80;" class="text-3xl sm:text-4xl leading-none font-serif opacity-40 font-bold -mb-3 select-none">“</span>
-          
-          <p id="story-card-quote" class="text-base sm:text-lg leading-relaxed font-serif italic tracking-tight opacity-95">
+        <div class="my-auto py-2 flex flex-col gap-2.5 z-10 relative">
+          <span
+            id="story-quote-mark"
+            style="color: #4ade80"
+            class="text-3xl sm:text-4xl leading-none font-serif opacity-40 font-bold -mb-3 select-none"
+            >“</span
+          >
+
+          <p
+            id="story-card-quote"
+            class="text-base sm:text-lg leading-relaxed font-serif italic tracking-tight opacity-95"
+          >
             {{ page.title }}
           </p>
 
-          <div id="story-divider" style="background-color: #4ade80;" class="w-8 h-[2px] opacity-60 my-1"></div>
+          <div
+            id="story-divider"
+            style="background-color: #4ade80"
+            class="w-8 h-0.5 opacity-60 my-1"
+          ></div>
 
-          <p id="story-card-title" class="text-xs font-sans opacity-75 leading-snug">
-            {{ page.description | default: page.excerpt | strip_html | truncate: 90 | default: page.title }}
+          <p
+            id="story-card-title"
+            class="text-xs font-sans opacity-75 leading-snug"
+          >
+            {{ page.description | default: page.excerpt | strip_html | truncate:
+            90 | default: page.title }}
           </p>
         </div>
 
         <!-- Medium Card Footer -->
-        <div id="story-card-footer" class="pt-2 border-t border-current/15 flex items-center justify-between text-[10px] font-mono opacity-60 not-prose">
+        <div
+          id="story-card-footer"
+          class="pt-2 border-t border-current/15 flex items-center justify-between text-[10px] font-mono opacity-60 not-prose z-10 relative"
+        >
           <span>{{ page.date | localize: '%-d %B %Y' }}</span>
-          <span id="story-handle" style="color: #4ade80;" class="font-semibold">@emrekayik0</span>
+          <span id="story-handle" style="color: #4ade80" class="font-semibold"
+            >@emrekayik0</span
+          >
         </div>
       </div>
     </div>
@@ -138,110 +258,157 @@
         <button class="btn btn-xs btn-ghost w-full">Kapat</button>
       </form>
       <button
-        id="download-story-btn"
-        onclick="downloadStoryCard()"
+        id="share-story-btn"
+        onclick="shareDirectToStory()"
         class="btn btn-xs btn-primary flex-1 gap-1.5"
       >
-        <i class="ai-download text-xs"></i> Görseli İndir (PNG)
+        <i class="ai-instagram-fill text-xs"></i> Hikayede Paylaş
+      </button>
+      <button
+        id="download-story-btn"
+        onclick="downloadStoryCard()"
+        class="btn btn-xs btn-outline flex-1 gap-1.5"
+        title="Görseli Cihaza İndir"
+      >
+        <i class="ai-download text-xs"></i> PNG İndir
       </button>
     </div>
   </div>
 </dialog>
 
 <script>
-  let currentFormat = 'story';
+  let currentFormat = "story";
 
   function openStoryModal() {
-    const modal = document.getElementById('story_modal');
-    const quoteInput = document.getElementById('story-text-input');
-    
+    const modal = document.getElementById("story_modal");
+    const quoteInput = document.getElementById("story-text-input");
+
     if (!quoteInput.value) {
       quoteInput.value = "{{ page.title | escape }}";
     }
     updateStoryQuote();
+
+    {% if page.image %}
+      const defaultImg = "{{ page.image | relative_url }}";
+      if (defaultImg && defaultImg.trim().length > 0) {
+        setStoryBackgroundImage(defaultImg);
+      }
+    {% endif %}
+
     modal.showModal();
   }
 
   function updateStoryQuote() {
-    const inputVal = document.getElementById('story-text-input').value;
-    document.getElementById('story-card-quote').innerText = inputVal || "{{ page.title | escape }}";
+    const inputVal = document.getElementById("story-text-input").value;
+    document.getElementById("story-card-quote").innerText =
+      inputVal || "{{ page.title | escape }}";
   }
 
   function setStoryFormat(format) {
     currentFormat = format;
-    const card = document.getElementById('story-card');
-    const btnStory = document.getElementById('format-btn-story');
-    const btnOg = document.getElementById('format-btn-og');
+    const card = document.getElementById("story-card");
+    const btnStory = document.getElementById("format-btn-story");
+    const btnOg = document.getElementById("format-btn-og");
 
     if (btnStory && btnOg) {
-      btnStory.classList.toggle('btn-active', format === 'story');
-      btnStory.classList.toggle('btn-outline', format !== 'story');
-      btnOg.classList.toggle('btn-active', format === 'og');
-      btnOg.classList.toggle('btn-outline', format !== 'og');
+      btnStory.classList.toggle("btn-active", format === "story");
+      btnStory.classList.toggle("btn-outline", format !== "story");
+      btnOg.classList.toggle("btn-active", format === "og");
+      btnOg.classList.toggle("btn-outline", format !== "og");
     }
 
-    if (format === 'og') {
-      card.style.width = '440px';
-      card.style.height = '230px';
-      card.style.padding = '1.25rem';
-      card.classList.remove('rounded-3xl');
-      card.classList.add('rounded-2xl');
+    if (format === "og") {
+      card.style.width = "440px";
+      card.style.height = "230px";
+      card.style.padding = "1.25rem";
+      card.classList.remove("rounded-3xl");
+      card.classList.add("rounded-2xl");
     } else {
-      card.style.width = '310px';
-      card.style.height = '520px';
-      card.style.padding = '1.75rem';
-      card.classList.remove('rounded-2xl');
-      card.classList.add('rounded-3xl');
+      card.style.width = "310px";
+      card.style.height = "520px";
+      card.style.padding = "1.75rem";
+      card.classList.remove("rounded-2xl");
+      card.classList.add("rounded-3xl");
     }
   }
 
+  function handleStoryImageUpload(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setStoryBackgroundImage(e.target.result);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function setStoryBackgroundImage(url) {
+    const bg = document.getElementById("story-card-bg");
+    if (bg) {
+      bg.style.backgroundImage = "url('" + url + "')";
+      bg.style.opacity = "1";
+      document.getElementById("remove-image-btn").classList.remove("hidden");
+    }
+  }
+
+  function removeStoryImage() {
+    const bg = document.getElementById("story-card-bg");
+    if (bg) {
+      bg.style.backgroundImage = "none";
+      bg.style.opacity = "0";
+    }
+    const input = document.getElementById("story-image-input");
+    if (input) input.value = "";
+    document.getElementById("remove-image-btn").classList.add("hidden");
+  }
+
   function setStoryTheme(theme) {
-    const card = document.getElementById('story-card');
-    const avatar = document.getElementById('story-avatar');
-    const badge = document.getElementById('story-badge');
-    const quoteMark = document.getElementById('story-quote-mark');
-    const divider = document.getElementById('story-divider');
-    const handle = document.getElementById('story-handle');
-    
-    ['dark', 'light', 'emerald', 'purple'].forEach(t => {
-      const btn = document.getElementById('theme-btn-' + t);
+    const card = document.getElementById("story-card");
+    const avatar = document.getElementById("story-avatar");
+    const badge = document.getElementById("story-badge");
+    const quoteMark = document.getElementById("story-quote-mark");
+    const divider = document.getElementById("story-divider");
+    const handle = document.getElementById("story-handle");
+
+    ["dark", "light", "emerald", "purple"].forEach((t) => {
+      const btn = document.getElementById("theme-btn-" + t);
       if (btn) {
-        btn.classList.toggle('btn-active', t === theme);
-        btn.classList.toggle('btn-outline', t !== theme);
+        btn.classList.toggle("btn-active", t === theme);
+        btn.classList.toggle("btn-outline", t !== theme);
       }
     });
 
     let config = {
-      bg: 'linear-gradient(135deg, #18181b 0%, #09090b 100%)',
-      color: '#ffffff',
-      border: 'rgba(255, 255, 255, 0.15)',
-      accent: '#4ade80',
-      avatarBg: 'rgba(74, 222, 128, 0.2)'
+      bg: "linear-gradient(135deg, #18181b 0%, #09090b 100%)",
+      color: "#ffffff",
+      border: "rgba(255, 255, 255, 0.15)",
+      accent: "#4ade80",
+      avatarBg: "rgba(74, 222, 128, 0.2)",
     };
 
-    if (theme === 'light') {
+    if (theme === "light") {
       config = {
-        bg: '#ffffff',
-        color: '#0f172a',
-        border: '#e2e8f0',
-        accent: '#059669',
-        avatarBg: 'rgba(5, 150, 105, 0.15)'
+        bg: "#ffffff",
+        color: "#0f172a",
+        border: "#e2e8f0",
+        accent: "#059669",
+        avatarBg: "rgba(5, 150, 105, 0.15)",
       };
-    } else if (theme === 'emerald') {
+    } else if (theme === "emerald") {
       config = {
-        bg: 'linear-gradient(135deg, #064e3b 0%, #022c22 100%)',
-        color: '#ecfdf5',
-        border: 'rgba(16, 185, 129, 0.3)',
-        accent: '#34d399',
-        avatarBg: 'rgba(52, 211, 153, 0.2)'
+        bg: "linear-gradient(135deg, #064e3b 0%, #022c22 100%)",
+        color: "#ecfdf5",
+        border: "rgba(16, 185, 129, 0.3)",
+        accent: "#34d399",
+        avatarBg: "rgba(52, 211, 153, 0.2)",
       };
-    } else if (theme === 'purple') {
+    } else if (theme === "purple") {
       config = {
-        bg: 'linear-gradient(135deg, #3b0764 0%, #1e1b4b 100%)',
-        color: '#faf5ff',
-        border: 'rgba(168, 85, 247, 0.3)',
-        accent: '#c084fc',
-        avatarBg: 'rgba(192, 132, 252, 0.2)'
+        bg: "linear-gradient(135deg, #3b0764 0%, #1e1b4b 100%)",
+        color: "#faf5ff",
+        border: "rgba(168, 85, 247, 0.3)",
+        accent: "#c084fc",
+        avatarBg: "rgba(192, 132, 252, 0.2)",
       };
     }
 
@@ -260,51 +427,116 @@
     if (handle) handle.style.color = config.accent;
   }
 
+  async function shareDirectToStory() {
+    const card = document.getElementById("story-card");
+    const btn = document.getElementById("share-story-btn");
+
+    if (typeof htmlToImage === "undefined") {
+      alert("Görsel kütüphanesi henüz yüklenemedi. Lütfen tekrar deneyin.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Hazırlanıyor...";
+
+    try {
+      const isOg = currentFormat === "og";
+      const pixelScale = isOg ? 2.73 : 3;
+
+      const blob = await htmlToImage.toBlob(card, {
+        pixelRatio: pixelScale,
+        cacheBust: true,
+        quality: 0.95,
+      });
+
+      if (!blob) throw new Error("Görsel dönüştürülemedi.");
+
+      const filename = isOg
+        ? "og-{{ page.title | slugify }}.png"
+        : "story-{{ page.title | slugify }}.png";
+      const file = new File([blob], filename, { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: "{{ page.title | escape }}",
+          text: "{{ page.title | escape }} - emrekayik.github.io",
+        });
+      } else {
+        const link = document.createElement("a");
+        link.download = filename;
+        link.href = URL.createObjectURL(blob);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (err) {
+      if (err.name !== "AbortError") {
+        console.error("Share error:", err);
+        alert("Paylaşım başlatılırken bir sorun oluştu.");
+      }
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<i class="ai-instagram-fill text-xs"></i> Hikayede Paylaş';
+    }
+  }
+
   function downloadStoryCard() {
-    const card = document.getElementById('story-card');
-    const btn = document.getElementById('download-story-btn');
-    
-    if (typeof htmlToImage === 'undefined') {
-      alert("Görsel kütüphanesi henüz yüklenemedi. Lütfen sayfayı yenileyip tekrar deneyin.");
+    const card = document.getElementById("story-card");
+    const btn = document.getElementById("download-story-btn");
+
+    if (typeof htmlToImage === "undefined") {
+      alert(
+        "Görsel kütüphanesi henüz yüklenemedi. Lütfen sayfayı yenileyip tekrar deneyin.",
+      );
       return;
     }
 
     btn.disabled = true;
     btn.innerText = "Görsel Hazırlanıyor...";
 
-    const isOg = currentFormat === 'og';
-    const filename = isOg ? 'og-{{ page.title | slugify }}.png' : 'story-{{ page.title | slugify }}.png';
+    const isOg = currentFormat === "og";
+    const filename = isOg
+      ? "og-{{ page.title | slugify }}.png"
+      : "story-{{ page.title | slugify }}.png";
     const pixelScale = isOg ? 2.73 : 3;
 
-    htmlToImage.toPng(card, {
-      pixelRatio: pixelScale,
-      cacheBust: true,
-      quality: 0.95
-    }).then(function (dataUrl) {
-      const link = document.createElement('a');
-      link.download = filename;
-      link.href = dataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      btn.disabled = false;
-      btn.innerHTML = '<i class="ai-download text-xs"></i> Görseli İndir (PNG)';
-    }).catch(function (error) {
-      console.error('htmlToImage error:', error);
-      alert('Görsel oluşturulurken bir hata oluştu: ' + (error.message || 'Lütfen tekrar deneyin.'));
-      btn.disabled = false;
-      btn.innerHTML = '<i class="ai-download text-xs"></i> Tekrar Deneyin';
-    });
+    htmlToImage
+      .toPng(card, {
+        pixelRatio: pixelScale,
+        cacheBust: true,
+        quality: 0.95,
+      })
+      .then(function (dataUrl) {
+        const link = document.createElement("a");
+        link.download = filename;
+        link.href = dataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        btn.disabled = false;
+        btn.innerHTML =
+          '<i class="ai-download text-xs"></i> PNG İndir';
+      })
+      .catch(function (error) {
+        console.error("htmlToImage error:", error);
+        alert(
+          "Görsel oluşturulurken bir hata oluştu: " +
+            (error.message || "Lütfen tekrar deneyin."),
+        );
+        btn.disabled = false;
+        btn.innerHTML = '<i class="ai-download text-xs"></i> Tekrar Deneyin';
+      });
   }
 
   function copyNoteLink(btn) {
     navigator.clipboard.writeText(window.location.href).then(() => {
-      const copyText = document.getElementById('copy-btn-text');
+      const copyText = document.getElementById("copy-btn-text");
       if (copyText) {
-        copyText.innerText = 'Kopyalandı!';
+        copyText.innerText = "Kopyalandı!";
         setTimeout(() => {
-          copyText.innerText = 'Kopyala';
+          copyText.innerText = "Kopyala";
         }, 2000);
       }
     });

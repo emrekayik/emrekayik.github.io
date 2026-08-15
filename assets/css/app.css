@@ -2792,6 +2792,9 @@
       opacity: 40%;
     }
   }
+  .pointer-events-none {
+    pointer-events: none;
+  }
   @layer daisyui.l1.l2.l3 {
     .react-day-picker {
       user-select: none;
@@ -5981,6 +5984,11 @@
       transform: translateX(var(--tt-trans, -50%)) translateY(var(--tt-pos, 0.25rem));
       inset: auto auto var(--tt-tail) 50%;
     }
+  }
+  .inset-0 {
+    inset: 0px;
+  }
+  @layer daisyui.l1.l2 {
     .tooltip-left > .tooltip-content {
       transform: translateX(calc(var(--tt-pos, 0.25rem) - 0.25rem)) translateY(var(--tt-trans, -50%));
       left: auto;
@@ -6870,8 +6878,14 @@
       }
     }
   }
+  .z-0 {
+    z-index: 0;
+  }
   .z-1 {
     z-index: 1;
+  }
+  .z-10 {
+    z-index: 10;
   }
   .z-30 {
     z-index: 30;
@@ -9720,6 +9734,9 @@
       font-size: 0.6875rem;
     }
   }
+  .h-0\.5 {
+    height: calc(var(--spacing) * 0.5);
+  }
   .h-2 {
     height: calc(var(--spacing) * 2);
   }
@@ -9743,9 +9760,6 @@
   }
   .h-20 {
     height: calc(var(--spacing) * 20);
-  }
-  .h-\[2px\] {
-    height: 2px;
   }
   .h-\[520px\] {
     height: 520px;
@@ -11114,6 +11128,10 @@
   .bg-white {
     background-color: var(--color-white);
   }
+  .bg-gradient-to-t {
+    --tw-gradient-position: to top in oklab;
+    background-image: linear-gradient(var(--tw-gradient-stops));
+  }
   @layer daisyui.l1.l2 {
     .skeleton-text {
       background-clip: text;
@@ -11225,6 +11243,28 @@
       --btn-shadow: 0 0 0 0 oklch(0% 0 0/0);
     }
   }
+  .from-black\/90 {
+    --tw-gradient-from: color-mix(in srgb, #000 90%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-from: color-mix(in oklab, var(--color-black) 90%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
+  .via-black\/60 {
+    --tw-gradient-via: color-mix(in srgb, #000 60%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-via: color-mix(in oklab, var(--color-black) 60%, transparent);
+    }
+    --tw-gradient-via-stops: var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-via) var(--tw-gradient-via-position), var(--tw-gradient-to) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-via-stops);
+  }
+  .to-black\/35 {
+    --tw-gradient-to: color-mix(in srgb, #000 35%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      --tw-gradient-to: color-mix(in oklab, var(--color-black) 35%, transparent);
+    }
+    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+  }
   @layer daisyui.l1.l2 {
     @media (prefers-reduced-motion: no-preference) {
       .loading-ball {
@@ -11324,6 +11364,12 @@
   }
   .mask-circle {
     --tw-mask-radial-shape: circle;
+  }
+  .bg-cover {
+    background-size: cover;
+  }
+  .bg-center {
+    background-position: center;
   }
   @layer daisyui.l1.l2 {
     .mask-half-1 {
@@ -12263,6 +12309,9 @@
   }
   .text-cyan-400 {
     color: var(--color-cyan-400);
+  }
+  .text-error {
+    color: var(--color-error);
   }
   .text-error-content {
     color: var(--color-error-content);
@@ -16482,6 +16531,48 @@ pre .highlight {
   inherits: false;
   initial-value: solid;
 }
+@property --tw-gradient-position {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-from {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-via {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-to {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #0000;
+}
+@property --tw-gradient-stops {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-via-stops {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-gradient-from-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --tw-gradient-via-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+@property --tw-gradient-to-position {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
 @property --tw-leading {
   syntax: "*";
   inherits: false;
@@ -16701,6 +16792,15 @@ pre .highlight {
       --tw-space-y-reverse: 0;
       --tw-space-x-reverse: 0;
       --tw-border-style: solid;
+      --tw-gradient-position: initial;
+      --tw-gradient-from: #0000;
+      --tw-gradient-via: #0000;
+      --tw-gradient-to: #0000;
+      --tw-gradient-stops: initial;
+      --tw-gradient-via-stops: initial;
+      --tw-gradient-from-position: 0%;
+      --tw-gradient-via-position: 50%;
+      --tw-gradient-to-position: 100%;
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;

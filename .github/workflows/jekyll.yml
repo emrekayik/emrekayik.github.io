@@ -39,6 +39,9 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
+      - name: Generate Open Graph Images
+        run: npm run generate-og
+
       - name: Build with Jekyll
         run: bundle exec jekyll build
         env:

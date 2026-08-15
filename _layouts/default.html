@@ -26,6 +26,35 @@
         <link rel="manifest" href="{{ '/manifest.json' | relative_url }}" />
         <meta name="theme-color" content="#4ade80" />
 
+        <!-- SEO & Open Graph Meta Tags -->
+        <title>{% if page.title %}{{ page.title }} — Emre Kayık{% else %}Emre Kayık — Notlar, Yazılar & Düşünceler{% endif %}</title>
+        <meta name="title" content="{% if page.title %}{{ page.title }} — Emre Kayık{% else %}Emre Kayık — Notlar, Yazılar & Düşünceler{% endif %}" />
+        <meta name="description" content="{{ page.description | default: page.excerpt | strip_html | truncate: 160 | default: 'Emre Kayık — Kişisel blog, notlar ve düşünceler.' | escape }}" />
+
+        <meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'note' %}article{% else %}website{% endif %}" />
+        <meta property="og:url" content="{{ page.url | absolute_url }}" />
+        <meta property="og:title" content="{{ page.title | default: site.title | escape }}" />
+        <meta property="og:description" content="{{ page.description | default: page.excerpt | strip_html | truncate: 160 | default: 'Emre Kayık — Kişisel blog, notlar ve düşünceler.' | escape }}" />
+        <meta property="og:site_name" content="Emre Kayık" />
+
+        {% assign og_slug = page.slug | default: page.title | slugify %}
+        {% if page.image %}
+          <meta property="og:image" content="{{ page.image | absolute_url }}" />
+          <meta name="twitter:image" content="{{ page.image | absolute_url }}" />
+        {% elsif og_slug != "" %}
+          <meta property="og:image" content="{{ '/assets/og/' | append: og_slug | append: '.png' | absolute_url }}" />
+          <meta name="twitter:image" content="{{ '/assets/og/' | append: og_slug | append: '.png' | absolute_url }}" />
+        {% else %}
+          <meta property="og:image" content="{{ '/assets/og/default.png' | absolute_url }}" />
+          <meta name="twitter:image" content="{{ '/assets/og/default.png' | absolute_url }}" />
+        {% endif %}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@emrekayik0" />
+        <meta name="twitter:creator" content="@emrekayik0" />
+        <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}" />
+        <meta name="twitter:description" content="{{ page.description | default: page.excerpt | strip_html | truncate: 160 | default: 'Emre Kayık — Kişisel blog, notlar ve düşünceler.' | escape }}" />
+
         <!-- Analytics -->
         <meta
             name="google-site-verification"
