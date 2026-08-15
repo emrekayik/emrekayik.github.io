@@ -1,18 +1,22 @@
+# ==============================================================================
+# Site Settings & Metadata
+# ==============================================================================
 url: "https://emrekayik.github.io"
 baseurl: ""
 lang: "tr-TR"
+date_locale: tr
 
 title: "/home/emre"
 description: "projelerim, yazılarım ve daha fazlası."
+
 author:
   name: Emre Kayık
   email: emrekayik1905@gmail.com
   twitter: emrekayik0
 
-
-disqus:
-  shortname: emrekayik
-
+# ==============================================================================
+# Content Collections
+# ==============================================================================
 collections:
   projects:
     output: true
@@ -23,7 +27,13 @@ collections:
   suggestions:
     output: false
     permalink: /suggestions/:title/
+  notes:
+    output: true
+    permalink: /notlar/:title/
 
+# ==============================================================================
+# Front Matter Defaults
+# ==============================================================================
 defaults:
   - scope:
       path: ""
@@ -38,9 +48,32 @@ defaults:
       author: "Emre"
   - scope:
       path: ""
+      type: "notes"
+    values:
+      layout: "note"
+      author: "Emre"
+  - scope:
+      path: ""
     values:
       layout: "default"
 
+# ==============================================================================
+# Build & Processing Settings
+# ==============================================================================
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+highlighter: rouge
+
+reading_time:
+  words_per_minute: 250
+  minutes_per_image: 0.2
+
+# ==============================================================================
+# Plugins
+# ==============================================================================
 plugins:
   - jekyll-feed
   - jekyll-admin
@@ -49,26 +82,21 @@ plugins:
   - jekyll-seo-tag
   - jekyll-spaceship
 
-date_locale: tr
+# ==============================================================================
+# Plugin Configurations
+# ==============================================================================
+# Disqus
+disqus:
+  shortname: emrekayik
 
-
+# Jekyll Admin
 jekyll_admin:
   homepage: "posts"
   layout: "admin"
   title: "Admin Panel"
   url: "http://localhost:4000/admin"
-  # Add any other plugins you want to use here
-  # For example, if you want to use the jekyll-sitemap plugin:
 
-
-reading_time:
-  words_per_minute: 250 # Dakikada 250 kelime olarak ayarla
-  minutes_per_image: 0.2 # Her resim için 0.2 dakika (12 saniye) ekle
-
-
-highlighter: rouge
-
-# Jekyll Tailwind configuration
+# Tailwind CSS & PostCSS
 tailwind:
   input: assets/css/tailwind.css
   output: assets/css/app.css
@@ -76,34 +104,8 @@ tailwind:
 postcss:
   cache: false
 
-markdown: kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
-
-
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-  - LICENSE
-  - .gitignore
-  - .github
-  - .jekyll-cache
-  - .jekyll-metadata
-  - .sass-cache
-  - .vscode
-  - .DS_Store
-  - .idea
-  - .env
-  - package.json
-  - package-lock.json
-  - tailwind.config.js
-  - assets/css/tailwind.css
-
-# Where things are
+# Jekyll Spaceship
 jekyll-spaceship:
-  # default enabled processors
   processors:
     - table-processor
     - mathjax-processor
@@ -127,12 +129,12 @@ jekyll-spaceship:
           - ['\[','\]']
       svg:
         fontCache: 'global'
-    optimize: # optimization on building stage to check and add mathjax scripts
-      enabled: true # value `false` for adding to all pages
-      include: []   # include patterns for math expressions checking (regexp)
-      exclude: []   # exclude patterns for math expressions checking (regexp)
+    optimize:
+      enabled: true
+      include: []
+      exclude: []
   plantuml-processor:
-    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    mode: default
     css:
       class: plantuml
     syntax:
@@ -140,7 +142,7 @@ jekyll-spaceship:
       custom: ['@startuml', '@enduml']
     src: http://www.plantuml.com/plantuml/svg/
   mermaid-processor:
-    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    mode: default
     css:
       class: mermaid
     syntax:
@@ -162,3 +164,25 @@ jekyll-spaceship:
     css:
       class: emoji
     src: https://github.githubassets.com/images/icons/emoji/
+
+# ==============================================================================
+# Exclude Files & Directories
+# ==============================================================================
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - .gitignore
+  - .github
+  - .jekyll-cache
+  - .jekyll-metadata
+  - .sass-cache
+  - .vscode
+  - .DS_Store
+  - .idea
+  - .env
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - assets/css/tailwind.css

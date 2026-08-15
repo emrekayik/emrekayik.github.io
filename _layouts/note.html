@@ -1,0 +1,191 @@
+---
+layout: default
+---
+
+<div class="w-full flex flex-col items-center justify-center px-4 py-4 md:py-6">
+  <article
+    class="w-full max-w-2xl mx-auto prose prose-neutral dark:prose-invert prose-sm sm:prose-base font-['Lora',serif] leading-relaxed"
+  >
+    <!-- Breadcrumb & Category -->
+    <div
+      class="flex items-center gap-2 text-xs font-sans opacity-50 mb-3 not-prose"
+    >
+      <a
+        href="{{ '/notlar/' | relative_url }}"
+        class="hover:opacity-100 transition-opacity flex items-center gap-1"
+      >
+        <i class="ai-arrow-left text-xs"></i> Notlar
+      </a>
+      {% if page.category %}
+      <span>•</span>
+      <span class="uppercase tracking-wider font-mono text-[10px]"
+        >{{ page.category }}</span
+      >
+      {% endif %}
+    </div>
+
+    <!-- Minimal Title -->
+    <h1
+      class="text-2xl md:text-3xl font-extrabold tracking-tight mb-3 text-base-content not-prose font-sans leading-tight"
+    >
+      {{ page.title }}
+    </h1>
+
+    <!-- Minimal Metadata Line -->
+    <div
+      class="flex items-center gap-3 text-xs font-sans text-base-content/50 mb-6 not-prose border-b border-base-200 pb-3"
+    >
+      <time>{{ page.date | localize: '%-d %B %Y' }}</time>
+      {% if page.reading_time %}
+      <span>•</span>
+      <span>{{ page.reading_time }} dk okuma</span>
+      {% endif %} {% if page.last_modified_at %}
+      <span>•</span>
+      <span
+        >Güncellendi: {{ page.last_modified_at | localize: '%-d %B %Y' }}</span
+      >
+      {% endif %}
+    </div>
+
+    <!-- Description / Lead -->
+    {% if page.description %}
+    <p
+      class="text-base text-base-content/75 italic border-l-2 border-primary/50 pl-4 py-1 my-5 not-prose font-serif"
+    >
+      {{ page.description }}
+    </p>
+    {% endif %}
+
+    <!-- Note Content -->
+    <div class="note-body">{{ content }}</div>
+
+    <!-- Sources & References -->
+    {% if page.sources %} {% assign valid_sources = "" | split: "" %} {% for src
+    in page.sources %} {% if src.title and src.title != "" %} {% assign
+    valid_sources = valid_sources | push: src %} {% endif %} {% endfor %} {% if
+    valid_sources.size > 0 %}
+    <div class="mt-8 pt-4 border-t border-base-200 not-prose font-sans text-xs">
+      <h2
+        class="text-lg font-mono uppercase tracking-widest text-base-content/50 mb-2 font-semibold"
+      >
+        Kaynaklar & Referanslar
+      </h2>
+      <ul class="space-y-1 list-inside list-disc text-base-content/70">
+        {% for source in valid_sources %}
+        <li class="marker:text-base-content/30">
+          {% if source.url and source.url != "" %} {% assign first_four =
+          source.url | slice: 0, 4 %} {% if first_four == 'http' %}
+          <a
+            href="{{ source.url }}"
+            class="hover:underline text-primary/90 inline-flex items-center gap-1"
+            target="_blank"
+            rel="noopener"
+          >
+            <span>{{ source.title }}</span>
+            <i class="ai-arrow-up-right text-[10px] opacity-60"></i>
+          </a>
+          {% else %}
+          <a
+            href="{{ source.url | relative_url }}"
+            class="hover:underline text-primary/90 inline-flex items-center gap-1"
+          >
+            <span>{{ source.title }}</span>
+            <span class="text-[10px] font-mono opacity-50">(Dahili Not)</span>
+          </a>
+          {% endif %} {% else %}
+          <span>{{ source.title }}</span>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %} {% endif %}
+
+    <!-- Related Internal Notes -->
+    {% if page.related_notes %} {% assign valid_related = "" | split: "" %} {%
+    for rnote in page.related_notes %} {% if rnote and rnote != "" %} {% assign
+    valid_related = valid_related | push: rnote %} {% endif %} {% endfor %} {%
+    if valid_related.size > 0 %}
+    <div class="mt-6 pt-4 border-t border-base-200 not-prose font-sans text-xs">
+      <h2
+        class="text-[11px] font-mono uppercase tracking-widest text-base-content/50 mb-2 font-semibold flex items-center gap-1"
+      >
+        <i class="ai-link text-[10px] text-primary/70"></i> Atıfta Bulunulan
+        Notlarım
+      </h2>
+      <div class="flex flex-col gap-1">
+        {% for note_ref in valid_related %} {% assign ref_clean = note_ref |
+        remove_first: '_notes/' | remove_first: '.md' | remove_first: '/notlar/'
+        | remove_first: '/' %} {% assign matched_note = site.notes | where:
+        "slug", ref_clean | first %} {% if matched_note == nil %} {% assign
+        matched_note = site.notes | where: "title", note_ref | first %} {% endif
+        %} {% if matched_note %}
+        <a
+          href="{{ matched_note.url | relative_url }}"
+          class="inline-flex items-center justify-between py-1 text-xs text-base-content/80 hover:text-primary transition-colors group"
+        >
+          <div class="flex items-center gap-1.5">
+            <i
+              class="ai-file text-[11px] text-base-content/40 group-hover:text-primary"
+            ></i>
+            <span class="font-medium underline-offset-2 group-hover:underline"
+              >{{ matched_note.title }}</span
+            >
+          </div>
+          <time class="text-[10px] font-mono opacity-40"
+            >{{ matched_note.date | localize: '%-d %B %Y' }}</time
+          >
+        </a>
+        {% else %}
+        <a
+          href="{{ note_ref | relative_url }}"
+          class="inline-flex items-center gap-1 py-0.5 text-xs text-primary/90 hover:underline"
+        >
+          <i class="ai-file text-[10px]"></i>
+          <span>{{ note_ref }}</span>
+        </a>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+    {% endif %} {% endif %}
+
+    <!-- Tags -->
+    {% if page.tags %} {% assign valid_tags = "" | split: "" %} {% for tg in
+    page.tags %} {% if tg and tg != "" %} {% assign valid_tags = valid_tags |
+    push: tg %} {% endif %} {% endfor %} {% if valid_tags.size > 0 %}
+    <div class="flex flex-wrap gap-2 mt-6 not-prose">
+      {% for tag in valid_tags %}
+      <span
+        class="text-[11px] font-mono opacity-40 hover:opacity-100 transition-opacity"
+        >#{{ tag }}</span
+      >
+      {% endfor %}
+    </div>
+    {% endif %} {% endif %}
+  </article>
+
+  <!-- Navigation -->
+  <div
+    class="flex justify-between items-center w-full max-w-2xl mx-auto mt-10 pt-6 border-t border-base-200 text-xs font-sans"
+  >
+    {% if page.previous %}
+    <a
+      href="{{ page.previous.url }}"
+      class="flex items-center gap-1.5 text-base-content/60 hover:text-primary transition-colors"
+    >
+      <i class="ai-arrow-left"></i>
+      <span>{{ page.previous.title | truncate: 35 }}</span>
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %} {% if page.next %}
+    <a
+      href="{{ page.next.url }}"
+      class="flex items-center gap-1.5 text-base-content/60 hover:text-primary transition-colors"
+    >
+      <span>{{ page.next.title | truncate: 35 }}</span>
+      <i class="ai-arrow-right"></i>
+    </a>
+    {% endif %}
+  </div>
+</div>

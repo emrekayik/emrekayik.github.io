@@ -1,0 +1,217 @@
+---
+layout: default
+title: Notlar
+permalink: /notlar/
+---
+
+<div class="max-w-4xl mx-auto">
+  <article class="prose w-full mx-auto">
+    <h2 class="flex justify-between items-center group">
+      <span>Notlarım</span>
+    </h2>
+    <p>
+      Kişisel araştırmalarım, fikirlerim ve sorgulamalarım üzerine bir düşünce
+      alanı. Edebiyat, felsefe ve psikoloji ekseninde insanı ve hayatı anlama
+      denemeleri.
+    </p>
+  </article>
+
+  <!-- Filter Section -->
+  {% assign all_tags = site.notes | map: 'tags' | flatten | uniq | sort %}
+  {% if all_tags.size > 0 %}
+  <div
+    class="mb-6 sticky top-14 md:top-16 z-30 bg-base-100/80 backdrop-blur-md py-3 border-b border-base-300 flex items-center justify-between mt-6"
+  >
+    <div class="flex overflow-x-auto gap-2 no-scrollbar touch-pan-x">
+      <button
+        class="btn btn-xs tag-btn btn-primary rounded-full whitespace-nowrap px-4"
+        data-tag=""
+      >
+        Tümü
+      </button>
+      {% for tag in all_tags %}
+      <button
+        class="btn btn-xs tag-btn btn-ghost border border-base-300 hover:bg-primary/10 hover:text-primary transition-all rounded-full whitespace-nowrap px-3"
+        data-tag="{{ tag }}"
+      >
+        #{{ tag }}
+      </button>
+      {% endfor %}
+    </div>
+    <div
+      id="filter-stats"
+      class="text-[10px] font-mono opacity-40 ml-4 hidden md:flex items-center"
+    >
+      <span id="active-filter-count">TÜMÜ</span>
+      <span id="visible-item-count" class="font-bold text-primary ml-1"></span>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Note List -->
+  <div id="note-list" class="grid grid-cols-1 gap-3 mt-6">
+    {% assign sorted_notes = site.notes | reverse %}
+    {% for note in sorted_notes %}
+    {% assign item_tags = note.tags | default: "" %}
+    <a
+      href="{{ note.url | relative_url }}"
+      class="flex flex-col gap-2 p-4 rounded-xl bg-base-100 border border-base-300 hover:border-primary/50 hover:shadow-lg transition-all group note-item"
+      data-tags="{{ item_tags | join: ' ' }}"
+    >
+      <div class="flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="font-bold text-base-content group-hover:text-primary transition-colors">
+            {{ note.title }}
+          </span>
+          {% if note.category %}
+          <span class="badge badge-xs badge-outline opacity-75">{{ note.category }}</span>
+          {% endif %}
+        </div>
+        <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity text-nowrap">
+          {{ note.date | localize: '%-d %B %Y' }}
+        </time>
+      </div>
+      {% if note.description %}
+      <p class="text-sm opacity-70 line-clamp-2 m-0 font-sans">
+        {{ note.description }}
+      </p>
+      {% endif %}
+      {% if note.tags %}
+      <div class="flex flex-wrap gap-1 mt-1">
+        {% for tag in note.tags %}
+        <span class="badge badge-ghost badge-xs text-[10px]">#{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+
+  <!-- Empty State -->
+  <div
+    id="empty-state"
+    class="hidden py-16 text-center space-y-4 bg-base-100/50 rounded-3xl border-2 border-dashed border-base-300 mt-6"
+  >
+    <div class="text-4xl animate-bounce">🔍</div>
+    <div>
+      <h3 class="text-lg font-black opacity-80 mb-1">
+        Sonuç Bulunamadı
+      </h3>
+      <p class="text-xs opacity-50 max-w-xs mx-auto">
+        Seçtiğiniz etiket kombinasyonuna uygun bir not bulunmuyor.
+      </p>
+    </div>
+    <button
+      onclick="resetFilters()"
+      class="btn btn-primary btn-xs rounded-full px-6"
+    >
+      Filtreleri Temizle
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".tag-btn");
+    const cards = document.querySelectorAll(".note-item");
+    const emptyState = document.getElementById("empty-state");
+    const visibleCountSpan = document.getElementById("visible-item-count");
+    const activeFilterSpan = document.getElementById("active-filter-count");
+
+    const selectedTags = new Set();
+
+    window.resetFilters = () => {
+      selectedTags.clear();
+      updateUI();
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const tag = btn.dataset.tag;
+
+        if (tag === "") {
+          selectedTags.clear();
+        } else {
+          if (selectedTags.has(tag)) {
+            selectedTags.delete(tag);
+          } else {
+            selectedTags.add(tag);
+          }
+        }
+        updateUI();
+      });
+    });
+
+    function updateUI() {
+      let visibleCount = 0;
+
+      buttons.forEach((b) => {
+        const tag = b.dataset.tag;
+        if (tag === "") {
+          b.classList.toggle("btn-primary", selectedTags.size === 0);
+          b.classList.toggle("btn-ghost", selectedTags.size !== 0);
+        } else {
+          const isActive = selectedTags.has(tag);
+          b.classList.toggle("btn-primary", isActive);
+          b.classList.toggle("btn-ghost", !isActive);
+        }
+      });
+
+      cards.forEach((card) => {
+        const cardTags = card.dataset.tags.split(" ").filter((t) => t);
+        let show = true;
+
+        if (selectedTags.size > 0) {
+          show = [...selectedTags].every((tag) =>
+            cardTags.includes(tag),
+          );
+        }
+
+        card.classList.toggle("hidden", !show);
+        if (show) {
+          visibleCount++;
+          card.style.animation = "none";
+          card.offsetHeight;
+          card.style.animation =
+            "fadeIn 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards";
+        }
+      });
+
+      if (visibleCountSpan) visibleCountSpan.textContent = `${visibleCount} NOT`;
+      if (activeFilterSpan) {
+        activeFilterSpan.textContent =
+          selectedTags.size > 0
+            ? `${selectedTags.size} AKTİF`
+            : "TÜMÜ GÖSTERİLİYOR";
+      }
+
+      if (emptyState) emptyState.classList.toggle("hidden", visibleCount > 0);
+      const noteList = document.getElementById("note-list");
+      if (noteList) noteList.classList.toggle("hidden", visibleCount === 0);
+    }
+
+    updateUI();
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
