@@ -41,20 +41,14 @@ function cleanText(str) {
     .trim();
 }
 
-function slugify(text) {
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/ğ/g, "g")
-    .replace(/ü/g, "u")
-    .replace(/ş/g, "s")
-    .replace(/ı/g, "i")
-    .replace(/ö/g, "o")
-    .replace(/ç/g, "c")
-    .replace(/[^a-z0-9 -]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
+function getJekyllSlug(filePath, data) {
+  if (data && data.slug) return data.slug;
+  const basename = path.basename(filePath, path.extname(filePath));
+  const postMatch = basename.match(/^\d{4}-\d{2}-\d{2}-(.*)$/);
+  if (postMatch) {
+    return postMatch[1];
+  }
+  return basename;
 }
 
 function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2) {
@@ -254,7 +248,7 @@ function processFiles(dir, defaultBadge) {
             : data.layout === "post"
               ? "YAZI"
               : defaultBadge;
-        const slug = data.slug || slugify(title);
+        const slug = getJekyllSlug(fullPath, data);
 
         generateOgImage({ title, description, date, badge, slug });
       }
@@ -278,7 +272,7 @@ function processRootDir() {
           "Emre Kayık — Kişisel web sitesi, notlar ve projeler.";
         const date = "2026";
         const badge = "SAYFA";
-        const slug = path.basename(file, path.extname(file));
+        const slug = getJekyllSlug(fullPath, data);
 
         if (slug === "index") {
           generateOgImage({
@@ -313,6 +307,4 @@ processFiles(path.join(process.cwd(), "_projects"), "PROJE");
 // Process root pages
 processRootDir();
 
-console.log(
-  "All OG Images regenerated with full Google Fonts Roboto TTF binary!",
-);
+console.log("All OG Images generated with 100% Jekyll slug alignment!");

@@ -37,11 +37,18 @@
         <meta property="og:description" content="{{ page.description | default: page.excerpt | strip_html | truncate: 160 | default: 'Emre Kayık — Kişisel blog, notlar ve düşünceler.' | escape }}" />
         <meta property="og:site_name" content="Emre Kayık" />
 
-        {% assign og_slug = page.slug | default: page.title | slugify %}
+        {% assign og_slug = page.slug %}
+        {% if page.url == '/' or page.url == '/index.html' %}
+          {% assign og_slug = 'index' %}
+        {% endif %}
+        {% if og_slug == nil or og_slug == "" %}
+          {% assign og_slug = page.title | slugify %}
+        {% endif %}
+
         {% if page.image %}
           <meta property="og:image" content="{{ page.image | absolute_url }}" />
           <meta name="twitter:image" content="{{ page.image | absolute_url }}" />
-        {% elsif og_slug != "" %}
+        {% elsif og_slug and og_slug != "" %}
           <meta property="og:image" content="{{ '/assets/og/' | append: og_slug | append: '.png' | absolute_url }}" />
           <meta name="twitter:image" content="{{ '/assets/og/' | append: og_slug | append: '.png' | absolute_url }}" />
         {% else %}
