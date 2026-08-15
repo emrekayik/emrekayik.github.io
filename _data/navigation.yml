@@ -16,3 +16,6 @@
 - name: Özgeçmiş
   link: /ozgecmis
   icon: ai-newspaper
+- name: Notlar
+  link: /notlar
+  icon: ai
