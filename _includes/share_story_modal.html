@@ -244,7 +244,7 @@ badge_type = "NOT" %} {% endif %}
           id="story-card-footer"
           class="pt-2 border-t border-current/15 flex items-center justify-between text-[10px] font-mono opacity-60 not-prose z-10 relative"
         >
-          <span>{{ page.date | localize: '%-d %B %Y' }}</span>
+          <span>{% if page.date %}{{ page.date | localize: '%-d %B %Y' }}{% else %}{{ site.time | localize: '%-d %B %Y' }}{% endif %}</span>
           <span id="story-handle" style="color: #4ade80" class="font-semibold"
             >@emrekayik0</span
           >

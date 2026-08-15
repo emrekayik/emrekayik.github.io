@@ -97,11 +97,13 @@ title: "Merhaba, ben Emre Kayık"
                     class="font-bold text-base-content group-hover:text-secondary transition-colors"
                     >{{ item.title }}</span
                 >
+                {% if item.created %}
                 <time
                     class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
                     >{{ item.created | date: "%b %d, %y" | localize: '%-d %B %Y'
                     }}</time
                 >
+                {% endif %}
             </div>
             <div class="flex flex-col gap-2">
                 <span

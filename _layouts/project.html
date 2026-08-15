@@ -6,8 +6,9 @@ layout: default
     <article class="prose lg:prose-lg prose-neutral dark:prose-invert max-w-4xl w-full">
         <h1 class="text-primary">{{ page.title }}</h1>
 
-        <div class="text-sm flex items-center gap-2 mb-2">
+            {% if page.date %}
             <span class="badge badge-outline">{{ page.date | localize: '%-d %B %Y' }}</span>
+            {% endif %}
             {% if page.last_modified_at %}
             <span class="badge badge-outline badge-secondary">
                 Son Güncelleme: {{ page.last_modified_at | localize: '%-d %B %Y' }}

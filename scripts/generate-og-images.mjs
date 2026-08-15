@@ -41,14 +41,31 @@ function cleanText(str) {
     .trim();
 }
 
+function slugify(text) {
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/ğ/g, "g")
+    .replace(/ü/g, "u")
+    .replace(/ş/g, "s")
+    .replace(/ı/g, "i")
+    .replace(/ö/g, "o")
+    .replace(/ç/g, "c")
+    .replace(/[^a-z0-9 -]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 function getJekyllSlug(filePath, data) {
-  if (data && data.slug) return data.slug;
   const basename = path.basename(filePath, path.extname(filePath));
   const postMatch = basename.match(/^\d{4}-\d{2}-\d{2}-(.*)$/);
   if (postMatch) {
-    return postMatch[1];
+    return slugify(postMatch[1]);
   }
-  return basename;
+  if (data && data.slug) return slugify(data.slug);
+  if (data && data.title) return slugify(data.title);
+  return slugify(basename);
 }
 
 function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2) {
@@ -272,9 +289,10 @@ function processRootDir() {
           "Emre Kayık — Kişisel web sitesi, notlar ve projeler.";
         const date = "2026";
         const badge = "SAYFA";
+        const rawSlug = path.basename(file, path.extname(file));
         const slug = getJekyllSlug(fullPath, data);
 
-        if (slug === "index") {
+        if (rawSlug === "index") {
           generateOgImage({
             title: "Emre Kayık — Notlar, Yazılar & Düşünceler",
             description: "Yazılım, teknoloji ve kişisel notlar.",
@@ -282,9 +300,16 @@ function processRootDir() {
             badge: "SİTE",
             slug: "default",
           });
+          generateOgImage({
+            title: "Emre Kayık — Notlar, Yazılar & Düşünceler",
+            description: "Yazılım, teknoloji ve kişisel notlar.",
+            date,
+            badge: "SİTE",
+            slug: "index",
+          });
+        } else {
+          generateOgImage({ title, description, date, badge, slug });
         }
-
-        generateOgImage({ title, description, date, badge, slug });
       }
     }
   }
