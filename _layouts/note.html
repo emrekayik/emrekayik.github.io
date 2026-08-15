@@ -162,11 +162,14 @@ layout: default
       {% endfor %}
     </div>
     {% endif %} {% endif %}
+
+    <!-- Social Share Component -->
+    {% include share_story_modal.html %}
   </article>
 
   <!-- Navigation -->
   <div
-    class="flex justify-between items-center w-full max-w-2xl mx-auto mt-10 pt-6 border-t border-base-200 text-xs font-sans"
+    class="flex justify-between items-center w-full max-w-2xl mx-auto mt-8 pt-6 border-t border-base-200 text-xs font-sans"
   >
     {% if page.previous %}
     <a
@@ -189,3 +192,4 @@ layout: default
     {% endif %}
   </div>
 </div>
+
