@@ -37,21 +37,15 @@
         <meta property="og:description" content="{{ page.description | default: page.excerpt | strip_html | truncate: 160 | default: 'Emre Kayık — Kişisel blog, notlar ve düşünceler.' | escape }}" />
         <meta property="og:site_name" content="Emre Kayık" />
 
-        {% assign og_slug = page.slug | default: page.title | slugify: 'latin' %}
-        {% if page.url == '/' or page.url == '/index.html' %}
-          {% assign og_slug = 'index' %}
-        {% endif %}
-
-        {% if page.image %}
-          <meta property="og:image" content="{{ page.image | absolute_url }}" />
-          <meta name="twitter:image" content="{{ page.image | absolute_url }}" />
-        {% elsif og_slug and og_slug != "" %}
-          <meta property="og:image" content="{{ '/assets/og/' | append: og_slug | append: '.png' | absolute_url }}" />
-          <meta name="twitter:image" content="{{ '/assets/og/' | append: og_slug | append: '.png' | absolute_url }}" />
+        {% assign og_img = page.image.path | default: page.image %}
+        {% if og_img and og_img != "" %}
+          <meta property="og:image" content="{{ og_img | absolute_url }}" />
+          <meta name="twitter:image" content="{{ og_img | absolute_url }}" />
         {% else %}
           <meta property="og:image" content="{{ '/assets/og/default.png' | absolute_url }}" />
           <meta name="twitter:image" content="{{ '/assets/og/default.png' | absolute_url }}" />
         {% endif %}
+
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@emrekayik0" />

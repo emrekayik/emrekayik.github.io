@@ -81,6 +81,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-spaceship
+  - jekyll-og-image
 
 # ==============================================================================
 # Plugin Configurations
@@ -103,6 +104,30 @@ tailwind:
 
 postcss:
   cache: false
+
+# jekyll-og-image
+og_image:
+  collections:
+    - posts
+    - projects
+    - notes
+    - pages
+  output_dir: "assets/images/og"
+  force: false
+  canvas:
+    background_color: "#0f172a"
+    width: 1200
+    height: 600
+  header:
+    font_family: "Inter, Bold"
+    color: "#ffffff"
+  metadata:
+    fields:
+      - date
+      - author
+    separator: " • "
+    date_format: "%d.%m.%Y"
+
 
 # Jekyll Spaceship
 jekyll-spaceship:
