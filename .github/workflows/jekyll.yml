@@ -24,23 +24,20 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2' # veya senin `.ruby-version` dosyana uygun versiyon
+          ruby-version: "3.2" # veya senin `.ruby-version` dosyana uygun versiyon
           bundler-cache: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: "18"
+          cache: "npm"
 
       - name: Install Ruby dependencies
         run: bundle install
 
       - name: Install NPM dependencies
         run: npm install
-
-      - name: Generate Open Graph Images
-        run: npm run generate-og
 
       - name: Build with Jekyll
         run: bundle exec jekyll build
@@ -55,7 +52,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './_site'
+          path: "./_site"
 
   deploy:
     environment:
