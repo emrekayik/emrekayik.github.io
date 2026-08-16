@@ -21,6 +21,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install libvips
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --fix-missing libvips
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
