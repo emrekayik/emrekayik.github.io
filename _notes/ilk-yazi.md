@@ -21,35 +21,3 @@ Eskiden çok fazla yaptığım bir alışkanlığımı da bu yazılar sayesinde 
 > Bunların sadece kendime notlar olduğunu unutmayın
 
 Yazılarım için takipte kalın! 😊
-
-![](http://open.spotify.com/track/4Dg5moVCTqxAb7Wr8Dq2T5)
-
-![](https://www.youtube.com/watch?v=Ptk_1Dc2iPY)
-
-# Hybrid HTML with Markdown is a not bad choice ^\_^
-
-## Table Usage
-
-| denem | 1   | 2   |
-| ----- | --- | --- |
-| sa    | as  | sa  |
-| sa    | as  | sa  |
-
-## PlantUML Usage
-
-@startuml
-Bob -> Alice : hello
-@enduml
-
-```mermaid!
-pie title Pets adopted by volunteers
-  "Dogs" : 386
-  "Cats" : 85
-  "Rats" : 35
-```
-
-$ \int_a^b f(x)\,dx $
-
-## Video Usage
-
-![](https://www.youtube.com/watch?v=Ptk_1Dc2iPY)

@@ -1,22 +1,28 @@
 <div class="breadcrumbs text-xs md:text-sm overflow-hidden">
-    <ul class="flex items-center">
-        <li class="flex items-center gap-1">
-            <a href="{{ '/' | relative_url }}" class="flex items-center gap-1">
-                <i class="ai-sparkles text-primary"></i>
-                <span class="hidden xs:inline">Ana Sayfa</span>
-            </a>
-        </li>
-        {% if page.collection == 'posts' %}
-        <li>
-            <a href="{{ '/blog/' | relative_url }}">Blog</a>
-        </li>
-        {% elsif page.collection == 'projects' %}
-        <li>
-            <a href="{{ '/projeler/' | relative_url }}">Projeler</a>
-        </li>
-        {% endif %}
-        <li class="opacity-50 truncate max-w-[80px] xs:max-w-[150px] md:max-w-[300px]">
-            {{ page.title }}
-        </li>
-    </ul>
+  <ul class="flex items-center">
+    <li class="flex items-center gap-1">
+      <a href="{{ '/' | relative_url }}" class="flex items-center gap-1">
+        <i class="ai-sparkles text-primary"></i>
+        <span class="hidden xs:inline">Ana Sayfa</span>
+      </a>
+    </li>
+    {% if page.collection == 'posts' %}
+    <li>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+    </li>
+    {% elsif page.collection == 'projects' %}
+    <li>
+      <a href="{{ '/projeler/' | relative_url }}">Projeler</a>
+    </li>
+    {% elsif page.collection == 'notes' %}
+    <li>
+      <a href="{{ '/notlar/' | relative_url }}">Notlar</a>
+    </li>
+    {% endif %}
+    <li
+      class="opacity-50 truncate max-w-[80px] xs:max-w-[150px] md:max-w-[300px]"
+    >
+      {{ page.title }}
+    </li>
+  </ul>
 </div>

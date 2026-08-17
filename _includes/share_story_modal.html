@@ -288,12 +288,21 @@ badge_type = "NOT" %} {% endif %}
     }
     updateStoryQuote();
 
-    {% if page.image %}
-      const defaultImg = "{{ page.image | relative_url }}";
-      if (defaultImg && defaultImg.trim().length > 0) {
-        setStoryBackgroundImage(defaultImg);
-      }
-    {% endif %}
+    {% assign story_og_img = page.image.path | default: page.image %}
+    {% unless story_og_img and story_og_img != "" %}
+      {% assign page_col = page.collection | default: "pages" %}
+      {% assign page_slug = page.slug | default: page.title | slugify: "latin" %}
+      {% if page.url == "/" or page.url == "/index.html" %}
+        {% assign page_slug = "index" %}
+      {% endif %}
+      {% assign story_og_img = "/assets/images/og/" | append: page_col | append: "/" | append: page_slug | append: ".png" %}
+    {% endunless %}
+
+    const defaultImg = "{{ story_og_img | relative_url }}";
+    if (defaultImg && defaultImg.trim().length > 0) {
+      setStoryBackgroundImage(defaultImg);
+    }
+
 
     modal.showModal();
   }

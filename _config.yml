@@ -153,15 +153,6 @@ og_image:
       - "#3b82f6"
       - "#8b5cf6"
       - "#ec4899"
-  # image:
-  #   path: "assets/icons/apple-touch-icon.png"
-  #   width: 100
-  #   height: 100
-  #   radius: 20
-  #   position:
-  #     x: 80
-  #     y: 80
-  #   gravity: "ne"
   image:
     path: "/assets/icons/apple-touch-icon.png"
   metadata:
