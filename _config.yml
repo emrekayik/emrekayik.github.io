@@ -119,6 +119,7 @@ jekyll_admin:
 tailwind:
   input: assets/css/tailwind.css
   output: assets/css/app.css
+  minify: true
 
 postcss:
   cache: false
