@@ -140,29 +140,36 @@ head: <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/
             {% endfor %}
         </div>
     </section>
-</div>
-
-<!--
-
-    <aside class="cv-sidebar">
-        <section class="cv-section" id="contact">
-            <h2>İletişim</h2>
-            <ul>
-                <li><strong>Email:</strong> {{ site.data.cv.contact.email }}</li>
-                <li><strong>Website:</strong> <a href="{{ site.data.cv.contact.website }}">{{ site.data.cv.contact.website }}</a></li>
-                <li><strong>LinkedIn:</strong> <a href="{{ site.data.cv.contact.linkedin }}">/in/emrekayik</a>
-                </li>
-                <li><strong>GitHub:</strong> <a href="{{ site.data.cv.contact.github }}">/emrekayik</a></li>
-            </ul>
-        </section>
-
-        <section class="cv-section" id="projects">
+    <section class="flex flex-col gap-y-5 md:flex-row md:gap-y-0">
+        <div class="text-xl font-semibold md:w-1/4 intersect:motion-preset-slide-right">
             <h2>Projeler</h2>
-            <ul>
-                {% for project in site.data.cv.projects %}
-                <li><a href="{{ project.link }}">{{ project.name }}</a></li>
-                {% endfor %}
-            </ul>
-        </section>
-    </aside>
-    -->
+        </div>
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-3 md:w-3/4">
+            {% for item in site.data.cv.projects %}
+            <div class="relative rounded-2xl border border-border bg-primary-foreground p-4 intersect:motion-preset-slide-up flex flex-col justify-between hover:border-primary/50 transition-all group">
+                <div class="flex flex-col gap-y-1.5">
+                    <div class="flex items-center justify-between gap-2">
+                        <h1 class="text-lg font-medium group-hover:text-primary transition-colors">{{ item.name }}</h1>
+                        {% if item.link %}
+                        <a href="{{ item.link }}" target="_blank" rel="noopener" class="opacity-40 hover:opacity-100 hover:text-primary transition-opacity text-sm shrink-0" title="Projeyi İncele">
+                            <i class="ph ph-arrow-up-right"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <p class="text-sm text-muted-foreground leading-relaxed">
+                        {{ item.description }}
+                    </p>
+                </div>
+                {% if item.link %}
+                <div class="mt-3 pt-2 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
+                    <a href="{{ item.link }}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-primary transition-colors truncate max-w-full">
+                        <i class="ph ph-link-simple"></i>
+                        <span class="truncate">{{ item.link | replace: 'https://', '' | replace: 'http://', '' }}</span>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>

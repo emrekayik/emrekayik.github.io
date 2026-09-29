@@ -153,18 +153,50 @@ skills:
       - "Almanca (A1)"
 
 projects:
-  - name: Personal Web Site
-    description: "This site is built with Jekyll and Tailwind CSS."
-    link: https://emrekayik.github.io
-
   - name: needle_tr
-    description: "Türkçe Araç Çağırıcı ve İnce Ayar Sistemi**(Turkish Tool Calling & Fine-Tuning System)"
-    link: https://github.com/emrekayik/needle_tr
+    description: "Türkçe Araç Çağırıcı ve İnce Ayar Sistemi (Turkish Tool Calling & Fine-Tuning System)."
+    link: https://github.com/emrekayik/needle-tr
 
-  - name: Nootle
-    description: "Your personal productivity assistant."
-    link: https://emrekayik.github.io/nootle
+  - name: orbitsync
+    description: "Next.js ve Evolu ile geliştirilmiş, yerel öncelikli (local-first) kod parçacığı yöneticisi."
+    link: https://github.com/emrekayik/orbitsync
 
   - name: Moviek
-    description: "Hybrid movie recommendation system"
+    description: "LightFM ve Streamlit ile geliştirilmiş hibrit film öneri sistemi."
     link: https://github.com/emrekayik/moviek
+
+  - name: MORSEK
+    description: "Nim diliyle geliştirilmiş, bit-packing teknikleri kullanan yüksek performanslı Mors kodu ağ protokolü (M-NET)."
+    link: https://github.com/emrekayik/morsek
+
+  - name: Hoplist
+    description: "Next.js, Tiptap ve Excalidraw entegrasyonlu, zengin içerikli yerel öncelikli not alma uygulaması."
+    link: https://github.com/emrekayik/hoplist
+
+  - name: Süt Üretimi İstatistikleri
+    description: "TÜİK verilerini Recharts ve shadcn/ui ile görselleştiren interaktif tarım ve hayvancılık veri analizi platformu."
+    link: https://github.com/emrekayik/sut-uretimi
+
+  - name: ekos
+    description: "Rust diliyle sıfırdan yazılmış, x86 mimarisini hedefleyen deneysel işletim sistemi çekirdeği."
+    link: https://github.com/emrekayik/ekos
+
+  - name: Matematek
+    description: "mathjs ve Next.js tabanlı, türev ve matematiksel hesaplamaları sunan hafif API servisi."
+    link: https://github.com/emrekayik/matematek
+
+  - name: Lugat
+    description: "Next.js ile TDK verilerini sorgulayan modern çevrimiçi Türkçe sözlük uygulaması."
+    link: https://github.com/emrekayik/lugat
+
+  - name: SihirEK
+    description: "Matematiksel problem çözümünü temel alan React ve React Native web/mobil sayı tahmin uygulaması."
+    link: https://github.com/emrekayik/sihirek-web
+
+  - name: Personal Web Site
+    description: "Jekyll ve Tailwind CSS ile geliştirilmiş kişisel blog ve portfolyo web sitesi."
+    link: https://emrekayik.github.io
+
+  - name: Nootle
+    description: "Kişisel üretkenlik ve not asistanı uygulaması."
+    link: https://emrekayik.github.io/nootle
