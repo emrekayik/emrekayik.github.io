@@ -1,30 +1,54 @@
 github:
-    icon: "ai-github-fill"
-    prefix: "https://github.com/"
-linkedin:
-    icon: "ai-linkedin-fill"
-    prefix: "https://www.linkedin.com/in/"
-instagram:
-    icon: "ai-instagram-fill"
-    prefix: "https://instagram.com/"
+  name: "GitHub"
+  handle: "@emrekayik"
+  url: "https://github.com/emrekayik"
+  icon: "ai-github-fill"
+  prefix: "https://github.com/"
+
 x:
-    icon: "ai-x-fill"
-    prefix: "https://x.com/"
-mail:
-    icon: "ai-envelope"
-    prefix: "mailto:"
-location:
-    icon: "ai-location"
-    prefix: ""
+  name: "X"
+  handle: "@emrekayik0"
+  url: "https://x.com/emrekayik0"
+  icon: "ai-x-fill"
+  prefix: "https://x.com/"
+
+linkedin:
+  name: "LinkedIn"
+  handle: "in/emrekayik"
+  url: "https://www.linkedin.com/in/emrekayik"
+  icon: "ai-linkedin-fill"
+  prefix: "https://www.linkedin.com/in/"
+
+instagram:
+  name: "Instagram"
+  handle: "@emrekayik0"
+  url: "https://instagram.com/emrekayik0"
+  icon: "ai-instagram-fill"
+  prefix: "https://instagram.com/"
+
 web:
-    icon: "ai-globe"
-    prefix: ""
+  name: "Kişisel Web Sitem"
+  handle: "emrekayik.github.io"
+  url: "/"
+  icon: "ai-globe"
+  prefix: ""
+
+mail:
+  icon: "ai-envelope"
+  prefix: "mailto:"
+
+location:
+  icon: "ai-location"
+  prefix: ""
+
 youtube:
-    icon: "ai-youtube-fill"
-    prefix: ""
+  icon: "ai-youtube-fill"
+  prefix: ""
+
 wikipedia:
-    icon: "fa-brands fa-wikipedia"
-    prefix: ""
+  icon: "fa-brands fa-wikipedia"
+  prefix: ""
+
 blog:
-    icon: "fa-solid fa-pen-to-square"
-    prefix: ""
+  icon: "fa-solid fa-pen-to-square"
+  prefix: ""

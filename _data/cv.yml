@@ -157,10 +157,14 @@ projects:
     description: "This site is built with Jekyll and Tailwind CSS."
     link: https://emrekayik.github.io
 
+  - name: needle_tr
+    description: "Türkçe Araç Çağırıcı ve İnce Ayar Sistemi**(Turkish Tool Calling & Fine-Tuning System)"
+    link: https://github.com/emrekayik/needle_tr
+
   - name: Nootle
     description: "Your personal productivity assistant."
     link: https://emrekayik.github.io/nootle
 
   - name: Moviek
-    description: "hybrid movie recommendation system"
+    description: "Hybrid movie recommendation system"
     link: https://github.com/emrekayik/moviek

@@ -2,9 +2,8 @@
 layout: project
 title: needle_tr
 repo: https://github.com/emrekayik/needle_tr
-date: 2026-10-27
+date: 2026-09-28
 ---
-
 \***\*Türkçe Araç Çağırıcı ve İnce Ayar Sistemi**(Turkish Tool Calling & Fine-Tuning System)\*\*
 
 ## Genel Bakış
@@ -144,22 +143,22 @@ uv run needle-agent
 
 ![Needle-TR Benchmark Sonuçları](https://raw.githubusercontent.com/emrekayik/needle-tr/main/benchmark_results.svg)
 
-| Metrik                         | Değer                             | Açıklama                                 |
-| :----------------------------- | :-------------------------------- | :--------------------------------------- |
-| **Test Edilen Hedef**          | `Cactus Needle (On-Device Agent)` | Test edilen ortam / ajan modeli          |
-| **Toplam Test Sorgusu**        | **210**                           | Değerlendirilen Türkçe komut sayısı      |
-| **Araç Seçim Doğruluğu**       | **%81.4** (171/210)               | Doğru fonksiyonu seçme başarısı          |
-| **Argüman Doğruluğu**          | **%62.4** (131/210)               | Parametreleri eksiksiz ayrıştırma oranı  |
-| **Geçerli Yanıt Oranı**        | **%100.0** (210/210)              | Hatasız parse edilen yapısal çıktı oranı |
-| **Ortalama Gecikme (Latency)** | **224.2 ms**                      | İstek başına ortalama yanıt süresi       |
-| **Son Güncelleme**             | `2026-09-28 21:11:53`             | Testin çalıştırıldığı zaman              |
+| Metrik                               | Değer                              | Açıklama                                     |
+| :----------------------------------- | :---------------------------------- | :--------------------------------------------- |
+| **Test Edilen Hedef**          | `Cactus Needle (On-Device Agent)` | Test edilen ortam / ajan modeli                |
+| **Toplam Test Sorgusu**        | **210**                       | Değerlendirilen Türkçe komut sayısı       |
+| **Araç Seçim Doğruluğu**   | **%81.4** (171/210)           | Doğru fonksiyonu seçme başarısı           |
+| **Argüman Doğruluğu**       | **%62.4** (131/210)           | Parametreleri eksiksiz ayrıştırma oranı    |
+| **Geçerli Yanıt Oranı**     | **%100.0** (210/210)          | Hatasız parse edilen yapısal çıktı oranı |
+| **Ortalama Gecikme (Latency)** | **224.2 ms**                  | İstek başına ortalama yanıt süresi        |
+| **Son Güncelleme**            | `2026-09-28 21:11:53`             | Testin çalıştırıldığı zaman            |
 
-| Araç (`Tool`)  | Araç Doğruluğu | Argüman Eşleşmesi | Test Sayısı | Ortalama Gecikme |
-| :------------- | :------------: | :---------------: | :---------: | :--------------: |
-| `calculate`    |     %98.2      |       %63.6       |     55      |     194.7 ms     |
-| `get_weather`  |     %81.8      |       %69.1       |     55      |     228.2 ms     |
-| `send_message` |     %46.0      |       %30.0       |     50      |     287.1 ms     |
-| `set_alarm`    |     %98.0      |       %86.0       |     50      |     189.3 ms     |
+| Araç (`Tool`) | Araç Doğruluğu | Argüman Eşleşmesi | Test Sayısı | Ortalama Gecikme |
+| :--------------- | :---------------: | :------------------: | :-----------: | :--------------: |
+| `calculate`    |       %98.2       |        %63.6        |      55      |     194.7 ms     |
+| `get_weather`  |       %81.8       |        %69.1        |      55      |     228.2 ms     |
+| `send_message` |       %46.0       |        %30.0        |      50      |     287.1 ms     |
+| `set_alarm`    |       %98.0       |        %86.0        |      50      |     189.3 ms     |
 
 <!-- BENCHMARK_TR_END -->
 
