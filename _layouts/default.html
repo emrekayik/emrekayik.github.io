@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="{{ site.lang | default: 'en-US' }}" data-theme="mytheme">
+<html lang="{{ site.lang | default: 'en-US' }}" data-theme="mytheme" class="overflow-x-hidden max-w-full w-full">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta charset="utf-8" />
 
     <!-- Icon -->
@@ -60,6 +60,11 @@
       [x-cloak] {
         display: none;
       }
+      html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+      }
     </style>
     <link rel="stylesheet" href="{{ '/assets/css/app.css' | relative_url }}" />
 
@@ -76,16 +81,16 @@
   </head>
 
   <body
-    class="bg-base-100 text-base-content overflow-x-hidden"
+    class="bg-base-100 text-base-content overflow-x-hidden max-w-full w-full relative"
     id="context-area"
   >
-    <div class="drawer drawer-end">
+    <div class="drawer drawer-end max-w-full overflow-x-hidden w-full">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content flex flex-col min-h-screen">
+      <div class="drawer-content flex flex-col min-h-screen max-w-full overflow-x-hidden w-full">
         {% include navbar.html %}
         <main
           id="content"
-          class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 md:py-12 bg-base-100"
+          class="flex-1 max-w-4xl w-full mx-auto px-4 py-8 md:py-12 bg-base-100 overflow-x-hidden"
         >
           <div class="p-0 md:p-8 lg:p-12">{{ content }}</div>
         </main>

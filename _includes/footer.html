@@ -1,9 +1,9 @@
 <footer
-  class="footer footer-horizontal footer-center text-base-content p-4 max-w-3xl mx-auto mb-6"
+  class="footer footer-center sm:footer-horizontal text-base-content p-4 max-w-3xl mx-auto mb-6 flex flex-col sm:flex-row items-center justify-between gap-6"
 >
-  <aside>
-    <p class="flex text-nowrap">StudioEK © {{ "now" | date: "%Y" }}</p>
-    <p class="text-sm">
+  <aside class="text-center sm:text-left">
+    <p class="flex items-center justify-center sm:justify-start gap-1 text-nowrap font-medium">StudioEK © {{ "now" | date: "%Y" }}</p>
+    <p class="text-sm max-w-md">
       Bu sayfa,
       <a href="https://jekyllrb.com" target="_blank" class="link">Jekyll</a> ve
       <a href="https://tailwindcss.com" target="_blank" class="link"
@@ -11,7 +11,7 @@
       >
       kullanılarak Emre Kayık tarafından oluşturulmuştur.
     </p>
-    <p>
+    <p class="mt-2">
       <a
         href="https://github.com/emrekayik/emrekayik.github.io"
         target="_blank"
@@ -21,7 +21,15 @@
       >
     </p>
   </aside>
-  <ascii-art piece="cat"></ascii-art>
+
+  <div class="w-full sm:w-auto flex justify-center items-center overflow-hidden">
+    <div class="overflow-x-auto max-w-full flex justify-center py-1">
+      <ascii-art
+        piece="cat"
+        class="text-[7.5px] xs:text-[8.5px] sm:text-[10px] md:text-xs leading-none select-none text-base-content/80"
+      ></ascii-art>
+    </div>
+  </div>
 </footer>
 
 <!--
