@@ -44,14 +44,8 @@ title: "Merhaba, ben Emre Kayık"
         randomItem: '',
         init() {
             this.randomItem = this.items[Math.floor(Math.random() * this.items.length)];
-        },
-        nextItem() {
-            let idx = (this.items.indexOf(this.randomItem) + 1) % this.items.length;
-            this.randomItem = this.items[idx];
         }
     }"
-    @click="nextItem()"
-    title="Değiştirmek için dokunun / tıklayın"
   >
     <ascii-art :piece="randomItem" class="w-full block"></ascii-art>
   </div>
