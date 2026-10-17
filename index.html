@@ -6,15 +6,43 @@ title: "Merhaba, ben Emre Kayık"
 <article
   class="w-full mx-auto prose max-w-none md:max-w-prose lg:max-w-screen-md"
 >
-  <h1 class="antic-slab-regular">Merhaba, ben Emre!</h1>
+  <!-- <h1 class="antic-slab-regular">Merhaba, ben Emre!</h1> -->
+
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="
+        https://ascii.rest/banner/EMRE%20KAYIK%20..dark.svg?color=3fb950&speed=fast&font=wide&tagline=AI%2C%20Web%2C%20Mobil%20ve%20Daha%20Fazlas%C4%B1...&size=l
+      "
+    />
+    <img
+      alt="EMRE KAYIK .: AI, Web, Mobil ve Daha Fazlası..."
+      src="https://ascii.rest/banner/EMRE%20KAYIK%20..svg?color=3fb950&speed=fast&font=wide&tagline=AI%2C%20Web%2C%20Mobil%20ve%20Daha%20Fazlas%C4%B1...&size=l"
+    />
+  </picture>
+  <div
+    class="hover:scale-110 hover:shadow-2xl transition-all duration-300 ease-in-out"
+    x-data="{
+        items: ['saturn-rise', 'earthrise', 'jungle-falls', 'night-coast', 'ocean-sunset', 'alpine-dawn'],
+        randomItem: '',
+        init() {
+            this.randomItem = this.items[Math.floor(Math.random() * this.items.length)];
+        }
+    }"
+  >
+    <ascii-art :piece="randomItem" class="w-full"></ascii-art>
+  </div>
+
   <p>
-    İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda modern web
-    teknolojileriyle çalışan bir geliştiriciyim.
+    İstatistik ve Bilgisayar Bilimleri öğrencisiyim. Aynı zamanda yapay zeka,
+    modern web uygulamaları, mobil uygulama geliştirme ve daha fazlasıyla
+    ilgilenen bir geliştiriciyim.
   </p>
+
   <p>
-    Burada geliştirdiğim Projelerimi, yazdığım yazıları ve önerilerimi
-    bulacaksınız.
+    Burada geliştirdiğim projelerimi, yazdığım yazı ve önerilerimi bulacaksınız.
   </p>
+
   <h2 class="flex justify-between items-center">
     <span>Yazılarım</span>
     <div class="p-2 text-primary">
