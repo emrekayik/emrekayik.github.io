@@ -3,6 +3,7 @@ layout: project
 title: orbitsync
 repo: https://github.com/emrekayik/orbitsync
 date: 2026-05-01
+tags: ["web", "Next.js", "opensource"]
 ---
 
 **orbitsync**, kod parçacıklarınızı (snippets) bulut bağımlılığı olmadan kaydetmenizi, aramanızı, düzenlemenizi ve organize etmenizi sağlayan modern, hızlı ve yerel öncelikli (local-first) bir uygulamadır. Next.js ile inşa edilen bu uygulama, verilerinizi cihazlarınız arasında Evolu aracılığıyla sorunsuz bir şekilde senkronize eder.
@@ -27,4 +28,5 @@ Canlı Demo: [https://orbitsync.vercel.app](https://orbitsync.vercel.app)
 - **İkonlar:** [Tabler Icons](https://tabler.io/icons)
 
 ## Ekran Görüntüsü
+
 ![Orbitsync Screenshot](https://github.com/emrekayik/orbitsync/raw/main/public/orbitsync-demo.png)

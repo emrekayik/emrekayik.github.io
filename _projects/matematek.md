@@ -4,6 +4,7 @@ title: Matematek
 repo: https://github.com/emrekayik/matematek
 date: 2023-11-20
 last_modified_at: 2026-06-01
+tags: ["web", "Next.js", "opensource"]
 ---
 
 mathjs kütüphanesini kullanan matematiksel API servisi.
@@ -12,13 +13,13 @@ mathjs kütüphanesini kullanan matematiksel API servisi.
 
 ### Öne Çıkan Özellikler
 
-*   **Matematiksel API:** Türev alma (örneğin: `/api/turev/2x*3+4`) gibi çeşitli matematiksel işlemler için uç noktalar sağlar.
-*   **Hızlı ve Hafif:** mathjs kütüphanesinin gücünü kullanarak yüksek performanslı hesaplamalar yapar.
-*   **Kolay Entegrasyon:** Herhangi bir web projesine kolayca dahil edilebilir API yapısı.
+- **Matematiksel API:** Türev alma (örneğin: `/api/turev/2x*3+4`) gibi çeşitli matematiksel işlemler için uç noktalar sağlar.
+- **Hızlı ve Hafif:** mathjs kütüphanesinin gücünü kullanarak yüksek performanslı hesaplamalar yapar.
+- **Kolay Entegrasyon:** Herhangi bir web projesine kolayca dahil edilebilir API yapısı.
 
 ### Kullanılan Teknolojiler
 
-*   **Dil:** TypeScript
-*   **Framework:** Next.js
-*   **Kütüphane:** mathjs
-*   **Stil:** TailwindCSS
+- **Dil:** TypeScript
+- **Framework:** Next.js
+- **Kütüphane:** mathjs
+- **Stil:** TailwindCSS

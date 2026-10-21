@@ -3,6 +3,7 @@ layout: project
 title: SihirEK
 repo: https://github.com/emrekayik/sihirek-web
 date: 2022-08-04
+tags: ["web", "react", "opensource"]
 ---
 
 ## SihirEK

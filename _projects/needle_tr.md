@@ -3,6 +3,7 @@ layout: project
 title: needle_tr
 repo: https://github.com/emrekayik/needle_tr
 date: 2026-09-28
+tags: ["python", "AI", "opensource", "LLM"]
 ---
 
 **Türkçe Araç Çağırıcı ve İnce Ayar Sistemi**(Turkish Tool Calling & Fine-Tuning System)

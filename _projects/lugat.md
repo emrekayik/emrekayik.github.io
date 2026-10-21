@@ -3,7 +3,8 @@ layout: project
 title: Lugat
 repo: https://github.com/emrekayik/lugat
 date: 2023-03-16
-last_modified_at: 2023-08-03 
+last_modified_at: 2023-08-03
+tags: ["web", "Next.js", "opensource"]
 ---
 
 Deneysel sözlük uygulaması
