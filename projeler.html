@@ -5,19 +5,57 @@ permalink: /projeler/
 ---
 
 <article class="prose w-full mx-auto">
-    <h2 class="flex justify-between items-center group">
-        <span>Projelerim</span>
-        <div class="p-2 rounded-lg bg-secondary/10 text-secondary transition-all">
-            <i class="ai-folder text-xl"></i>
-        </div>
-    </h2>
-    <div class="grid grid-cols-1 gap-3 not-prose mt-8">
-        {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
-        {% for project in sorted_projects %}
-        <a href="{{ project.url | relative_url }}" class="flex items-center justify-between p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group">
-            <span class="font-bold text-base-content group-hover:text-secondary transition-colors">{{ project.title }}</span>
-            <time class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity">{{ project.date | localize: '%-d %B %Y' }}</time>
-        </a>
-        {% endfor %}
+  <h2 class="flex justify-between items-center group">
+    <span>Projelerim</span>
+    <div class="p-2 rounded-lg bg-secondary/10 text-secondary transition-all">
+      <i class="ai-folder text-xl"></i>
     </div>
+  </h2>
+  <div class="grid grid-cols-1 gap-3 not-prose mt-8">
+    {% assign sorted_projects = site.projects | sort: 'date' | reverse %} {% for
+    project in sorted_projects %}
+    <a
+      href="{{ project.url | relative_url }}"
+      class="p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group"
+    >
+      <div class="flex justify-between items-center gap-2">
+        <span
+          class="font-bold text-base-content group-hover:text-secondary transition-colors"
+          >{{ project.title }}</span
+        >
+        {% if project.date %}
+        <time
+          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
+          >{{ project.date | localize: '%-d %B %Y' }}</time
+        >
+        {% endif %}
+      </div>
+      <div class="flex flex-col gap-2">
+        <span
+          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+        >
+          {{ project.excerpt | strip_html | normalize_whitespace | truncate: 60 }}
+        </span>
+        <div class="flex justify-between items-center gap-2">
+          <span
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity flex flex-wrap gap-1 items-center"
+          >
+            {% for tag in project.tags %}
+            <div class="badge badge-xs">{{ tag }}</div>
+            {% endfor %}
+          </span>
+          <span
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
+          >
+            {% if project.repo %}
+            <i class="ai-github-fill text-base"></i>
+            {% else %}
+            <i class="ai-folder text-base"></i>
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
 </article>

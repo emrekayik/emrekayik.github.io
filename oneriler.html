@@ -72,14 +72,30 @@ permalink: /oneriler/
     >
       <div class="flex justify-between items-center gap-3">
         <div class="flex items-center gap-3 min-w-0">
-          {% if item.cover %}
+          {% assign cover_src = item.cover %}
+          {% if cover_src contains '.avif' %}
+            {% assign cover_src = nil %}
+          {% endif %}
+          {% if cover_src %}
           <div class="avatar shrink-0">
-            <div class="w-10 h-10 rounded-full">
+            <div class="w-10 h-10 rounded-full bg-base-200">
               <img
                 alt="{{ item.title }}"
-                src="{{ item.cover }}"
+                src="{{ cover_src }}"
                 class="object-cover"
+                loading="lazy"
+                referrerpolicy="no-referrer"
               />
+            </div>
+          </div>
+          {% else %}
+          <div class="avatar avatar-placeholder shrink-0">
+            <div
+              class="w-10 h-10 rounded-full bg-base-200 text-base-content/50"
+            >
+              <span class="text-sm font-bold"
+                >{{ item.title | slice: 0, 1 | upcase }}</span
+              >
             </div>
           </div>
           {% endif %}
@@ -88,39 +104,37 @@ permalink: /oneriler/
             >{{ item.title }}</span
           >
         </div>
-
-        <span
-          class="text-xs font-mono text-base-content group-hover:text-secondary transition-opacity shrink-0"
-        >
-          {% if item.category %}
-          <i
-            class="{{ site.data.social[item.category].icon | default: 'ai-globe' }} text-base"
-          ></i>
-          {% else %}
-          <i class="ai-globe text-base"></i>
-          {% endif %}
-        </span>
-      </div>
-      <div class="flex flex-col gap-2">
         {% if item.created %}
         <time
-          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
-          >{{ item.created | date: "%b %d, %y" | localize: '%-d %B %Y'}}</time
+          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
+          >{{ item.created | date: "%b %d, %y" | localize: '%-d %B %Y' }}</time
         >
         {% endif %}
+      </div>
+      <div class="flex flex-col gap-2">
         <span
           class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
         >
-          {{ item.description | truncate: 120 }}
+          {{ item.description | truncate: 60 }}
         </span>
-
         <div class="flex justify-between items-center gap-2">
           <span
-            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity flex flex-wrap gap-1 items-center"
           >
             {% for tag in item.tags %}
-            <div class="badge badge-sm badge-outline">{{ tag }}</div>
+            <div class="badge badge-xs">{{ tag }}</div>
             {% endfor %}
+          </span>
+          <span
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
+          >
+            {% if item.category %}
+            <i
+              class="{{ site.data.social[item.category].icon | default: 'ai-globe' }} text-base"
+            ></i>
+            {% else %}
+            <i class="ai-globe text-base"></i>
+            {% endif %}
           </span>
         </div>
       </div>
