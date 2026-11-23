@@ -67,28 +67,28 @@ title: "Merhaba, ben Emre Kayık"
     </div>
   </h2>
   <div class="grid grid-cols-1 gap-3 not-prose">
-    {% for post in site.posts limit:5 %}
+    {% assign sorted_posts = site.posts %} {% for post in sorted_posts limit:5 %}
     <a
       href="{{ post.url | relative_url }}"
-      class="p-4 rounded-xl bg-base-100 border border-base-300 hover:border-primary/50 hover:shadow-lg transition-all group"
+      class="p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group"
     >
       <div class="flex justify-between items-center gap-2">
         <span
-          class="font-bold text-base-content group-hover:text-primary transition-colors"
+          class="font-bold text-base-content group-hover:text-secondary transition-colors"
           >{{ post.title }}</span
         >
         {% if post.date %}
         <time
-          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
           >{{ post.date | localize: '%-d %B %Y' }}</time
         >
         {% endif %}
       </div>
-      <div class="flex flex-col gap-2">
+      <div class="flex justify-between items-center gap-2">
         <span
           class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
         >
-          {{ post.excerpt | truncate: 60 }}
+          {{ post.excerpt | strip_html | normalize_whitespace | truncate: 60 }}
         </span>
         <div class="flex justify-between items-center gap-2">
           <span
@@ -99,15 +99,9 @@ title: "Merhaba, ben Emre Kayık"
             {% endfor %}
           </span>
           <span
-            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
           >
-            {% if post.categories.first %}
-            <i
-              class="{{ site.data.social[post.categories.first].icon | default: 'ai-book-close' }} text-base"
-            ></i>
-            {% else %}
             <i class="ai-book-close text-base"></i>
-            {% endif %}
           </span>
         </div>
       </div>
@@ -115,13 +109,18 @@ title: "Merhaba, ben Emre Kayık"
     {% endfor %}
     <a
       href="{{ '/blog/' | relative_url }}"
-      class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100"
+      class="link-primary group flex items-center gap-1 py-4"
     >
-      Tüm Yazılarım <i class="ai-arrow-right ml-1"></i>
+      Tüm {{ sorted_posts | size }} Yazı
+      <span
+        aria-hidden="true"
+        class="transition-transform group-hover:translate-x-0.5"
+        >→</span
+      >
     </a>
   </div>
 
-  <h2 class="flex justify-between items-center group mt-12">
+  <h2 class="flex justify-between items-center">
     <span>Projelerim</span>
     <div class="p-2 text-secondary">
       <i class="ai-folder text-xl"></i>
@@ -129,8 +128,7 @@ title: "Merhaba, ben Emre Kayık"
   </h2>
   <div class="grid grid-cols-1 gap-3 not-prose">
     {% assign sorted_projects = site.projects | sort: 'date' | reverse %} {% for
-    project in sorted_projects limit:5 %} {% assign item_tags = project.tags |
-    default: "" %}
+    project in sorted_projects limit:5 %}
     <a
       href="{{ project.url | relative_url }}"
       class="p-4 rounded-xl bg-base-100 border border-base-300 hover:border-secondary/50 hover:shadow-lg transition-all group"
@@ -142,7 +140,7 @@ title: "Merhaba, ben Emre Kayık"
         >
         {% if project.date %}
         <time
-          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
           >{{ project.date | localize: '%-d %B %Y' }}</time
         >
         {% endif %}
@@ -151,7 +149,7 @@ title: "Merhaba, ben Emre Kayık"
         <span
           class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
         >
-          {{ project.excerpt | truncate: 60 }}
+          {{ project.excerpt | strip_html | normalize_whitespace | truncate: 60 }}
         </span>
         <div class="flex justify-between items-center gap-2">
           <span
@@ -161,15 +159,29 @@ title: "Merhaba, ben Emre Kayık"
             <div class="badge badge-xs">{{ tag }}</div>
             {% endfor %}
           </span>
+          <span
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
+          >
+            {% if project.repo %}
+            <i class="ai-github-fill text-base"></i>
+            {% else %}
+            <i class="ai-folder text-base"></i>
+            {% endif %}
+          </span>
         </div>
       </div>
     </a>
     {% endfor %}
     <a
       href="{{ '/projeler/' | relative_url }}"
-      class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100"
+      class="link-primary group flex items-center gap-1 py-4"
     >
-      Tüm Projelerim <i class="ai-arrow-right ml-1"></i>
+      Tüm {{ sorted_projects | size }} Projeler
+      <span
+        aria-hidden="true"
+        class="transition-transform group-hover:translate-x-0.5"
+        >→</span
+      >
     </a>
   </div>
 
@@ -181,8 +193,7 @@ title: "Merhaba, ben Emre Kayık"
   </h2>
   <div class="grid grid-cols-1 gap-3 not-prose">
     {% assign sorted_suggestions = site.data.suggestions | sort: 'created' |
-    reverse %} {% for item in sorted_suggestions limit: 5 %} {% assign item_tags
-    = item.tags | default: "" %}
+    reverse %} {% for item in sorted_suggestions limit: 5 %}
 
     <a
       href="{{ item.url | relative_url }}"
@@ -196,7 +207,7 @@ title: "Merhaba, ben Emre Kayık"
         >
         {% if item.created %}
         <time
-          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+          class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
           >{{ item.created | date: "%b %d, %y" | localize: '%-d %B %Y' }}</time
         >
         {% endif %}
@@ -216,7 +227,7 @@ title: "Merhaba, ben Emre Kayık"
             {% endfor %}
           </span>
           <span
-            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity"
+            class="text-xs font-mono opacity-40 group-hover:opacity-100 transition-opacity shrink-0"
           >
             {% if item.category %}
             <i
@@ -233,9 +244,14 @@ title: "Merhaba, ben Emre Kayık"
 
     <a
       href="{{ '/oneriler/' | relative_url }}"
-      class="btn btn-ghost btn-sm w-full mt-2 opacity-60 hover:opacity-100"
+      class="link-primary group flex items-center gap-1 py-4"
     >
-      Tüm Önerilerim <i class="ai-arrow-right ml-1"></i>
+      Tüm {{ sorted_suggestions | size }} Öneri
+      <span
+        aria-hidden="true"
+        class="transition-transform group-hover:translate-x-0.5"
+        >→</span
+      >
     </a>
   </div>
 
