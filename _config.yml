@@ -21,6 +21,13 @@ twitter:
   username: emrekayik0
   card: summary_large_image
 
+# Default image for jekyll-seo-tag fallback
+image:
+  path: "/assets/images/og/pages/index.png"
+  width: 1200
+  height: 630
+  alt: "Emre Kayık"
+
 # ==============================================================================
 # Social Media Links
 # ==============================================================================
@@ -137,23 +144,23 @@ og_image:
   skip_drafts: true
   domain: "emrekayik.github.io"
   canvas:
-    background_color: "#0f172a"
+    background_color: "#14121f"
     width: 1200
-    height: 600
+    height: 630
   header:
     prefix: ""
     suffix: ""
-    font_family: "Inter, Bold"
+    font_family: "Helvetica Neue, Bold"
     color: "#f8fafc"
   content:
-    font_family: "Inter, Regular"
+    font_family: "Helvetica Neue, Regular"
     color: "#94a3b8"
   border_bottom:
-    width: 12
+    width: 10
     fill:
-      - "#3b82f6"
-      - "#8b5cf6"
-      - "#ec4899"
+      - "#f06e67"
+      - "#6f8de9"
+      - "#71ee5b"
   image:
     path: "/assets/icons/apple-touch-icon.png"
   metadata:

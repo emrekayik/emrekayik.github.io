@@ -288,7 +288,12 @@ badge_type = "NOT" %} {% endif %}
     }
     updateStoryQuote();
 
-    {% assign story_og_img = page.image.path | default: page.image %}
+    {% assign story_og_img = "" %}
+    {% if page.image.path %}
+      {% assign story_og_img = page.image.path %}
+    {% elsif page.image %}
+      {% assign story_og_img = page.image %}
+    {% endif %}
     {% unless story_og_img and story_og_img != "" %}
       {% assign page_col = page.collection | default: "pages" %}
       {% assign page_slug = page.slug | default: page.title | slugify: "latin" %}
