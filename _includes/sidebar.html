@@ -1,28 +1,103 @@
-<ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 pt-6">
-    <li class="menu-title text-base-content opacity-50 mb-2">Navigasyon</li>
-    {% for item in site.data.navigation %}
-    <li>
-        <a href="{{ item.link | relative_url }}" {% if page.url == item.link or page.url == item.link | append: '/' %}class="active" {% endif %}>
-            <i class="{{ item.icon }} text-lg"></i>
-            {{ item.name }}
+<aside class="h-full max-h-dvh w-80 sm:w-88 max-w-[85vw] bg-base-200/95 backdrop-blur-xl border-l border-base-content/10 text-base-content flex flex-col p-5 shadow-2xl overflow-hidden">
+    <!-- Header: Identity & Close -->
+    <div class="flex items-center justify-between pb-4 border-b border-base-content/10 shrink-0">
+        <a href="{{ '/' | relative_url }}" class="flex items-center gap-2.5 group">
+            <div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-mono text-sm font-bold border border-primary/20 group-hover:bg-primary group-hover:text-primary-content transition-colors">
+                ~/
+            </div>
+            <div>
+                <div class="text-sm font-bold font-mono tracking-tight text-base-content leading-none">/home/emre</div>
+                <div class="text-[11px] text-base-content/50 mt-1">Emre Kayık</div>
+            </div>
         </a>
-    </li>
-    {% endfor %}
-
-    <li class="menu-title text-base-content opacity-50 mt-6 mb-2">Ayarlar</li>
-    <div class="px-2">
-        {% include theme_changer.html %}
-        {% if page.url contains '/blog/' or page.layout == 'post' %}
-        {% include font_changer.html %}
-        {% endif %}
+        <label for="my-drawer" class="btn btn-sm btn-circle btn-ghost text-base-content/60 hover:text-base-content hover:bg-base-content/10 transition-colors" aria-label="Menüyü kapat">
+            <i class="ai-cross text-base"></i>
+        </label>
     </div>
 
-    
+    <!-- Scrollable Middle Body -->
+    <div class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden py-4 space-y-5 custom-drawer-scrollbar">
+        <!-- Navigation Section -->
+        <div>
+            <div class="px-1 mb-2 text-[11px] font-semibold uppercase tracking-wider text-base-content/50">
+                Navigasyon
+            </div>
+            <ul class="menu menu-sm w-full p-0 gap-1">
+                {% for item in site.data.navigation %}
+                {% assign is_active = false %}
+                {% if page.url == item.link or page.url == item.link | append: '/' %}
+                    {% assign is_active = true %}
+                {% elsif item.link != '/' and page.url contains item.link %}
+                    {% assign is_active = true %}
+                {% endif %}
+                <li>
+                    <a href="{{ item.link | relative_url }}" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium transition-all {% if is_active %}bg-primary text-primary-content shadow-xs shadow-primary/20 font-semibold{% else %}text-base-content/80 hover:text-base-content hover:bg-base-300/60 active:scale-[0.99]{% endif %}">
+                        <span class="flex items-center gap-3">
+                            <i class="{{ item.icon }} text-lg w-5 text-center shrink-0 {% if is_active %}text-primary-content{% else %}text-base-content/70{% endif %}"></i>
+                            <span class="text-sm">{{ item.name }}</span>
+                        </span>
+                        {% if is_active %}
+                        <span class="w-1.5 h-1.5 rounded-full bg-primary-content/90"></span>
+                        {% endif %}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
 
-    <div class="mt-auto pt-6">
-        <button id="installPwaBtn" class="btn btn-primary btn-block hidden pwa-install-btn">
-            📲 Uygulamayı Yükle
+        <!-- Settings & Preferences Section -->
+        <div>
+            <div class="px-1 mb-2 text-[11px] font-semibold uppercase tracking-wider text-base-content/50 flex items-center gap-1.5">
+                <span>Ayarlar & Tercihler</span>
+            </div>
+            <div class="space-y-2">
+                {% include theme_changer.html %}
+                {% if page.url contains '/blog/' or page.layout == 'post' %}
+                {% include font_changer.html %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer: PWA, Social & Site Info -->
+    <div class="pt-4 border-t border-base-content/10 flex flex-col gap-3 shrink-0">
+        <button id="installPwaBtn" class="btn btn-primary btn-sm btn-block hidden pwa-install-btn gap-2 shadow-sm font-medium">
+            <i class="ai-download text-base"></i>
+            <span>Uygulamayı Yükle</span>
         </button>
-        <p class="text-center text-[10px] opacity-30 mt-4 font-mono">emrekayik.github.io</p>
+
+        <div class="flex items-center justify-between px-1">
+            <div class="flex items-center gap-1">
+                <a href="https://github.com/emrekayik" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-xs btn-square text-base hover:text-primary hover:bg-base-content/10 transition-colors" aria-label="GitHub">
+                    <i class="ai-github-fill"></i>
+                </a>
+                <a href="https://twitter.com/emrekayik0" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-xs btn-square text-base hover:text-primary hover:bg-base-content/10 transition-colors" aria-label="Twitter">
+                    <i class="ai-twitter-fill"></i>
+                </a>
+                <a href="https://linkedin.com/in/emrekayik" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-xs btn-square text-base hover:text-primary hover:bg-base-content/10 transition-colors" aria-label="LinkedIn">
+                    <i class="ai-linkedin-fill"></i>
+                </a>
+                <a href="{{ '/feed.xml' | relative_url }}" target="_blank" class="btn btn-ghost btn-xs btn-square text-base hover:text-primary hover:bg-base-content/10 transition-colors" aria-label="RSS Feed">
+                    <i class="ai-ribbon"></i>
+                </a>
+            </div>
+            <span class="text-[11px] font-mono opacity-40">emrekayik.github.io</span>
+        </div>
     </div>
-</ul>
+</aside>
+
+<style>
+    .custom-drawer-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+    .custom-drawer-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-drawer-scrollbar::-webkit-scrollbar-thumb {
+        background: oklch(var(--bc) / 0.15);
+        border-radius: 4px;
+    }
+    .custom-drawer-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: oklch(var(--bc) / 0.3);
+    }
+</style>
