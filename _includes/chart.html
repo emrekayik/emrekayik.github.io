@@ -1,34 +1,50 @@
 <canvas id="{{ include.id }}" width="{{ include.width | default: 400 }}" height="{{ include.height | default: 200 }}"></canvas>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var ctx = document.getElementById('{{ include.id }}').getContext('2d');
+(function() {
+  function renderChart() {
+    var canvas = document.getElementById('{{ include.id }}');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
 
-  // JSON string olarak gelince JS içinde parse ederken escape ve replace ile güvenli yapıyoruz:
-  var labels = JSON.parse('{{ include.labels | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
-  var data = JSON.parse('{{ include.data | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
-  var bgcolor = JSON.parse('{{ include.bgcolor | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
-  var bordercolor = JSON.parse('{{ include.bordercolor | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
+    var labels = JSON.parse('{{ include.labels | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
+    var data = JSON.parse('{{ include.data | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
+    var bgcolor = JSON.parse('{{ include.bgcolor | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
+    var bordercolor = JSON.parse('{{ include.bordercolor | replace: "'", "\\'" | replace: '"', '\"' | strip_newlines }}');
 
-  var myChart = new Chart(ctx, {
-    type: '{{ include.type }}',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: '{{ include.label }}',
-        data: data,
-        backgroundColor: bgcolor,
-        borderColor: bordercolor,
-        borderWidth: 1,
-        {% if include.fill %}fill: {{ include.fill }},{% endif %}
-        {% if include.tension %}tension: {{ include.tension }},{% endif %}
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { beginAtZero: true }
+    new Chart(ctx, {
+      type: '{{ include.type }}',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '{{ include.label }}',
+          data: data,
+          backgroundColor: bgcolor,
+          borderColor: bordercolor,
+          borderWidth: 1,
+          {% if include.fill %}fill: {{ include.fill }},{% endif %}
+          {% if include.tension %}tension: {{ include.tension }},{% endif %}
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
       }
+    });
+  }
+
+  if (typeof Chart !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderChart);
+    } else {
+      renderChart();
     }
-  });
-});
+  } else {
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+    s.onload = renderChart;
+    document.head.appendChild(s);
+  }
+})();
 </script>

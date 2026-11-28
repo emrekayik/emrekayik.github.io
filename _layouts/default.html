@@ -78,12 +78,7 @@
       defer
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script src="https://unpkg.com/akar-icons-fonts"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js"></script>
+    <script defer src="https://unpkg.com/akar-icons-fonts"></script>
   </head>
 
   <body
@@ -91,7 +86,7 @@
     id="context-area"
   >
     <div class="drawer drawer-end max-w-full overflow-x-clip w-full">
-      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" aria-label="Menü çekmecesi" />
       <div class="drawer-content flex flex-col min-h-screen max-w-full overflow-x-clip w-full">
         {% include navbar.html %}
         <main
@@ -126,8 +121,7 @@
       defer
       src="https://unpkg.com/tailwindcss-intersect@2.x.x/dist/observer.min.js"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script defer src="{{ '/assets/js/main.js' | relative_url }}"></script>
 
     <!-- Web MCP (Model Context Protocol) Implementation -->
     <script>

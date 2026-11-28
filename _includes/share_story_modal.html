@@ -310,6 +310,7 @@ badge_type = "NOT" %} {% endif %}
 
 
     modal.showModal();
+    ensureHtmlToImage().catch(() => {});
   }
 
   function updateStoryQuote() {
@@ -441,19 +442,26 @@ badge_type = "NOT" %} {% endif %}
     if (handle) handle.style.color = config.accent;
   }
 
+  function ensureHtmlToImage() {
+    if (typeof htmlToImage !== "undefined") return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.11/html-to-image.min.js";
+      s.onload = () => resolve();
+      s.onerror = (e) => reject(new Error("Görsel dönüştürme kütüphanesi yüklenemedi."));
+      document.head.appendChild(s);
+    });
+  }
+
   async function shareDirectToStory() {
     const card = document.getElementById("story-card");
     const btn = document.getElementById("share-story-btn");
-
-    if (typeof htmlToImage === "undefined") {
-      alert("Görsel kütüphanesi henüz yüklenemedi. Lütfen tekrar deneyin.");
-      return;
-    }
 
     btn.disabled = true;
     btn.innerText = "Hazırlanıyor...";
 
     try {
+      await ensureHtmlToImage();
       const isOg = currentFormat === "og";
       const pixelScale = isOg ? 2.73 : 3;
 
@@ -487,7 +495,7 @@ badge_type = "NOT" %} {% endif %}
     } catch (err) {
       if (err.name !== "AbortError") {
         console.error("Share error:", err);
-        alert("Paylaşım başlatılırken bir sorun oluştu.");
+        alert("Paylaşım başlatılırken bir sorun oluştu: " + (err.message || ""));
       }
     } finally {
       btn.disabled = false;
@@ -499,39 +507,32 @@ badge_type = "NOT" %} {% endif %}
     const card = document.getElementById("story-card");
     const btn = document.getElementById("download-story-btn");
 
-    if (typeof htmlToImage === "undefined") {
-      alert(
-        "Görsel kütüphanesi henüz yüklenemedi. Lütfen sayfayı yenileyip tekrar deneyin.",
-      );
-      return;
-    }
-
     btn.disabled = true;
     btn.innerText = "Görsel Hazırlanıyor...";
 
-    const isOg = currentFormat === "og";
-    const filename = isOg
-      ? "og-{{ page.title | slugify }}.png"
-      : "story-{{ page.title | slugify }}.png";
-    const pixelScale = isOg ? 2.73 : 3;
+    ensureHtmlToImage()
+      .then(function () {
+        const isOg = currentFormat === "og";
+        const filename = isOg
+          ? "og-{{ page.title | slugify }}.png"
+          : "story-{{ page.title | slugify }}.png";
+        const pixelScale = isOg ? 2.73 : 3;
 
-    htmlToImage
-      .toPng(card, {
-        pixelRatio: pixelScale,
-        cacheBust: true,
-        quality: 0.95,
-      })
-      .then(function (dataUrl) {
-        const link = document.createElement("a");
-        link.download = filename;
-        link.href = dataUrl;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        return htmlToImage.toPng(card, {
+          pixelRatio: pixelScale,
+          cacheBust: true,
+          quality: 0.95,
+        }).then(function (dataUrl) {
+          const link = document.createElement("a");
+          link.download = filename;
+          link.href = dataUrl;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
 
-        btn.disabled = false;
-        btn.innerHTML =
-          '<i class="ai-download text-xs"></i> PNG İndir';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="ai-download text-xs"></i> PNG İndir';
+        });
       })
       .catch(function (error) {
         console.error("htmlToImage error:", error);
