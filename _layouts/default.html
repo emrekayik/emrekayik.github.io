@@ -24,6 +24,12 @@
     />
 
     <link rel="manifest" href="{{ '/manifest.json' | relative_url }}" />
+    <link
+      rel="mcp"
+      href="{{ '/mcp-data.json' | relative_url }}"
+      type="application/json"
+      title="Model Context Protocol Data"
+    />
     <meta name="theme-color" content="#4ade80" />
 
     {% seo %}
@@ -122,5 +128,350 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+    <!-- Web MCP (Model Context Protocol) Implementation -->
+    <script>
+      (function () {
+        let cachedData = null;
+        async function getMcpData() {
+          if (!cachedData) {
+            try {
+              const res = await fetch("{{ '/mcp-data.json' | relative_url }}");
+              cachedData = await res.json();
+            } catch (err) {
+              console.error("MCP data fetch error:", err);
+              throw new Error("Site verileri yüklenemedi: " + err.message);
+            }
+          }
+          return cachedData;
+        }
+
+        const webMcpTools = {
+          listTools: () => [
+            {
+              name: "search_site",
+              description:
+                "Emre Kayık'ın sitesindeki blog yazıları, açık kaynak projeler, notlar ve sayfalar arasında anahtar kelime araması yapar.",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  query: {
+                    type: "string",
+                    description:
+                      "Aranacak terim, konu veya teknoloji (örn. 'rust', 'transformers', 'next.js', 'animasyon')",
+                  },
+                  category: {
+                    type: "string",
+                    description: "Arama yapılacak kategori (isteğe bağlı)",
+                    enum: ["all", "posts", "projects", "notes", "pages"],
+                  },
+                },
+                required: ["query"],
+              },
+            },
+            {
+              name: "search_site_posts",
+              description:
+                "Sitedeki blog yazıları arasında anahtar kelime araması yapar.",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  query: {
+                    type: "string",
+                    description: "Aranacak kelime veya konu",
+                  },
+                },
+                required: ["query"],
+              },
+            },
+            {
+              name: "get_projects",
+              description:
+                "Emre Kayık'ın geliştirdiği tüm açık kaynak projeleri, GitHub depoları ve açıklamalarıyla listeler.",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  tag: {
+                    type: "string",
+                    description:
+                      "Filtrelenecek etiket/teknoloji (isteğe bağlı, örn: 'python', 'rust', 'web')",
+                  },
+                },
+              },
+            },
+            {
+              name: "get_author_info",
+              description:
+                "Site sahibi Emre Kayık hakkında biyografi, iletişim, yetenekler ve sosyal medya bağlantılarını getirir.",
+              inputSchema: {
+                type: "object",
+                properties: {},
+              },
+            },
+            {
+              name: "navigate_to_page",
+              description:
+                "Kullanıcıyı sitedeki belirli bir sayfaya veya içeriğe yönlendirir.",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  url: {
+                    type: "string",
+                    description:
+                      "Gidilecek sayfa adresi veya yol (örn: '/blog', '/projeler', '/ozgecmis', '/me')",
+                  },
+                },
+                required: ["url"],
+              },
+            },
+            {
+              name: "switch_theme",
+              description:
+                "Web sitesinin görsel temasını dinamik olarak değiştirir.",
+              inputSchema: {
+                type: "object",
+                properties: {
+                  theme: {
+                    type: "string",
+                    description: "Uygulanacak tema adı",
+                    enum: [
+                      "system",
+                      "mytheme",
+                      "dark",
+                      "light",
+                      "cupcake",
+                      "bumblebee",
+                      "emerald",
+                      "corporate",
+                      "synthwave",
+                      "retro",
+                      "cyberpunk",
+                      "valentine",
+                      "halloween",
+                      "garden",
+                      "forest",
+                      "aqua",
+                      "lofi",
+                      "pastel",
+                    ],
+                  },
+                },
+                required: ["theme"],
+              },
+            },
+          ],
+
+          callTool: async (name, args = {}) => {
+            const data = await getMcpData();
+
+            if (name === "search_site" || name === "search_site_posts") {
+              const q = (args.query || "").toLowerCase();
+              const cat = args.category || (name === "search_site_posts" ? "posts" : "all");
+              const results = [];
+
+              function searchItems(items, type) {
+                if (!items) return;
+                items.forEach((item) => {
+                  const title = (item.title || "").toLowerCase();
+                  const desc = (item.description || item.content || "").toLowerCase();
+                  const tags = (item.tags || []).join(" ").toLowerCase();
+                  const repo = (item.repo || "").toLowerCase();
+
+                  if (
+                    title.includes(q) ||
+                    desc.includes(q) ||
+                    tags.includes(q) ||
+                    repo.includes(q)
+                  ) {
+                    results.push({
+                      type,
+                      title: item.title,
+                      url: item.url,
+                      description: item.description,
+                      repo: item.repo,
+                      date: item.date,
+                    });
+                  }
+                });
+              }
+
+              if (cat === "all" || cat === "posts") searchItems(data.posts, "post");
+              if (cat === "all" || cat === "projects") searchItems(data.projects, "project");
+              if (cat === "all" || cat === "notes") searchItems(data.notes, "note");
+              if (cat === "all" || cat === "pages") searchItems(data.pages, "page");
+
+              return {
+                content: [
+                  {
+                    type: "text",
+                    text:
+                      results.length > 0
+                        ? JSON.stringify(results.slice(0, 8), null, 2)
+                        : `"${args.query}" için eşleşen sonuç bulunamadı.`,
+                  },
+                ],
+              };
+            }
+
+            if (name === "get_projects") {
+              let projects = data.projects || [];
+              if (args.tag) {
+                const t = args.tag.toLowerCase();
+                projects = projects.filter((p) =>
+                  (p.tags || []).some((tag) => tag.toLowerCase().includes(t))
+                );
+              }
+              return {
+                content: [{ type: "text", text: JSON.stringify(projects, null, 2) }],
+              };
+            }
+
+            if (name === "get_author_info") {
+              return {
+                content: [
+                  {
+                    type: "text",
+                    text: JSON.stringify(
+                      {
+                        author: data.author,
+                        site: data.site,
+                        cv_url: "{{ '/ozgecmis/' | absolute_url }}",
+                        about_url: "{{ '/me/' | absolute_url }}",
+                      },
+                      null,
+                      2
+                    ),
+                  },
+                ],
+              };
+            }
+
+            if (name === "navigate_to_page") {
+              if (args.url) {
+                window.location.href = args.url;
+                return {
+                  content: [
+                    { type: "text", text: `${args.url} adresine yönlendiriliyor.` },
+                  ],
+                };
+              }
+              throw new Error("Gidilecek URL belirtilmedi.");
+            }
+
+            if (name === "switch_theme") {
+              const theme = args.theme;
+              if (theme) {
+                localStorage.setItem("selected-theme", theme);
+                if (theme === "system") {
+                  const m = window.matchMedia("(prefers-color-scheme: dark)");
+                  document.documentElement.setAttribute(
+                    "data-theme",
+                    m.matches ? "dark" : "light"
+                  );
+                } else {
+                  document.documentElement.setAttribute("data-theme", theme);
+                }
+                const radios = document.querySelectorAll(".theme-controller");
+                radios.forEach((r) => {
+                  r.checked = r.value === theme;
+                });
+                return {
+                  content: [
+                    {
+                      type: "text",
+                      text: `Site teması başarıyla '${theme}' olarak değiştirildi.`,
+                    },
+                  ],
+                };
+              }
+              throw new Error("Tema adı belirtilmedi.");
+            }
+
+            throw new Error(`Bilinmeyen araç: ${name}`);
+          },
+        };
+
+        // Global erişim
+        window.webMcp = webMcpTools;
+        window.__mcp = webMcpTools;
+
+        // Tarayıcı yerel WebMCP API'si
+        if (
+          "modelContext" in navigator &&
+          typeof navigator.modelContext.provideContext === "function"
+        ) {
+          try {
+            navigator.modelContext.provideContext({
+              tools: webMcpTools.listTools(),
+              execute: webMcpTools.callTool,
+            });
+          } catch (e) {
+            console.warn("Navigator modelContext error:", e);
+          }
+        }
+
+        // JSON-RPC 2.0 postMessage köprüsü
+        window.addEventListener("message", async (event) => {
+          if (!event.data || typeof event.data !== "object") return;
+          if (event.data.jsonrpc !== "2.0") return;
+          if (!event.data.method) return; // Yanıt mesajlarını döngüye sokma
+
+          const { id, method, params } = event.data;
+          const target = event.source || window;
+
+          try {
+            if (method === "initialize") {
+              target.postMessage(
+                {
+                  jsonrpc: "2.0",
+                  id,
+                  result: {
+                    protocolVersion: "2024-11-05",
+                    capabilities: { tools: {} },
+                    serverInfo: { name: "emrekayik-web-mcp", version: "1.0.0" },
+                  },
+                },
+                "*"
+              );
+            } else if (method === "ping") {
+              target.postMessage({ jsonrpc: "2.0", id, result: {} }, "*");
+            } else if (method === "tools/list") {
+              target.postMessage(
+                {
+                  jsonrpc: "2.0",
+                  id,
+                  result: { tools: webMcpTools.listTools() },
+                },
+                "*"
+              );
+            } else if (method === "tools/call") {
+              const result = await webMcpTools.callTool(
+                params.name,
+                params.arguments || params.parameters
+              );
+              target.postMessage({ jsonrpc: "2.0", id, result }, "*");
+            } else {
+              target.postMessage(
+                {
+                  jsonrpc: "2.0",
+                  id,
+                  error: { code: -32601, message: `Bilinmeyen metot: ${method}` },
+                },
+                "*"
+              );
+            }
+          } catch (err) {
+            target.postMessage(
+              {
+                jsonrpc: "2.0",
+                id,
+                error: { code: -32603, message: err.message || "İç hata oluştu" },
+              },
+              "*"
+            );
+          }
+        });
+      })();
+    </script>
   </body>
 </html>

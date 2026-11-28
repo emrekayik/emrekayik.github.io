@@ -252,3 +252,4 @@ exclude:
   - package-lock.json
   - tailwind.config.js
   - assets/css/tailwind.css
+  - skills-lock.json

@@ -1,0 +1,42 @@
+---
+layout: null
+permalink: /llms.txt
+---
+# Emre Kayık ({{ site.title }})
+
+> {{ site.description | default: "Yazılım geliştirici ve tasarımcı Emre Kayık'ın kişisel portfolyosu, blog yazıları, projeleri ve notları." }}
+
+Emre Kayık, modern web teknolojileri, açık kaynak yazılımlar, yapay zeka ve sistem programlama (JavaScript, Python, Rust, Nim, Next.js, Jekyll) konularında çalışan bir yazılım geliştirici ve tasarımcıdır. Bu web sitesi (/home/emre), geliştirdiği projeleri, teknik blog yazılarını, çalışma notlarını ve kullandığı araçları içerir.
+
+## Ana Sayfalar
+
+- [Ana Sayfa]({{ '/' | absolute_url }}): Emre Kayık'ın kişisel web sitesi ana sayfası, öne çıkan projeler ve hızlı bağlantılar.
+- [Blog]({{ '/blog/' | absolute_url }}): Web geliştirme, programlama dilleri, yapay zeka ve üretkenlik üzerine teknik yazılar.
+- [Projeler]({{ '/projeler/' | absolute_url }}): Açık kaynaklı web uygulamaları, kütüphaneler, CLI araçları ve deneysel projeler.
+- [Notlar]({{ '/notlar/' | absolute_url }}): Kişisel gözlemler, düşünceler ve teknik çalışma notları.
+- [Öneriler]({{ '/oneriler/' | absolute_url }}): Kitap, podcast, araç, müzik ve faydalı kaynak tavsiyeleri.
+- [Kullandıklarım]({{ '/kullandiklarim/' | absolute_url }}): Günlük iş akışında, geliştirmede ve tasarımda kullanılan donanım, yazılım ve servisler.
+- [Özgeçmiş / CV]({{ '/ozgecmis/' | absolute_url }}): Eğitim geçmişi, iş deneyimleri, yetkinlikler ve kariyer özeti.
+- [Hakkımda (Ben Emre)]({{ '/me/' | absolute_url }}): Emre Kayık hakkında detaylı biyografi, ilgi alanları ve iletişim bilgileri.
+
+## Projeler
+{% for project in site.projects %}
+- [{{ project.title }}]({{ project.url | absolute_url }}): {{ project.description | default: project.excerpt | strip_html | strip_newlines | replace: "  ", " " | truncate: 160 }}{% if project.repo %} ([Kaynak Kod]({{ project.repo }})){% endif %}
+{%- endfor %}
+
+## Blog Yazıları
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.description | default: post.excerpt | strip_html | strip_newlines | replace: "  ", " " | truncate: 160 }}
+{%- endfor %}
+
+## Notlar
+{% for note in site.notes %}
+- [{{ note.title }}]({{ note.url | absolute_url }}): {{ note.description | default: note.excerpt | strip_html | strip_newlines | replace: "  ", " " | truncate: 160 }}
+{%- endfor %}
+
+## İletişim ve Sosyal Bağlantılar
+
+- [GitHub](https://github.com/emrekayik): Açık kaynak kod depoları ve katkılar.
+- [LinkedIn](https://linkedin.com/in/emrekayik): Profesyonel iş profili ve kariyer ağı.
+- [X (Twitter)](https://twitter.com/emrekayik0): Güncel paylaşımlar ve düşünceler.
+- [RSS Feed]({{ '/feed.xml' | absolute_url }}): Blog yazıları için RSS beslemesi.

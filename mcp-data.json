@@ -1,0 +1,61 @@
+---
+layout: null
+permalink: /mcp-data.json
+---
+{
+  "site": {
+    "title": {{ site.title | jsonify }},
+    "description": {{ site.description | jsonify }},
+    "url": {{ site.url | jsonify }}
+  },
+  "author": {
+    "name": {{ site.author.name | jsonify }},
+    "email": {{ site.author.email | jsonify }},
+    "twitter": {{ site.author.twitter | jsonify }},
+    "social": {{ site.social.links | jsonify }}
+  },
+  "pages": [
+    { "title": "Ana Sayfa", "url": "{{ '/' | absolute_url }}", "description": "Emre Kayık'ın kişisel portfolyosu ve ana sayfası." },
+    { "title": "Blog", "url": "{{ '/blog/' | absolute_url }}", "description": "Yazılım, web teknolojileri ve programlama üzerine teknik blog yazıları." },
+    { "title": "Projeler", "url": "{{ '/projeler/' | absolute_url }}", "description": "Açık kaynaklı web uygulamaları, sistem araçları ve kütüphaneler." },
+    { "title": "Notlar", "url": "{{ '/notlar/' | absolute_url }}", "description": "Teknik çalışma notları ve kişisel düşünceler." },
+    { "title": "Öneriler", "url": "{{ '/oneriler/' | absolute_url }}", "description": "Kitap, podcast, araç ve kaynak önerileri." },
+    { "title": "Kullandıklarım", "url": "{{ '/kullandiklarim/' | absolute_url }}", "description": "Günlük kullanılan donanım, yazılım, servisler ve araçlar." },
+    { "title": "Özgeçmiş / CV", "url": "{{ '/ozgecmis/' | absolute_url }}", "description": "İş deneyimleri, yetenekler, eğitim ve kariyer geçmişi." },
+    { "title": "Ben Emre", "url": "{{ '/me/' | absolute_url }}", "description": "Emre Kayık hakkında detaylı biyografi ve kişisel sayfa." }
+  ],
+  "projects": [
+    {% for project in site.projects %}
+    {
+      "title": {{ project.title | jsonify }},
+      "url": {{ project.url | absolute_url | jsonify }},
+      "repo": {{ project.repo | jsonify }},
+      "tags": {{ project.tags | jsonify }},
+      "description": {{ project.description | default: project.excerpt | strip_html | strip_newlines | replace: "  ", " " | truncate: 250 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "posts": [
+    {% for post in site.posts %}
+    {
+      "title": {{ post.title | jsonify }},
+      "url": {{ post.url | absolute_url | jsonify }},
+      "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
+      "tags": {{ post.tags | jsonify }},
+      "description": {{ post.description | default: post.excerpt | strip_html | strip_newlines | replace: "  ", " " | truncate: 300 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "notes": [
+    {% for note in site.notes %}
+    {
+      "title": {{ note.title | jsonify }},
+      "url": {{ note.url | absolute_url | jsonify }},
+      "date": {{ note.date | date: "%Y-%m-%d" | jsonify }},
+      "category": {{ note.category | jsonify }},
+      "tags": {{ note.tags | jsonify }},
+      "description": {{ note.description | default: note.excerpt | strip_html | strip_newlines | replace: "  ", " " | truncate: 300 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
